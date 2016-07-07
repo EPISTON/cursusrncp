@@ -1,0 +1,84 @@
+scenario GAB
+--------------
+
+ACTEURS						|	SYSTEME
+---------------------------------------------
+
+1) le porteur de carte		| 2)le GAB vérifie la validité
+introduit sa carte			| de la carte
+							| 3) le GAB demande le code
+--------------------------------------------------------
+4) saisie du code			| 5) le GAB verifie le code avec
+							| la carte
+							| 6) le GAB demande au systeme
+							| d'autorisation le montant max
+-------------------------------------------------------------
+7) le systeme d'auth donne	| 8) le GAB demande le montant
+son accord et indique le max| a retirer
+------------------------------------------------------------
+9) saisie du montant		| 10) le gab verifie le montant
+							| 11) le gab débite compte
+							| 12) le gab demande si on veut
+							| un ticket
+-----------------------------------------------------------
+13) le pc demande un ticket	| 14) le gab rend la carte
+-----------------------------------------------------------
+15) le pc reprend sa carte	| 16) le gab distribue ticke et
+							| billet
+-----------------------------------------------------------
+17) le pc prend ses billets
+ et le ticket
+ 
+ ---------------------------
+ enchainements alternatifs
+ 
+ A1: code d'identification provisoirement erroné
+ démarre au point 5 du scénario
+ 6) le gab indique que le code est erroné
+ 7) le gab enregistre l'echec sur la carte
+ le scenario reprend au point 3
+ 
+ A2: montant demandé est supérieur au plafond
+ démarre au point 10
+ 11) le gab indique que le montant est supérieur au plafondle scenario reprend au point 8
+ 
+ A3: ticket refusé
+ demarre au point 12 du scénario
+ 13) refus du ticket
+ 14) le gab rend la carte
+ 15) le pc reprend sa carte
+ 16) le gab distribue les billets
+ 17) le pc reprend les billets
+ 
+ ------------------
+ E1: carte invalide
+ demarre au point 2 du scénraio
+ 3) le gab indique que la carte est invalide, il la rend
+ 
+ E2: code definitivement invalide
+ démarre au point 5 du scénario
+ 6) le gab indique que le code est erroné
+ 7) le gab confisque la carte
+ 8) le gab informe le SI d'authorisation de la confiscation
+ 
+ E3: retrait non autorisé
+ démarre au point 6 du scénario
+ 7) le gab informe le porteur de carte
+ 8) le gab rend la carte
+ 
+ E4: carte non reprise
+ démarre au point 14
+ 15) au bout de 15 secondes, le gab avale la carte
+ 16) le gab informe le SI d'authorisation de la confiscation
+ 
+ E5: billets non pris
+ démarre au point 16
+ 17) au bout de 30 secondes, le gab avale les billets
+ 18) le gab informe le SI d'authorisation, annulation débit
+ 
+ E6: annulation de la transaction
+ peut démarrer entre 4 et 13
+ 4-13) le pc demande l'annulation, ejection de la carte
+ 
+ 
+ 
