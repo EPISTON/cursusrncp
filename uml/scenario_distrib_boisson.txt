@@ -1,0 +1,30 @@
+1 colonne par acteur/interaction
+--> définition d'un scénario
+scénario nominal
+Acteur				| Systeme
+-----------------------------------------
+1) inserer monnaie	| 2) le systeme vérifie la piece
+					| 3) le systeme augmente le credit
+					| 4) le systeme affiche le credit
+5) le client choisi | 6) le dist verifie le montant
+					| 7) le dist distribue la boisson
+					| 8) le dist rend la monnaie
+9) le client récup	|
+la boisson		 	|
+10) le client récup	|
+la monnaie			|
+
+Enchaine alternatif
+-------------------
+A1: une piece n'est pas acceptée
+démare après le point 2 du scénario
+					| 3) le distrib rend la piece
+le scenario reprend au point 1
+
+A2: le montant est insuffisant pour la boisson
+démarre après le point 6 du scénario
+					| 7) informe le client de ce qui manque
+retour au point 1
+
+E1: le client appuit sur annulation (du point 1 au point 4)
+					|5) le distributeur rend la monnaie
