@@ -1,0 +1,11 @@
+liste des principaux
+--------------------
+1) Cas d'utilisation
+2) diagramme d'activité
+3) diagramme de séquence
+4) diagramme de collaboration
+5) diagramme de classe
+6) diagramme d'objet
+7) diagramme d'état transition
+8) diagramme de composants
+9) diagramme de déploiement
