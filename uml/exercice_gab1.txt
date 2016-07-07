@@ -4,3 +4,36 @@ modéliser le diagramme de cas d'utilisation
 d'un GAB (automate bancaire)
 (par exemple retrait argent, depot cheque, consultation solde, relevé...)
 
+----------------
+1) quels sont les utilisateurs de notre systeme
+	- porteur de carte
+	- client banque
+acteurs support
+	- humain
+		- convoyeur de fond
+		- agent bancaire
+		- technicien
+	- non humain
+		- SI Visa/mc...
+		- SI Banque
+2) lister les cas d'utilisation de notre
+systeme
+	- retrait argent
+	- depot cheque
+	- depot numéraire
+	- consultation du solde
+	- impression infos bancaire
+	- imprimer ticket
+	- recharger le distibuteur
+	- récupérer le numéraire/cheque
+	- récupérer les cartes avalées
+
+3) qu'est ce qui est inclus exactement dans notre systeme
+	- equipement (lecteur, clavier, stockage...)
+qui n'est pas inclus
+	- argent
+	?? carte bancaire
+	
+
+
+
