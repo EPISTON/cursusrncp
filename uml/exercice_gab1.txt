@@ -1,0 +1,6 @@
+exercice1
+----------
+modéliser le diagramme de cas d'utilisation
+d'un GAB (automate bancaire)
+(par exemple retrait argent, depot cheque, consultation solde, relevé...)
+
