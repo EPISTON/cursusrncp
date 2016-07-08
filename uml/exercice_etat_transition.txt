@@ -1,0 +1,9 @@
+exercice etat_transition
+-------------------------
+1) vous disposer du moyen de savoir si un caractere
+est "alphanumérique", ou un caractere separateur "espace,point...."
+2) vous pouvez passer au caracter suivant dans un texte
+
+concevoir une machine a état transition qui compte le nombre
+de mots dans le texte
+vous commencez sur le premier caractere du texte
