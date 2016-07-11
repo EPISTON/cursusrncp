@@ -1,0 +1,12 @@
+exercice UML 4 : modelisation compagnie aerienne
+-------------------------------------------------
+1) des compagnies aeriennes proposent différents vols
+2) Un vol est ouvert à la réservation et refermé sur ordre de la compagnie
+3) un client peut réserver un ou plusieurs vols, pour des passagers différents
+4) unbe réservation concerne un seul vol et un seul passager
+5) une réservation peut être annulée ou confirmée
+7) un vol a un aéroport de départ et d'arrivé
+8) un vol peu comporter des escales dans des aeroports
+9) une escale a une heure d'arrivée et une heure de depart
+10) chaque aéroport dessert une ou plusieurs villes
+
