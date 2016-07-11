@@ -1,0 +1,9 @@
+exercice UML 3
+--------------
+
+modéliser, via un diagramme de classe
+un jeu d'echec et l'enregistrement d'une parite
+1) utiliser l'heritage
+2) bien illustrer les associations entre classe
+3) indiquer quelques une des caracteristiques et methodes
+nécéssaire

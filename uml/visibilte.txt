@@ -1,0 +1,11 @@
+			classe		package		descendant		tout le monde
+
+private		oui			non			non				non
+
+default		oui			oui			non				non
+package
+
+protected	oui			oui			oui				non
+
+public		oui			oui			oui				oui
+
