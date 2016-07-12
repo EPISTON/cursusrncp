@@ -1,5 +1,7 @@
 package firstJavaForm;
 
+import java.io.Console;
+
 public class Program {
 
 	public static void main(String[] args) {
@@ -55,10 +57,56 @@ public class Program {
 		
 		System.out.println(var4);
 		
+		// les numériques flottant
+		
+		// flottant 64 bits
+		double var6 = 3.1415;
+		System.out.println("var6 = " + var6);
+		var6 = 3.1415161718;
+		System.out.println("var6 = " + var6);
+		var6 = 3.141516171819202122;
+		System.out.println("var6 = " + var6);
+		
+		// flottant 32 bits
+		float var7 = 3.1415F;
+		System.out.println("var7 = " + var7);
+		var7 = 3.1415161718F;
+		System.out.println("var7 = " + var7);
+		var7 = 3.141516171819202122F;
+		System.out.println("var7 = " + var7);
+		
+		// type boolean (true/false)
+		
+		boolean var8 = true;
+		boolean var9 = false;
+		System.out.println("var8 = " + var8);
+		System.out.println("var9 = " + var9);
+		
+		System.out.println("var8 et var9 = " + (var8 && var9));
+		System.out.println("var8 ou var9 = " + (var8 || var9));
+		System.out.println("not var8 = " + (!var8));
 		
 		
+		// type caractere
+		
+		char vara = 'c';
+		System.out.println("vara = " + vara);
 		
 		
+		// chaine de caractere
+		String str1 = "hello";
+		System.out.println("str1 = " + str1);
+		System.out.println("longeur str1 = " + str1.length());
+		String str2 = new String("bye bye");
+		System.out.println("str2 = " + str2);
+		
+		String str3 = str1 + " " + str2;
+		System.out.println(str3);
+		
+		String str4 = " lundi \n mardi";
+		System.out.println(str4);
+		System.out.print("un ");
+		System.out.print("deux ");
 		
 		
 		
