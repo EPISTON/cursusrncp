@@ -1,0 +1,27 @@
+exercice 1:
+
+saisir un ensembe de notes sur 20 (si on saisie -1 -> fin)
+afficher la moyenne des notes
+la note minimale
+la note maximale
+
+exercice 2:
+demander a l'utilisateur de saisir un texte
+afficher si ce texte est un palindrome ou pas
+
+exemple de palindrome => kayak
+dans String.charAt(position) permet de récupéré le caractere a cette position: "bonjour".charAt(2) -> 'n'
+attention, la postion commence a 0
+
+exercice 3:
+demander a l'utilisateur une taille entiere
+dessiner en caractere un triangle de la bonne taille
+exemple : 5
+
+*****
+*--*
+*-*
+**
+*
+
+
