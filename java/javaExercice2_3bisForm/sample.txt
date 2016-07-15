@@ -1,0 +1,47 @@
+Exercice fonctions/tableau/chaines
+------------
+1) +
+ecrire une fonction qui inverse une chaine de caractere
+
+2) ++
+ecrire une fonction qui prend en parametre
+	A) une somme initiale
+	B) une somme a atteindre (au minimum)
+	C) un taux d'intérêt
+cette fonction nous renvoie le nombre d'année nécéssaire
+pour atteindre la somme désirée
+
+3) +++
+ecrire une/des fonction qui prend un nombre entre 1 et 999
+et qui l'affiche en chiffre romain
+
+3 bis)+++
+lire un fichier texte et afficher les proportions de chaque
+voyelle dans ce texte (en %)
+bonus, compter le nombre de mots
+
+4) ++++
+ecrire un programme qui demande a l'utilisateur une année et
+un mois, (sous forme d'entier), et qui affiche le calendrier
+de ce mois. nous nous limitons dans le passé a 1800
+n'utilisez pas la classe Date/Calendar
+exemple 2016 7
+---------------------------
+    juillet 2016
+---------------------------
+LUN MAR MER JEU VEN SAM DIM
+				  1   2   3
+  4   5   6   7   8   9  10
+ 11  12  13  14...
+ 
+ indices, pour connaitre une année bissextile
+	- tous les 4 ans
+	- sauf les siecles
+	- mais quand même tous les 400 ans
+	
+pour connaitre le jour de la semaine ou débute un mois
+le plus simple est de compter a partir d'une date dans
+le passé que l'on connait
+
+
+
