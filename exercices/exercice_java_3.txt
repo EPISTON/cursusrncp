@@ -1,0 +1,30 @@
+exercice java objet
+----------------------
+1) ecrire une classe Produit avec,
+	identifiant : int
+	denomination : String
+	prix et poids : double
+fournir au moins 2 constructeurs
+fournir une méthode d'affichage
+ecrire une méthode getPrice prenant en parametre une quantité
+et renvoyant le prix de cette quantité de produit, en appliquant
+un discount de 5% (défini dans une constante) si la quantité
+est supérieur à 10
+le prix et le poids ne peuvent être négatifs
+la dénomination de peut faire moins de 3 caractere et plus de 50 caracteres
+
+2) ecrire une classe Rectangle représentant un rectangle (x1, y1, x2, y2)
+	- fournir plusieurs constructeurs
+	- une méthode permettant d'afficher le rectangle en asciiart
+	- une méthode getAire() renvoyant le calcul de la surface
+(++)- une méthode statique prenant 2 rectangles en parametre, et
+	indiquant s'ils sont en collision
+
+3++ bonus)
+	- ecrire une classe Livre (ISBN, titre, tableau d'auteurs), ainsi
+	qu'une classe Auteur (nom, prénom, email)
+	- fournir des methodes permettant de savoir si quelqu'un est auteur
+	d'un livre, et de rajoute un auteur a un livre
+	- fournir une méthode d'affichage d'un livre qui affiche aussi
+	les auteurs de ce livre
+	
