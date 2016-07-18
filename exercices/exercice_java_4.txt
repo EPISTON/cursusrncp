@@ -1,0 +1,48 @@
+exercice java 4
+----------------
+
+1) creer une hierarchie de 3 classes
+une classe Ticket parente et abstraite
+
+Ticket
+-------
+identifiant : int
+dateTicket :java.util.Date
+description : String
+urgence: int
+
+deux classes herite de Ticket
+
+TicketPanne
+-----------
+noMateriel : String
+localisation: String
+
+TicketDeveloppement
+-----------
+nomLogiciel : String
+version : int
+
+avoir la possibilité de lister un tableau de ticket
+affichage correcte (toString) d'un ticket
+deux tickets sont identiques s'ils ont le même identifiant
+bonus ++) une méthode save qui sauvegarde sous format texte type csv
+un ticket
+ champ1;champ2;champ3....
+ 
+2)
+ecrire une hierarchie de classe représentant les pieces d'un jeu d'echec
+avec une classe parente Piece
+en supposant un echiquier vide, fournir une méthode qui renvoie
+tous les deplacements possibles d'une piece depuis une position
+donnée
+
+par exemple:
+	tour : A1 -> "A2A3A4A5A6A7A8B1C1D1E1F1G1H1"
+
+
+
+
+
+
+
