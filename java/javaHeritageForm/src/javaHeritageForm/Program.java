@@ -27,14 +27,14 @@ public class Program {
 		if (rd.nextBoolean())
 			p2 = new Client("skywalker", "luke", "luke@jedibook.com", 200.0);
 		else
-			p2 = new Client();
+			p2 = new Client(); // ici le cast est implicite
 			//p2 = new Personne("leHut", "jabba");
 		
 		Client c2;
 		// instanceof permet de tester si une variable contient un objet
 		// du type voulu
 		if (p2 instanceof Client){
-			c2 = (Client)p2;
+			c2 = (Client)p2; // ici on fait un cast explicit
 			System.out.println(c2.getEmail());
 		}
 		else {
