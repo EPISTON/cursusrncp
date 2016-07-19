@@ -1,0 +1,18 @@
+exercice_java_5
+-----------------------------
+
+ecrire une petite application graphique (en swing)
+
+A) cette application affiche une liste de produits
+Produit(nom, prix, poids)
+utiliser une JList
+B) permettre de saisir, via l'interface, un nouveau produit
+et de l'ajouter a la liste
+C) permettre de sauvegarde la liste dans un fichier texte
+D) la liste doit etre triée en fonction du prix
+	- equivalent de Arrays -> Collections
+E) permettre de recharger une liste de produit a partir du fichier
+F) permettre, via l'interface, un tri personnalisé, c.a.d par
+ prix, poids, nom: indice-> Comparator
+
+ 
