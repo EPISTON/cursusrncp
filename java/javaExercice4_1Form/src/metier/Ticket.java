@@ -1,12 +1,13 @@
 package metier;
 
+import java.text.SimpleDateFormat;
 import java.util.Date;
 
 public abstract class Ticket {
 	public static final int IDENTIFIANT_DEFAUT = 0;
 	public static final String DESCRIPTION_DEFAUT = "aucune";
 	public static final  int URGENCE_DEFAUT = 1;
-	
+	private static SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd");
 	
 	
 	private int identifiant;
@@ -47,12 +48,16 @@ public abstract class Ticket {
 	
 	@Override
 	public String toString() {
-		return "Ticket [identifiant=" + identifiant + ", dateTicket=" + dateTicket + ", description=" + description
+		return "Ticket [identifiant=" + identifiant 
+				+ ", dateTicket=" + format.format(dateTicket) 
+				+ ", description=" + description
 				+ ", urgence=" + urgence + "]";
 	}
 	
 	public String saveToCsv() {
-		return getIdentifiant() + ";" + getDateTicket() + ";" + getDescription() + ";" + getUrgence();
+		return getIdentifiant() + ";" 
+			+ format.format(getDateTicket()) + ";" 
+			+ getDescription() + ";" + getUrgence();
 	}
 	@Override
 	public int hashCode() {
