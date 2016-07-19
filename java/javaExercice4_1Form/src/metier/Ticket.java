@@ -3,7 +3,8 @@ package metier;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
-public abstract class Ticket {
+public abstract class Ticket implements Comparable<Ticket>
+{
 	public static final int IDENTIFIANT_DEFAUT = 0;
 	public static final String DESCRIPTION_DEFAUT = "aucune";
 	public static final  int URGENCE_DEFAUT = 1;
@@ -78,6 +79,21 @@ public abstract class Ticket {
 		if (identifiant != other.identifiant)
 			return false;
 		return true;
+	}
+	
+	// cette méthode est définie dans l'interface Comparable
+	// elle doit renvoyer le résdultat de la comparaison de notre ticket avec un autre
+	// -1 si inferieure
+	// +1 si supérieure
+	// 0  si egale
+	@Override
+	public int compareTo(Ticket t) {
+		if (getUrgence() < t.getUrgence())
+			return -1;
+		else if (getUrgence() > t.getUrgence())
+			return 1;
+		// l'urgence est la même, comparer les dates
+		return getDateTicket().compareTo(t.getDateTicket());
 	}
 	
 	

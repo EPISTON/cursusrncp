@@ -31,8 +31,12 @@ public class TicketDeveloppement extends Ticket {
 				+ super.toString() 
 				+ "nomLogiciel=" + nomLogiciel + ", version=" + version + "]";
 	}
+	
+	// final devant une méthode interdit aux descendants de l'overrider
+	// autrement dit, cette methode est la version "finale" pour tous
+	// les descendants de cette classe
 	@Override
-	public String saveToCsv() {
+	public final String saveToCsv() {
 		return super.saveToCsv() + ";" + getNomLogiciel() + ";" + getVersion();
 	}
 	

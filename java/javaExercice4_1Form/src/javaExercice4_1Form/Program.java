@@ -2,6 +2,7 @@ package javaExercice4_1Form;
 
 import java.io.FileNotFoundException;
 import java.io.PrintWriter;
+import java.util.Arrays;
 import java.util.Date;
 import java.util.Random;
 
@@ -39,6 +40,16 @@ public class Program {
 		
 		for (Ticket t : tickets)
 			System.out.println(t);
+		
+		System.out.println("-------------------------");
+		
+		Arrays.sort(tickets);
+		
+		for (Ticket t : tickets)
+			System.out.println(t);
+		
+		System.out.println("-------------------------");
+			
 		
 		// cet objet perment d'ecrire dans un fichier texte
 		PrintWriter pw = new PrintWriter("tickets.csv");

@@ -2,7 +2,8 @@ package metier;
 
 import java.util.Date;
 
-public class TicketPanne extends Ticket {
+// final devant une classe interdit tout héritage de celle-ci
+public final class TicketPanne extends Ticket {
 
 	private String noMateriel;
 	private String localisation;

@@ -1,10 +1,10 @@
-1;2012-03-10;description0;1;MAT0000;site no0
-2;2011-03-10;description1;0;MAT0001;site no1
-3;2006-03-10;description2;0;MAT0002;site no2
-4;2008-03-10;bug report 3;2;supercloudmanager3;1
-5;2014-03-10;description4;4;MAT0004;site no4
-6;2005-03-10;bug report 5;3;supercloudmanager5;2
-7;2014-03-10;description6;3;MAT0006;site no6
-8;2008-03-10;description7;0;MAT0007;site no7
-9;2007-03-10;description8;3;MAT0008;site no8
-10;2006-03-10;bug report 9;3;supercloudmanager9;4
+1;2008-03-10;bug report 0;0;supercloudmanager0;4
+7;2012-03-10;bug report 6;0;supercloudmanager6;3
+2;2006-03-10;bug report 1;1;supercloudmanager1;2
+9;2011-03-10;description8;1;MAT0008;site no8
+3;2014-03-10;description2;1;MAT0002;site no2
+6;2009-03-10;description5;2;MAT0005;site no5
+10;2010-03-10;bug report 9;2;supercloudmanager9;3
+8;2007-03-10;description7;3;MAT0007;site no7
+5;2009-03-10;description4;3;MAT0004;site no4
+4;2005-03-10;description3;4;MAT0003;site no3
