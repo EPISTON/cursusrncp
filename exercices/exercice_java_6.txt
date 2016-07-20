@@ -1,0 +1,11 @@
+exercice_java_6
+-----------------
+ecrire un petit programme en ligne de commande
+qui permet de saisir une température en degré celsius
+
+et d'afficher la conversion en kelvin/farheneit
+
+A) gerer les erreur de saisie "syntaxe"
+	-> on ne saisie pas un chiffre
+B) gérer avec une exception a nous une valeur de température
+impossible
