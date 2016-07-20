@@ -1,6 +1,7 @@
 package metier;
 
-public class Produit {
+public class Produit implements Comparable<Produit>
+{
 	private String nom;
 	private double prix;
 	private double poids;
@@ -22,6 +23,18 @@ public class Produit {
 	@Override
 	public String toString() {
 		return "Produit [nom=" + nom + ", prix=" + prix + ", poids=" + poids + "]";
+	}
+	@Override
+	public int compareTo(Produit o) {
+		if (getPrix() < o.getPrix())
+			return -1;
+		if (getPrix() > o.getPrix())
+			return 1;
+		return 0;
+	}
+	
+	public String saveToCsv() {
+		return getNom() + ";" + getPrix() + ";" + getPoids();
 	}
 
 }
