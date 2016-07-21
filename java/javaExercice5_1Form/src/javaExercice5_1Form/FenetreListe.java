@@ -35,6 +35,7 @@ public class FenetreListe extends JFrame implements ActionListener
 	public static final String TRI_PRIX = "tri par prix";
 	public static final String TRI_POIDS = "tri par poids";
 	public static final String TRI_NOM = "tri par nom";
+	public static final String TRI_POIDS_PRIX = "tri par prix au kg";
 	
 	private JPanel panelHaut;
 	
@@ -89,7 +90,7 @@ public class FenetreListe extends JFrame implements ActionListener
 		afficherSaisie.setActionCommand(EDIT_PRODUIT);
 		afficherSaisie.addActionListener(this);
 		
-		choixTri = new JComboBox<>(new String[] {TRI_PRIX, TRI_POIDS, TRI_NOM});
+		choixTri = new JComboBox<>(new String[] {TRI_PRIX, TRI_POIDS, TRI_NOM, TRI_POIDS_PRIX});
 		choixTri.setSelectedIndex(0);
 		panelHaut.add(choixTri);
 		choixTri.setActionCommand(TRI_PRODUIT);
@@ -157,6 +158,12 @@ public class FenetreListe extends JFrame implements ActionListener
 				break;
 			case TRI_NOM:
 				Collections.sort(produits, produitNomComparator);
+				break;
+			case TRI_POIDS_PRIX:
+				Collections.sort(produits, (p1, p2) -> {
+					return new Double(p1.getPrix() / p1.getPoids())
+							.compareTo(p2.getPrix() /p2.getPoids());
+				});
 				break;
 		}
 		
