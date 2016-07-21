@@ -111,6 +111,7 @@ public class FenetreListe extends JFrame implements ActionListener
 		produitPoidsComparator = new Produit.PoidsComparator();
 		produitNomComparator = new Produit.NomComparator();
 		
+		// classes anonymes internes
 		/*
 		produitPoidsComparator = new Comparator<Produit>() {
 
