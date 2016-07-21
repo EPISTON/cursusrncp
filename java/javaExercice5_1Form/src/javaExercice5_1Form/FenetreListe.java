@@ -3,11 +3,14 @@ package javaExercice5_1Form;
 import java.awt.BorderLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.PrintWriter;
 import java.util.ArrayList;
 import java.util.Collections;
+import java.util.Comparator;
 import java.util.List;
+import java.util.Scanner;
 
 import javax.swing.BoxLayout;
 import javax.swing.DefaultListModel;
@@ -27,6 +30,7 @@ public class FenetreListe extends JFrame implements ActionListener
 	public static final String EDIT_PRODUIT = "edition";
 	public static final String TRI_PRODUIT = "trier";
 	public static final String SAVE_PRODUIT = "sauver";
+	public static final String LOAD_PRODUIT = "charger";
 	
 	public static final String TRI_PRIX = "tri par prix";
 	public static final String TRI_POIDS = "tri par poids";
@@ -44,6 +48,12 @@ public class FenetreListe extends JFrame implements ActionListener
 	
 	private JComboBox<String> choixTri;
 	private JButton sauver;
+	private JButton charger;
+	
+	
+	private Comparator<Produit> produitPoidsComparator; // comparer via le poids
+	private Comparator<Produit> produitNomComparator; // comparer via le nom
+	
 	
 	public FenetreListe() {
 		super("product elite manager");
@@ -85,10 +95,45 @@ public class FenetreListe extends JFrame implements ActionListener
 		choixTri.setActionCommand(TRI_PRODUIT);
 		choixTri.addActionListener(this);
 		
+		// bouton de sauvegarde
 		sauver = new JButton("sauvegarder");
 		sauver.setActionCommand(SAVE_PRODUIT);
 		sauver.addActionListener(this);
 		panelHaut.add(sauver);
+		
+		// bouton de chargement
+		charger = new JButton("charger");
+		charger.setActionCommand(LOAD_PRODUIT);
+		charger.addActionListener(this);
+		panelHaut.add(charger);
+		
+		// comparateurs pour tri
+		produitPoidsComparator = new Produit.PoidsComparator();
+		produitNomComparator = new Produit.NomComparator();
+		
+		/*
+		produitPoidsComparator = new Comparator<Produit>() {
+
+			@Override
+			public int compare(Produit o1, Produit o2) {
+				if (o1.getPoids() < o2.getPoids())
+					return -1;
+				if (o1.getPoids() > o2.getPoids())
+					return 1;
+				return 0;
+			}
+		};
+		
+		produitNomComparator = new Comparator<Produit>() {
+
+			@Override
+			public int compare(Produit o1, Produit o2) {
+				return o1.getNom().compareTo(o2.getNom());
+			}
+		};
+		*/
+		
+		
 	}
 	
 	private void trier_liste() {
@@ -105,6 +150,12 @@ public class FenetreListe extends JFrame implements ActionListener
 			case TRI_PRIX:
 				// je trie ma liste
 				Collections.sort(produits);
+				break;
+			case TRI_POIDS:
+				Collections.sort(produits, produitPoidsComparator);
+				break;
+			case TRI_NOM:
+				Collections.sort(produits, produitNomComparator);
 				break;
 		}
 		
@@ -141,7 +192,33 @@ public class FenetreListe extends JFrame implements ActionListener
 				// TODO Auto-generated catch block
 				e1.printStackTrace();
 			}
+				break;
+			case LOAD_PRODUIT:
+				try {
+					// j'ouvre le fichier en lecture
+					Scanner reader = new Scanner(new File("produits.csv"));
+					// je vide la Jlist
+					data.clear();
 				
+					// tant qu'il reste des lignes a lire dans le fichier
+					while (reader.hasNextLine()) {
+						// lire la ligne suivante
+						String line = reader.nextLine();
+						// appel du "chargeur" de la classe Produit avec la ligne
+						data.addElement(Produit.loadFromCsv(line));
+					}
+					reader.close();
+				}
+				catch (RuntimeException ex) {
+					// erreur si le csv est malformé
+					JOptionPane.showMessageDialog(this, "format de fichier invalide: "
+													+  ex.getMessage());
+				}
+				catch(FileNotFoundException ex) {
+					// erreur a l'ouverture du fichier
+					JOptionPane.showMessageDialog(this, "pas de fichier a charger");
+				}
+				trier_liste(); // je retri la liste chargée
 				break;
 		}
 		
