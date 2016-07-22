@@ -15,9 +15,9 @@ public class WorkerCompteur implements Runnable {
 	
 	@Override
 	public void run() {
-		for (long l = 0; l < 10*1000*1000; l++) {
+		for (long l = 0; l < 50*1000*1000; l++) {
 			cpt.incrementeCompteur();
-			if (l % (100 * 1000) == 0) {
+			if (l % (500 * 1000) == 0) {
 				System.out.println(getNom() + " iteration = " + l);
 			}
 		}

@@ -32,6 +32,7 @@ public class Program {
 		// on affiche le resultat du compteur partagé
 		System.out.println("fini!!!");
 		System.out.println("valeur compteur partagé = " + compteur.getCompteur());
+		StringBuffer sb = new StringBuffer();
 		
 
 	}
