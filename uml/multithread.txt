@@ -1,0 +1,14 @@
+programmation multi-thread
+----------------------------
+plusieurs processus s'executant en même temps
+dans le même espace mémoire
+	- ideal pour travailler en parallele
+sur des données partagées
+	- aucune protection inter-thread
+
+utilisation via une classe Thread en java
+	- ensemble de mécanisme en place pour
+		- gerer le démarrage/execution/fin de thread
+		- gerer les accès concurrent au variables/objets
+		avec le mot clé synchronised (verrou)
+	
