@@ -1,0 +1,60 @@
+javac chemin/ficher.java
+
+genere le(s) .class pour chaque fichier java
+
+execution:
+
+java package.NomClasse
+---> traduction
+package -> répertoire/chemin
+NomClasse -> nom du fichier .class
+
+structure pour eclipse
+
+src/package1/Classe1.java
+			/Classe2.java
+   /package2/Classe3.java
+   /package3/package4/Classe4.java
+   
+		|  compilation javac -d ./bin ./src/*.java
+		V
+
+bin/package1/Classe1.class
+			/Classe2.class
+   /package2/Classe3.class
+   /package3/package4/Classe4.class
+		
+le ClassPath
+c'est une option fournie a l'execution de java
+qui indique ou aller chercher les classes
+	-> un rep
+	-> un fichier .jar
+
+pour utiliser une librairie, on met en place un classPath vers un
+fichier .jar
+
+l'option -cp permet de spécifier la ou charger les classes
+	- sous form de rep ou de .jar
+attention, il faut aussi indiquer le répertoire "courant" du programme
+	
+java -cp "lib\libProduit.jar;bin" testLib.Program
+
+-------------------------------------------------------------------------
+un cycle de vie défini dans maven par défaut, avec un ensemble d'etape de construction
+
+les différentes etapes
+
+	validate 	-> validation du projet et des ressources nécéssaires
+	compile 	-> compilation du code du projet
+	test 		-> execution de tous les tests unitaires
+	package 	-> par exemple, generation du .jar, .war
+	verify		-> verification et test d'integration
+	install		-> installation dans le depot local
+	deploy		-> copie du package dans un dépot distant
+
+
+goal/cycle de vie
+	install
+	clean -> nettoyage de ce qui a été compilé
+	site -> générer la documentation du projet
+
