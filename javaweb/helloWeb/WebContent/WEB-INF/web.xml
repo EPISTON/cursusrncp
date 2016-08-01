@@ -13,10 +13,20 @@
     <description></description>
     <display-name>BienvenueServlet</display-name>
     <servlet-name>BienvenueServlet</servlet-name>
-    <servlet-class>helloWeb.servlets.BienvenueServlet</servlet-class>
+    <servlet-class>helloWeb.servlets.BienvenueServlet</servlet-class>    
   </servlet>
   <servlet-mapping>
     <servlet-name>BienvenueServlet</servlet-name>
     <url-pattern>/bienvenue</url-pattern>
+  </servlet-mapping>
+  <servlet>
+    <description></description>
+    <display-name>HelloServlet</display-name>
+    <servlet-name>HelloServlet</servlet-name>
+    <servlet-class>helloWeb.servlets.HelloServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>HelloServlet</servlet-name>
+    <url-pattern>/Hello</url-pattern>
   </servlet-mapping>
 </web-app>

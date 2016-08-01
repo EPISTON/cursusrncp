@@ -1,47 +1,48 @@
 package helloWeb.servlets;
 
 import java.io.IOException;
-import java.io.PrintWriter;
-import java.util.Date;
-
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 /**
- * Servlet implementation class BienvenueServlet
+ * Servlet implementation class HelloServlet
  */
-public class BienvenueServlet extends HttpServlet {
+public class HelloServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public BienvenueServlet() {
+    public HelloServlet() {
         super();
         // TODO Auto-generated constructor stub
     }
 
-	
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		response.getWriter().append("Served at: ").append(request.getContextPath());
 	}
 
+	
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// je récupere la valeur du champ nom dans le formulaire
+		// récupération des données en provenance du formulaire
 		String nom = request.getParameter("nom");
+		int age = Integer.parseInt(request.getParameter("age"));
 		
-		// je vais renvoyer du html
-		response.setContentType("text/html");
-		// on récupere un writer dans notre réponse
-		PrintWriter pw = response.getWriter();
-		pw.println("<html><head><title>bienvenue</title></head>");
-		pw.println("<body>");
-		pw.println("<h2>"+ nom + ", vive la choucroute</h2>");
-		pw.println("<h3> fait le " + new Date() + " </h3>");
-		pw.println("</body></html>");
-		pw.close();
+		String message = "";
+		if (age < 20) {
+			message = "salut, " + nom + ", poke va bien";
+		}
+		else {
+			message = "bonjour, " + nom + ", comment vas le dos";
+		}
+		// j'ajoute un attribut "message" a la requette
+		request.setAttribute("message", message);
+		
+		// je veux passer le controle a une page JSP pour formater la réponse HTML
+		getServletContext().getRequestDispatcher("/page1.jsp").forward(request, response);
+		
 	}
 
 }
