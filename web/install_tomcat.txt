@@ -1,0 +1,13 @@
+installation tomcat
+-------------------
+1) décompresser tomcat
+2) mettre en place la variable d'environnement
+	JAVA_HOME pointant sur le répertoire du jdk
+3) ouvrir une ligne de commande dans le répertoire
+	bin de tomcat
+4) lancer startup.bat
+5) vérifier avec un navigateur sur localhost:8080
+	que tomcat tourne correctement
+6) arreter tomcat en fermant la ligne de commande
+7) utiliser eclipse et configurer tomcat dedans
+
