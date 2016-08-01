@@ -1,0 +1,15 @@
+exercice java web 1
+-----------------------
+ecrire une peitie application web (myLogin)
+avec une page de login -> login.html
+cette page a un formulaire avec deux champs,
+un pour le nom, et un pour le motdepasse
+
+soumettre le formulaire vers une servlet CheckLogin
+qui vérifie sir le nom et mot de passe corresponde
+a des valeurs prédéfinie
+	si oui, afficher une page success.jsp accueillant
+	le visiteur
+	si non, afficher une page denied.jsp signifiant
+	le refus du login
+
