@@ -1,10 +1,63 @@
 <!DOCTYPE html>
 <html>
-<head>
-	<meta charset="ISO-8859-1">
-	<title>bienvenue dans tomcat</title>
-</head>
-<body>
-	<h1>tomcat is here!</h1>
-</body>
+<!-- la section HEAD contient les informations
+ sur le header de la page, par exemple le titre, la langue, etc... -->
+	<head>
+		<meta charset="ISO-8859-1">
+		<!-- title est le titre de la "fenetre/ongle" affichée par le navigateur -->
+		<title>bienvenue dans tomcat</title>
+	</head>
+	<!-- la balise body contient tout le contenu de la page -->
+	<body>
+	<!-- nous avons les balises h1 -> h6 qui sont différentes taille de titre (dans la page) -->
+		<h1>tomcat is here!</h1>
+		<h2>tomcat is here!</h2>
+		<h3>tomcat is here!</h3>
+		<p>
+		bientot la                     pause dejeuner,
+		 qu'allons nous manger?
+		</p>
+		<p>
+			avec une entree,<br />
+			et un plat, <br />
+			et enfin un dessert!
+		</p>
+		<!-- table permet de présenter des informations tabulaire -->
+		<table border="1">
+			<!-- tr  table row, une ligne du tableau -->
+			<tr>
+				<!-- td table data, une cellule du tableau -->
+				<td>lundi</td><td>ravioli</td>
+			</tr>
+			<tr>
+				<td>mardi</td><td>brocoli</td>
+			</tr>
+			<tr>
+				<td>mercredi</td><td>spaghetti</td>
+			</tr>
+			<tr>
+				<td colspan="2">bon appetit!</td>
+			</tr>	
+		</table>
+		<form action="bienvenue" method="post" >
+			nom: <input type="text" name="nom" placeholder="bob..." /><br />
+			sexe: 
+			homme <input type="radio" name="sexe" value="homme" checked="checked"/>
+			femme <input type="radio" name="sexe" value="femme" />
+			<!-- plop <input type="radio" name="plop" value="hopla" /> -->
+			<br />
+			votre commentaire: <textarea rows="5" cols="50" name="comment">ce site est vraiment super....</textarea><br />
+			<select name="pays">
+				<option value="fr" selected="selected">France</option>
+				<option value="us">Etats-unis</option>
+				<option value="mr">union martienne</option>
+			</select>
+			couleur: <input type="color" name="couleur" /><br />
+			age: <input type="number" name="age" min="0" max="120" /> <br />
+			<input type="submit" value="envoyer">
+		</form>	
+		<a href="http://www.google.com">go to google</a><br />
+		<img src="images/image-chaton-mignon-gratuit-2.jpg" 
+			alt="un chaton mignon" width="200" height="150" />
+	</body>
 </html>

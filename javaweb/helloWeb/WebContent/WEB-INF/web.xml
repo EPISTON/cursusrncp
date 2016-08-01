@@ -9,4 +9,14 @@
     <welcome-file>default.htm</welcome-file>
     <welcome-file>default.jsp</welcome-file>
   </welcome-file-list>
+  <servlet>
+    <description></description>
+    <display-name>BienvenueServlet</display-name>
+    <servlet-name>BienvenueServlet</servlet-name>
+    <servlet-class>helloWeb.servlets.BienvenueServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>BienvenueServlet</servlet-name>
+    <url-pattern>/bienvenue</url-pattern>
+  </servlet-mapping>
 </web-app>
