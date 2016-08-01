@@ -1,0 +1,55 @@
+Introduction HTML
+------------------
+
+<html>
+....
+</html>
+
+langage html est un langage utilisant des balises
+pour structurer le contenu d'une page web
+
+html 4 -> ancienne version de html
+xhtml -> version "stricte" du html
+html 5 -> version "moderne" du html
+
+au debut
+-> html servait a structurer la page, et a la
+ formater
+certaines balises servaient a formater l'affichage
+par la suite, sont apparues 2 technologies
+	-> feuille de style (css)
+	le but était de séparer les informations de "formatage/présentation"
+	du contenu du document lui-même
+	-> javascript pour permettre de faire des pages plus
+	dynamiques (execution/evenementiel)
+	par exemple, réagir a un clic sur la page
+
+xhtml -> alterer quelques regles du html pour qu'il
+soit conforme au xml
+
+html5 -> relaxer certaine regles et fait une tonne
+d'ajouts
+webapp, single page app
+html5 -> application html
+
+-------------------------------
+une balise est aussi appelé un élément en html
+une balise ouvrante peut avoir des attributs
+sous la forme: "nom_attribut=valeur_attribut"
+du texte peut etre présent entre une balise ouvrante
+et une balise fermante
+un document html a une structure arborescente
+interdit
+<div><p></div></p>
+ok
+<div><p></p></div>
+vous avez aussi des balises auto-fermante
+<br />  equivalent <br></br>
+
+autre exemple
+<div class="pub">
+contenu...
+</div>
+
+
+

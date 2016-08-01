@@ -29,13 +29,15 @@ public class BienvenueServlet extends HttpServlet {
 	}
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		// je récupere la valeur du champ nom dans le formulaire
+		String nom = request.getParameter("nom");
 		// je vais renvoyer du html
 		response.setContentType("text/html");
 		// on récupere un writer dans notre réponse
 		PrintWriter pw = response.getWriter();
 		pw.println("<html><head><title>bienvenue</title></head>");
 		pw.println("<body>");
-		pw.println("<h2>vive la choucroute</h2>");
+		pw.println("<h2>"+ nom + ", vive la choucroute</h2>");
 		pw.println("<h3> fait le " + new Date() + " </h3>");
 		pw.println("</body></html>");
 		pw.close();
