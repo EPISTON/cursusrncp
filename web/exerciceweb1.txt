@@ -13,3 +13,14 @@ a des valeurs prédéfinie
 	si non, afficher une page denied.jsp signifiant
 	le refus du login
 
+exercice 1B
+---------------------
+ecrire une application web detype todoList
+	liste de taches
+	taches nom, categorie, priorité
+	1) ajout d'une taches
+	2) terminer taches
+	3) tache triée suivant la priorité
+	
+
+
