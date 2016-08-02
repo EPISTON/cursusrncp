@@ -9,14 +9,44 @@
     <welcome-file>default.htm</welcome-file>
     <welcome-file>default.jsp</welcome-file>
   </welcome-file-list>
+  
   <servlet>
     <description></description>
     <display-name>CheckLoginServlet</display-name>
     <servlet-name>CheckLoginServlet</servlet-name>
     <servlet-class>myLoginForm.servlets.CheckLoginServlet</servlet-class>
+    <init-param>
+    	<param-name>logins</param-name>
+    	<param-value>bob;joe;marcelus</param-value>
+    </init-param>
+    <init-param>
+    	<param-name>passwords</param-name>
+    	<param-value>1234;5678;abcd</param-value>
+    </init-param>
   </servlet>
+  
   <servlet-mapping>
     <servlet-name>CheckLoginServlet</servlet-name>
     <url-pattern>/checkLogin</url-pattern>
+  </servlet-mapping>
+  
+  <servlet>
+    <description></description>
+    <display-name>CheckAdminServlet</display-name>
+    <servlet-name>CheckAdminServlet</servlet-name>
+    <servlet-class>myLoginForm.servlets.CheckLoginServlet</servlet-class>
+    <init-param>
+    	<param-name>logins</param-name>
+    	<param-value>root;admin;neo</param-value>
+    </init-param>
+    <init-param>
+    	<param-name>passwords</param-name>
+    	<param-value>4321;poiu;trinity</param-value>
+    </init-param>
+  </servlet>
+  
+  <servlet-mapping>
+    <servlet-name>CheckAdminServlet</servlet-name>
+    <url-pattern>/checkAdmin</url-pattern>
   </servlet-mapping>
 </web-app>
