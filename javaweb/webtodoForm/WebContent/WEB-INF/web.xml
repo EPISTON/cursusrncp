@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<web-app xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://java.sun.com/xml/ns/javaee" xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd" id="WebApp_ID" version="2.5">
+  <display-name>webtodoForm</display-name>
+  <welcome-file-list>
+    <welcome-file>index.html</welcome-file>
+    <welcome-file>index.htm</welcome-file>
+    <welcome-file>index.jsp</welcome-file>
+    <welcome-file>default.html</welcome-file>
+    <welcome-file>default.htm</welcome-file>
+    <welcome-file>default.jsp</welcome-file>
+  </welcome-file-list>
+  <listener>
+    <listener-class>webtodoForm.utils.TodoListInitialiser</listener-class>
+  </listener>
+  <servlet>
+    <description></description>
+    <display-name>TodoListServlet</display-name>
+    <servlet-name>TodoListServlet</servlet-name>
+    <servlet-class>webtodoForm.servlets.TodoListServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>TodoListServlet</servlet-name>
+    <url-pattern>/todoList</url-pattern>
+  </servlet-mapping>
+</web-app>
