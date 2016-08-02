@@ -1,0 +1,16 @@
+exercice web 2
+---------------
+A)ecrire une application de gestion de produits
+Produit(nom, prix, poids, stock)
+afficher la liste des produits
+permette d'ajouter un produit
+pouvoir supprimer un produit
+
+B)pouvoir trier les produits par nom/prix/poids/stock
+pouvoir filtrer les produits pour n'afficher que
+les produits avec:
+		un stock supérieur a 0
+		avec un nom contenant le texte saisie
+C bonus)pouvoir editer un produit
+
+		
