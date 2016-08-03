@@ -1,0 +1,55 @@
+Base de donnée
+-------------------
+1) sauvegarder des informations
+2) retrouver ces informations
+
+typiquement, sauvegarder et retrouver nos objets
+métier (Produit, Client, Article, Tache....)
+
+on pourrait réécrire notre propre sauvegarde dans
+des fichier, mais c'est hautement dangereux/difficile
+en particulier pour gérer la cohérence et les accès
+ multiples.
+
+un standard a émergé -> SQL (structured query language)
+les base de données relationelles
+table avec des relations entre celles-ci
+table Article(colonnes: id, titre, corps, dateEcriture)
+table Auteur(colonnes: id, nom, email)
+relation entre Article et Auteur
+
+mysql(mariadb), postgresql, sqlserver, oracle...
+supporter 4 grandes categories d'opération
+1)CRUD
+	CREATE  --> insert
+	READ	--> select
+	UPDATE	--> update
+	DELETE	--> delete
+
+requette de lecture de donnée
+SELECT liste_des_colonnes FROM nom_table WHERE condition
+
+SELECT * FROM `post` where id=1
+SELECT id,titre,corps,dateCreation FROM `post` where id=1
+SELECT * FROM `post` WHERE titre like "%MALADE%"
+SELECT count(id) FROM `post` WHERE titre like "%MALADE%"
+
+insertion -> creation d'une nouvelle ligne
+INSERT INTO nom_table (liste_colonnes)
+				VALUES(liste_valeur)
+
+INSERT INTO post(titre,corps,dateCreation)
+			VALUES ('pikachu',
+                    'pres de porte maillot',
+                    '2016-08-10');
+
+UPDATE nom_table set nom_colonne=valeur, nom_colonne2=valeur2...
+				where condition_pour_choisir_ligne_a_modifier
+					
+UPDATE `post` 
+		SET `corps` = 'j''ai pris la pluie hier, atchoum'
+		WHERE `id` = 4;
+
+DELETE FROM nom_table WHERE condition_ligne_a_effacer
+
+DELETE FROM post where id=1
