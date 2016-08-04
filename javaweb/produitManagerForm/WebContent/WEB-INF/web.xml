@@ -32,4 +32,7 @@
     <servlet-name>ProduitEditServlet</servlet-name>
     <url-pattern>/edition</url-pattern>
   </servlet-mapping>
+  <listener>
+    <listener-class>produitManagerForm.utils.BDDListener</listener-class>
+  </listener>
 </web-app>
