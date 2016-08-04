@@ -94,6 +94,43 @@ public class ProduitDAO {
 		return p;
 	}
 	
+	public void save(Produit p) {
+		if (p.getId() == 0) {
+			// c'est une insertion
+			try {
+				insertOneStatement.clearParameters();
+				insertOneStatement.setString(1, p.getNom());
+				insertOneStatement.setDouble(2, p.getPrix());
+				insertOneStatement.setDouble(3, p.getPoids());
+				insertOneStatement.setInt(4, p.getStock());
+				// execution de l'insertion
+				insertOneStatement.executeUpdate();
+			} catch (SQLException e) {e.printStackTrace();}
+			
+		}
+		else {
+			// c'est une mise à jour
+			try {
+				updateOneStatement.clearParameters();
+				updateOneStatement.setString(1, p.getNom());
+				updateOneStatement.setDouble(2, p.getPrix());
+				updateOneStatement.setDouble(3, p.getPoids());
+				updateOneStatement.setInt(4, p.getStock());
+				updateOneStatement.setInt(5, p.getId());
+				// execution de la requette
+				updateOneStatement.executeUpdate();
+			} catch (SQLException e) {e.printStackTrace();}
+		}
+	}
+	
+	public void deleteOne(int id) {
+		try {
+			deleteOneStatement.clearParameters();
+			deleteOneStatement.setInt(1, id);
+			deleteOneStatement.executeUpdate();
+		} catch (SQLException e) {e.printStackTrace();}
+	}
+	
 	
 	
 }

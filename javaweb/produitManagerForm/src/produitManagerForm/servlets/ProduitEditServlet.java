@@ -9,6 +9,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import produitManagerForm.metier.Produit;
+import produitManagerForm.utils.ProduitDAO;
 
 /**
  * Servlet implementation class ProduitEditServlet
@@ -26,7 +27,23 @@ public class ProduitEditServlet extends HttpServlet {
 
 	
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		List<Produit> produits = (List<Produit>)getServletContext().getAttribute("produits");
+		ProduitDAO produitdao = (ProduitDAO)getServletContext().getAttribute("produitDAO");
+		String action = request.getParameter("action");
+		switch(action) {
+			case "creer produit":
+				Produit p = new Produit(0, "", 0.0, 0.0, 0);
+				// je passe un nouveau produit "vide" au formulaire d'edition
+				request.setAttribute("produit", p);
+				getServletContext().getRequestDispatcher("/edit.jsp").forward(request, response);
+				break;
+			case "editer produit":
+				Produit p2 = produitdao.findByID(Integer.parseInt(request.getParameter("id")));
+				request.setAttribute("produit", p2);
+				getServletContext().getRequestDispatcher("/edit.jsp").forward(request, response);
+				break;
+		}
+		
+		/*List<Produit> produits = (List<Produit>)getServletContext().getAttribute("produits");
 		// afficher le formulaire de création/edition d'un produit
 		String action = request.getParameter("action");
 		switch(action) {
@@ -45,11 +62,33 @@ public class ProduitEditServlet extends HttpServlet {
 				getServletContext().getRequestDispatcher("/edit.jsp").forward(request, response);
 				break;
 		}
-		
+		*/
 	}
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		List<Produit> produits = (List<Produit>)getServletContext().getAttribute("produits");
+		ProduitDAO produitdao = (ProduitDAO)getServletContext().getAttribute("produitDAO");
+		String action = request.getParameter("action");
+		// si pas d'action, on revient a la liste
+		if (action == null)
+			response.sendRedirect("/produitManagerForm/");
+		
+		switch(action) {
+			case "sauvegarder":
+				Produit p = new Produit(
+						Integer.parseInt(request.getParameter("id")),
+						request.getParameter("nom"),
+						Double.parseDouble(request.getParameter("prix")),
+						Double.parseDouble(request.getParameter("poids")),
+						Integer.parseInt(request.getParameter("stock"))
+						);
+				produitdao.save(p);
+				break;
+			case "supprimer produit":
+				produitdao.deleteOne(Integer.parseInt(request.getParameter("id")));
+			}
+		response.sendRedirect("/produitManagerForm/");
+		
+		/*List<Produit> produits = (List<Produit>)getServletContext().getAttribute("produits");
 
 		String action = request.getParameter("action");
 		// si pas d'action, on revient a la liste
@@ -94,7 +133,7 @@ public class ProduitEditServlet extends HttpServlet {
 					p2.setStock(p.getStock());
 				}
 		}
-		response.sendRedirect("/produitManagerForm/");
+		response.sendRedirect("/produitManagerForm/");*/
 	}
 
 }

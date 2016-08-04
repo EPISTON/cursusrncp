@@ -21,11 +21,11 @@ for (Produit p : produits) {
 	<td><%= p.getPrix() %></td>
 	<td><%= p.getPoids() %></td>
 	<td><%= p.getStock() %></td>
-	<td><form method="get" action="edition">
+	<td><form method="post" action="edition">
 			<input type="hidden" 
 				   name="id"
 				   value="<%= p.getId() %>"/>
-			<input type="submit" value="supprimer" name="action" />
+			<input type="submit" value="supprimer produit" name="action" />
 		</form>
 		<form method="get" action="edition">
 			<input type="hidden" 

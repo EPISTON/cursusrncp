@@ -20,7 +20,7 @@ public class BDDListener implements ServletContextListener {
     public void contextDestroyed(ServletContextEvent arg0)  { 
     }
 
-    public void contextInitialized(ServletContextEvent arg0)  { 
+    public void contextInitialized(ServletContextEvent sce)  { 
     	try {
 			Class.forName("com.mysql.jdbc.Driver");
 			Connection connection = DriverManager.getConnection(
@@ -28,6 +28,11 @@ public class BDDListener implements ServletContextListener {
 					"root",
 					"");
 			System.out.println("connection a la base réussie!");
+			
+			// instanciation du produitDAO (auquel on fournit la connection a la base)
+			ProduitDAO produitdao = new ProduitDAO(connection);
+			sce.getServletContext().setAttribute("produitDAO", produitdao);
+			
 			
 		} catch (ClassNotFoundException e) {
 			// TODO Auto-generated catch block

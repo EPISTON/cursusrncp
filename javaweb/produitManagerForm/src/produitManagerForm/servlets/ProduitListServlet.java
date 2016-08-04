@@ -11,6 +11,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import produitManagerForm.metier.Produit;
+import produitManagerForm.utils.ProduitDAO;
 
 /**
  * Servlet implementation class ProduitListServlet
@@ -31,12 +32,15 @@ public class ProduitListServlet extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// getAttribute renvoie un object, je dois le convertir en (List<Produit>)
-		List<Produit> produits = (List<Produit>)getServletContext().getAttribute("produits");
+/*		List<Produit> produits = (List<Produit>)getServletContext().getAttribute("produits");
 		
 		List<Produit> filteredList = new ArrayList<>(produits);
 		
 		request.setAttribute("produits", filteredList);
-		
+	*/
+		ProduitDAO produitdao = (ProduitDAO)getServletContext().getAttribute("produitDAO");
+		List<Produit> produits = produitdao.findAll();
+		request.setAttribute("produits", produits);
 		getServletContext().getRequestDispatcher("/liste.jsp").forward(request, response);
 	}
 
