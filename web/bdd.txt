@@ -53,3 +53,6 @@ UPDATE `post`
 DELETE FROM nom_table WHERE condition_ligne_a_effacer
 
 DELETE FROM post where id=1
+
+POUR TRIER:
+SELECT * FROM `produit` ORDER BY nom DESC
