@@ -10,6 +10,7 @@
 </head>
 <body>
 <h2>HypeProduct.bio, the app</h2>
+<a href="?tri=1">tri par nom</a>, <a href="?tri=2">tri par prix</a>, <a href="?tri=3">tri par poids</a>
 <table border="1">
 	<tr><th>nom</th><th>Prix</th><th>Poids</th><th>Stock</th><th>actions</th></tr>
 <% 

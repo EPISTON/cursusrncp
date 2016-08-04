@@ -10,10 +10,23 @@ import java.util.List;
 import produitManagerForm.metier.Produit;
 
 public class ProduitDAO {
+	
+	public final static int PAS_DE_TRI = 0;
+	public final static int TRI_PAR_NOM = 1;
+	public final static int TRI_PAR_PRIX = 2;
+	public final static int TRI_PAR_POIDS = 3;
+	
 	private Connection connection; // connection a la BDD
 	
 	public static final String FIND_ALL_SQL =
 			"SELECT id,nom,prix,poids,stock FROM produit";
+	public static final String FIND_ALL_ORDER_NOM_SQL =
+			"SELECT id,nom,prix,poids,stock FROM produit ORDER BY nom";
+	public static final String FIND_ALL_ORDER_PRIX_SQL =
+			"SELECT id,nom,prix,poids,stock FROM produit ORDER BY prix";
+	public static final String FIND_ALL_ORDER_POIDS_SQL =
+			"SELECT id,nom,prix,poids,stock FROM produit ORDER BY poids";
+	
 	public static final String FIND_BY_ID_SQL =
 			"SELECT id,nom,prix,poids,stock FROM produit WHERE id=?";
 	public static final String INSERT_ONE_SQL =
@@ -24,6 +37,9 @@ public class ProduitDAO {
 			"DELETE FROM produit WHERE id=?";
 	
 	private PreparedStatement findAllStatement;
+	private PreparedStatement findAllOrderNomStatement;
+	private PreparedStatement findAllOrderPrixStatement;
+	private PreparedStatement findAllOrderPoidsStatement;
 	private PreparedStatement findByIdStatement;
 	private PreparedStatement updateOneStatement;
 	private PreparedStatement insertOneStatement;
@@ -36,10 +52,14 @@ public class ProduitDAO {
 		this.connection = connection;
 		try {
 			findAllStatement = connection.prepareStatement(FIND_ALL_SQL);
+			findAllOrderNomStatement = connection.prepareStatement(FIND_ALL_ORDER_NOM_SQL);
+			findAllOrderPrixStatement = connection.prepareStatement(FIND_ALL_ORDER_PRIX_SQL);
+			findAllOrderPoidsStatement = connection.prepareStatement(FIND_ALL_ORDER_POIDS_SQL);
 			findByIdStatement = connection.prepareStatement(FIND_BY_ID_SQL);
 			updateOneStatement = connection.prepareStatement(UPDATE_ONE_SQL);
 			insertOneStatement = connection.prepareStatement(INSERT_ONE_SQL);
 			deleteOneStatement = connection.prepareStatement(DELETE_ONE_SQL);
+		
 			
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
@@ -48,13 +68,30 @@ public class ProduitDAO {
 	}
 	
 	public List<Produit> findAll() {
+		return findAll(PAS_DE_TRI);
+	}
+	public List<Produit> findAll(int choixTri) {
 		List<Produit> produits = new ArrayList<>();
+		// par defaut (si pas de tri choisi), on ne tri pas
+		PreparedStatement findStatement= findAllStatement;
+		// sinon, on choisi une des requettes avec order by en fonction du tri choisi
+		switch(choixTri) {
+			case TRI_PAR_NOM:
+				findStatement = findAllOrderNomStatement;
+				break;
+			case TRI_PAR_PRIX:
+				findStatement = findAllOrderPrixStatement;
+				break;
+			case TRI_PAR_POIDS:
+				findStatement = findAllOrderPoidsStatement;
+				break;
+		}
 		
 		try {
 			// je nettoie le statement
-			findAllStatement.clearParameters();
+			findStatement.clearParameters();
 			// execution de la requette
-			ResultSet rs = findAllStatement.executeQuery();
+			ResultSet rs = findStatement.executeQuery();
 			// je percours les lignes renvoyées par la base
 			while (rs.next()) {
 				// pour chaque ligne, j'instancie l'objet produit correspondant
