@@ -56,3 +56,12 @@ DELETE FROM post where id=1
 
 POUR TRIER:
 SELECT * FROM `produit` ORDER BY nom DESC
+
+
+SELECT ct.titre,ct.idClient as idClient,cl.nom,cl.id FROM `contrat` as ct, `client` as cl 
+	where ct.idClient = cl.id
+
+	SELECT ct.id as idContrat, ct.titre,ct.idClient as idClient,cl.nom,cl.id FROM `contrat` as ct, `client` as cl 
+	where ct.idClient = cl.id
+	
+SELECT ct.id as idContrat, ct.titre,ct.idClient as idClient,cl.nom,cl.id FROM `contrat` as ct JOIN `client` as cl ON ct.idClient = cl.id
