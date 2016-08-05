@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<web-app xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://java.sun.com/xml/ns/javaee" xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd" id="WebApp_ID" version="2.5">
+  <display-name>bloggingForm</display-name>
+  <welcome-file-list>
+    <welcome-file>index.html</welcome-file>
+  </welcome-file-list>
+  <context-param>
+    <param-name>bddDriverClass</param-name>
+    <param-value>com.mysql.jdbc.Driver</param-value>
+  </context-param>
+  <context-param>
+    <param-name>bddUrl</param-name>
+    <param-value>jdbc:mysql://localhost:3306/base_blogging</param-value>
+  </context-param>
+  <context-param>
+    <param-name>bddLogin</param-name>
+    <param-value>root</param-value>
+  </context-param>
+  <context-param>
+    <param-name>bddPassword</param-name>
+    <param-value></param-value>
+  </context-param>
+  <listener>
+    <listener-class>bloggingForm.utils.BDDListener</listener-class>
+  </listener>
+  <servlet>
+    <description></description>
+    <display-name>PostListServlet</display-name>
+    <servlet-name>PostListServlet</servlet-name>
+    <servlet-class>bloggingForm.servlets.PostListServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>PostListServlet</servlet-name>
+    <url-pattern>/PostList</url-pattern>
+  </servlet-mapping>
+  <servlet>
+    <description></description>
+    <display-name>PostEditServlet</display-name>
+    <servlet-name>PostEditServlet</servlet-name>
+    <servlet-class>bloggingForm.servlets.PostEditServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>PostEditServlet</servlet-name>
+    <url-pattern>/PostEdit</url-pattern>
+  </servlet-mapping>
+</web-app>
