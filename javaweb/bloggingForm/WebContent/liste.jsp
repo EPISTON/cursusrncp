@@ -10,8 +10,9 @@
 	<link rel="stylesheet" type="text/css" href="style/blog.css" />
 </head>
 <body>
-<h2>HypeBlog.io , the app</h2>
-<a href="?tri=1">tri par titre</a>
+<h2>HypeBlog.io , the app, welcome <%= session.getAttribute("username") %></h2>
+<a href="?tri=1">tri par titre</a><br />
+<a href="Login">se délogguer</a><br />
 <div id="listeposts">
 <% 
 List<Post> posts = (List<Post>)request.getAttribute("posts");

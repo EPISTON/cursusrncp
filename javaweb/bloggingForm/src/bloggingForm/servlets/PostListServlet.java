@@ -7,6 +7,7 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import bloggingForm.utils.PostDAO;
 
@@ -33,6 +34,19 @@ public class PostListServlet extends HttpServlet {
 
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		// je stocke un compteur de visite dans la session
+		HttpSession session = request.getSession();
+		/*if (session.getAttribute("compteur") != null) {
+			Integer compteur = (Integer)session.getAttribute("compteur");
+			compteur++;
+			System.out.println("compteur = " + compteur);
+			session.setAttribute("compteur", compteur);
+		}
+		else
+			session.setAttribute("compteur", 1); // valeur initiale
+		*/
+		
+		
 		request.setAttribute("posts", postDAO.findAll());
 		getServletContext().getRequestDispatcher("/liste.jsp")
 							.forward(request, response);

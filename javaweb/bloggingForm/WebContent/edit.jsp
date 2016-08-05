@@ -34,10 +34,7 @@
 			<label for="categorie">categorie</label>
 				<input class="form-control" type="text" name="categorie" id="categorie" value="<%= p.getCategorie() %>"/><br />
 			</div>
-			<div class="form-group">
-			<label for="auteur">auteur</label>
-				<input class="form-control" type="text" name="auteur" id="auteur" value="<%= p.getAuteur() %>"/><br />
-			</div>
+			<input type="hidden" name="auteur" id="auteur" value="<%= session.getAttribute("username") %>"/><br />
 			<input type="hidden" name="id" value="<%= p.getId() %>" />
 			<input class="btn btn-success" type="submit" value="sauvegarder" name="action" />
 		</form>
