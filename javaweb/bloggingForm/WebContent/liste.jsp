@@ -7,9 +7,10 @@
 <head>
 	<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
 	<title>HypeBlog.io, the new hype blog for you're life experience</title>
+	<link rel="stylesheet" type="text/css" href="style/blog.css" />
 </head>
 <body>
-<h2>HypeBlog.io, the app</h2>
+<h2>HypeBlog.io , the app</h2>
 <a href="?tri=1">tri par titre</a>
 <div id="listeposts">
 <% 

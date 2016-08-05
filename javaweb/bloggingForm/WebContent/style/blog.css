@@ -1,0 +1,24 @@
+/* body est ici le sélécteur, ce style s'applique a toutes les balises body */
+body {
+	background-color: #D2D2D2;
+}
+
+div {
+	border: solid 1px black;
+	padding: 10px;
+}
+
+/* ici, ce selecteur ne s'applique qu'au div d'identifiant listeposts */
+div#listeposts {
+	background-color: #A1C9CA;
+	
+}
+/*  ce selecteur ne s'applique qu'aux div de classe blogpost*/
+div.blogpost {
+	background-color: #A1B5CA;
+	margin-bottom: 5px;
+	border-radius: 5px 20px;
+}
+div.blogpost:hover{
+	background-color: #B1C5DA;
+}
