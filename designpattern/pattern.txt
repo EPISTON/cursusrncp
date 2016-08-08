@@ -1,0 +1,30 @@
+design pattern (motifs de conception/patron de conception)
+	- design pattern de creation/construction
+	- design pattern de structure
+	- design pattern de comportement/execution
+
+- creation/construction:
+	création/instantiation d'objet et ce qui est relié
+		- factory
+		- singleton
+		- builder
+- structure: organisation de classes
+	- composite
+	- facade
+	- decorateur
+- comportement/execution
+	- iterateur
+	- strategie
+
+introduction de la programmation reflexive
+	- du code java qui travaille sur d'autre code java
+	
+-----------------------------------------------
+factory:
+	le pattern factory regroupe les pattern ou l'on isole
+l'utilisateur d'un service de la création/construction de
+ celui-ci.
+ l'utilisateur n'est même pas, dans certains cas, nécéssairement
+ au courant de véritable type de l'objet retourné.
+ 
+ 

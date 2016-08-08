@@ -1,0 +1,2 @@
+langage=allemand
+savedir=toto
