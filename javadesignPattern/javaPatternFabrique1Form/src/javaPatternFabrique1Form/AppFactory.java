@@ -23,7 +23,11 @@ public class AppFactory {
 				app = new TextConfigApp(parameters);
 				app.load();
 				break;
-		}
+			case "database":
+				app = new DatabaseConfigApp(parameters);
+				app.load();
+				break;
+		}		
 		return app;
 	}
 }
