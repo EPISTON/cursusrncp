@@ -6,7 +6,7 @@ public class Program {
 
 	public static void main(String[] args) {
 		
-		AppFactory factory = new AppFactory();
+		/*AppFactory factory = new AppFactory();
 		
 		IConfigApp cfg = factory.BuildConfig("memory", "langage=francais;savedir=svg");
 		System.out.println(cfg.getConfigValue("langage"));
@@ -21,7 +21,29 @@ public class Program {
 		IConfigApp cfg3 = factory.BuildConfig("database", sb.toString());
 		cfg3.setConfigValue("lastUpdated", (new Date()).toString());
 		System.out.println(cfg3.getConfigValue("langage"));
-		cfg3.save();
+		cfg3.save();*/
+		
+		IConfigApp cfg4 = new DBConfigSaver.Builder("jdbc:mysql://localhost:3306/base_config")
+								.tableName("configvalue")
+								.cleColumnName("cle")
+								.valueColumnName("valeur")
+								.build();
+		cfg4.load();
+		cfg4.setConfigValue("lastUpdated", (new Date()).toString());
+		System.out.println(cfg4.getConfigValue("langage"));
+		cfg4.save();
+		
+		IConfigApp cfg5 = new DBConfigSaver.Builder("jdbc:mysql://localhost:3306/base_config")
+				.tableName("configalt")
+				.cleColumnName("nom")
+				.valueColumnName("contenu")
+				.build();
+		cfg5.load();
+		cfg5.setConfigValue("lastUpdated", (new Date()).toString());
+		System.out.println(cfg5.getConfigValue("langage"));
+		cfg5.save();
+		
+		
 	}
 
 }
