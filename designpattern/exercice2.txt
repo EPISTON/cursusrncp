@@ -1,0 +1,21 @@
+exercice 2 design pattern
+
+Fournir un Objet DatabaseConfigSaver
+en le construisant via un builder
+DBConfigSaverBuilder
+	-> classe du driver (par defaut mysql)
+	-> url (requis)
+	-> login		par defaut "root"
+	-> password 	par defaut ""
+	-> nom table	par defaut "configvalue"
+	-> nom colonne clé	par defaut "cle"
+	-> nom colonne valeur	par defaut "valeur"
+	
+exemple
+IConfigApp cfg3 = new DBConfigSaverBuilder("jdbc:mysql...")
+						.login("root")
+						.tablename("myconfigtable")
+						.build();
+
+cfg3.load()...
+
