@@ -1,5 +1,4 @@
 exercice 2 design pattern
-
 Fournir un Objet DatabaseConfigSaver
 en le construisant via un builder
 DBConfigSaverBuilder
@@ -16,6 +15,5 @@ IConfigApp cfg3 = new DBConfigSaverBuilder("jdbc:mysql...")
 						.login("root")
 						.tablename("myconfigtable")
 						.build();
-
 cfg3.load()...
 
