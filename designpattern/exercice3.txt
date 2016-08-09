@@ -1,0 +1,25 @@
+exercice composite:
+----------------------
+représenter une expression mathématique
+sous formet d'objet au format composite
+
+Expression -> operation simple(+ * - /)
+			-> valeur immediate
+			-> expression entre parenthese
+
+evaluer	-> resultat evaluation
+
+2+5*(4-2)
+expression -> operation(+)
+				-> valeur immediate(2)
+					-> operation(*)
+						-> valeur immediate(5)
+						-> expressionparenthese...
+niveau 1)
+niveau bonus:
+	ajouter les fonctions (sin, cos, etc)
+		super bonus -> aller chercher fonction dans Math
+niveau bonus++:
+	ajouter des variables (x, y, z...)
+	on peu evaluer en fournissant le contenu de ces variables
+
