@@ -8,4 +8,10 @@ permettre de parcourir toutes les adresses ip de cet interval
 
 [192.168.5.10 - 192.168.10.255]
 
+[192.168.8.200 - 192.168.10.5]
 
+[192.168.8.10 - 192.168.5.200]
+
+bonus exercice 4b)
+Classe DoucmentTexte (contient un texte sous forme de String)
+parcourir les mots contenus dans le texte via un foreach
