@@ -1,0 +1,11 @@
+exercice4 iterator
+
+ecrire une classe représentant une interval d'adresse ipv4
+
+[192.168.8.10 - 192.168.8.60]
+
+permettre de parcourir toutes les adresses ip de cet interval
+
+[192.168.5.10 - 192.168.10.255]
+
+
