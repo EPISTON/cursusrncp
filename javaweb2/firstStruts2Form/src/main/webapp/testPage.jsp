@@ -5,7 +5,7 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
 <title>Page de test</title>
-<%@ include file="lienCss.jsp" %>
+
 </head>
 <body>
 <h2>avant inclusion</h2>
@@ -13,6 +13,6 @@
 <jsp:include page="hautdepage.jsp"/>
 <h2>apres inclusion</h2>
 <!-- <p><jsp:getProperty property="" name=""/></p> -->
-<!-- <jsp:useBean id="" /> -->
+
 </body>
 </html>

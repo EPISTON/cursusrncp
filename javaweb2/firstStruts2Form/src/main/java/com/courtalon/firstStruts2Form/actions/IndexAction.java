@@ -28,5 +28,11 @@ public class IndexAction extends ActionSupport {
 		message = "bonjour depuis index le " + new Date();
 		return SUCCESS;
 	}
+	
+	public String bonjour() {
+		log.info("appel de bonjour");
+		message = "bien le bonjour, explorateur struts2!";
+		return SUCCESS;
+	}
 
 }

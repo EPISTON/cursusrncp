@@ -16,6 +16,28 @@
             <result name="success">/index.jsp</result>
         </action>
 
+        <action  name="welcome"
+        		 class="com.courtalon.firstStruts2Form.actions.IndexAction"
+        		 method="bonjour" >
+            <result name="success">/welcome.jsp</result>
+        </action>
+
+
+		<action name="contact"
+				class="com.courtalon.firstStruts2Form.actions.HomeAction"
+				method="index">
+				<!--  il faut bien sur creer la page contact.jsp!! -->
+				<result name="success">/contact.jsp</result>
+		</action>
+
+		<action name="saveContact"
+				class="com.courtalon.firstStruts2Form.actions.HomeAction"
+				method="save">
+				<result name="success">/welcome.jsp</result>
+				<result name="input">/contact.jsp</result>
+		</action>
+
+
     </package>
 
     <!-- Add addition packages and configuration here. -->
