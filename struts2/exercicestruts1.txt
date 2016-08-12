@@ -1,0 +1,22 @@
+exercice struts2 1
+-------------------
+creer une nouvelle application struts2 a partir de l'archetype maven
+une page d'accueil avec un formulaire pour saisir les informations
+d'un livre
+receptionner le formulaire du livre et afficher une page avec
+toutes ses informations
+
+Livre
+---------
+titre: String
+auteur: String
+categorie: String
+nbPages: int
+isbn: chaine de caractere
+
+gerer le reaffichage du formulaire en cas d'erreur de saisie
+
+bonus) valider le code ISBN (bonne longueur)
+
+super bonus)
+Base De Donnée
