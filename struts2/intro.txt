@@ -1,0 +1,13 @@
+Struts2
+------------
+A) automatiser les transmissions de valeur
+	- injection de dépendance
+B) améliorer/étendre les pages jsp
+	- balise pour les formulaires, etc...
+C) le concept de la valueStack
+D) utiliser une mécanisme plus flexible que les servlets
+	- pas besoin d'hériter d'une classe précise (Action)
+E) sortir la logique de navigation/aiguillage du code
+F) principe des intercepteurs et des package
+
+	

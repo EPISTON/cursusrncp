@@ -1,0 +1,28 @@
+
+une application Struts2
+-------------------------
+
+http '/index'
+	-> intercpetion par le filtre struts2
+	-> struts2 regarde si une action défini dans struts.xml
+	correspond a l'url 'index' (c'est la propriété name de l'action)
+	-> struts2 trouve l'action en question, il l'instancie
+	-> struts2 appel la méthode choisie (ici index)
+	
+	la methode index s'execute, et remplis l'attribut message de l'action
+	la methode index renvoie un résultat "success"
+	
+	-> struts2 récupere tout les attributs lisible de l'action (ici message)
+	et les stocke dans la valueStack
+	-> struts2 verifie si une balise result de l'action a un nom
+	correspondant au resultat renvoyé par l'action ("success")
+	-> result trouvé, c'est un forward vars la page /index.jsp
+	-> struts2 appel la page jsp avec la value stack "en parametre"
+	
+	la page jsp s'execute
+	la balise <s:property value="message" /> va chercher la valeur de message
+	dans la valueStack
+	
+	-> le html est renvoyé
+
+	
