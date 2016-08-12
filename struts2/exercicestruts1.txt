@@ -12,7 +12,7 @@ titre: String
 auteur: String
 categorie: String
 nbPages: int
-isbn: chaine de caractere
+isbn: String
 
 gerer le reaffichage du formulaire en cas d'erreur de saisie
 

@@ -1,0 +1,30 @@
+GROUPE 1
+--------
+Christophe Beguinet
+Bérénice Streiff
+Jeremy Nocera
+
+GROUPE 2
+--------
+Eric Piston
+Abdoulaye Diallo
+Benoît Viollet
+
+GROUPE 3
+--------
+Bertrand Côte
+Marzouk Bensiali
+Mathieu Pouchoy
+
+developpement d'une plateforme d'enchere en ligne
+
+1) une application web permettant de creer/gérer/consulter
+des encheres, avec gestion de compte utilisateurs
+2) gestion plus fine des encheres, avec traitement automatique
+3) ouverture de la plate-forme a des entreprises/boutique autre
+	- fournir des API/web-service en entree en sortie
+4) fonctionnalité avancée de statistique/data-mining et adaptation
+temps réel des offres commerciale de la plate-forme
+
+
+
