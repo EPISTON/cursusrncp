@@ -4,6 +4,23 @@
          xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
          xsi:schemaLocation="http://java.sun.com/xml/ns/j2ee http://java.sun.com/xml/ns/j2ee/web-app_2_4.xsd">
   <display-name>Struts With maven</display-name>
+ <context-param>
+    <param-name>bddDriverClass</param-name>
+    <param-value>com.mysql.jdbc.Driver</param-value>
+  </context-param>
+  <context-param>
+    <param-name>bddUrl</param-name>
+    <param-value>jdbc:mysql://localhost:3306/base_struts2_exemple1</param-value>
+  </context-param>
+  <context-param>
+    <param-name>bddLogin</param-name>
+    <param-value>root</param-value>
+  </context-param>
+  <context-param>
+    <param-name>bddPassword</param-name>
+    <param-value></param-value>
+  </context-param>
+
 
   <filter>
     <filter-name>struts2</filter-name>
@@ -16,6 +33,9 @@
     <filter-name>struts2</filter-name>
     <url-pattern>/*</url-pattern>
   </filter-mapping>
+  <listener>
+  	<listener-class>com.courtalon.firstStruts2Form.utils.BDDListener</listener-class>
+  </listener>
 
   <welcome-file-list>
     <welcome-file>index.html</welcome-file>

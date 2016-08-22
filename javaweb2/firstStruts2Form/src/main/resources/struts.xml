@@ -36,7 +36,13 @@
 				<result name="success">/welcome.jsp</result>
 				<result name="input">/contact.jsp</result>
 		</action>
-
+		
+ 		<!-- cette action est responsable d'afficher la liste des messages -->
+ 		<action  name="liste"
+        		 class="com.courtalon.firstStruts2Form.actions.MessageAction"
+        		 method="liste" >
+            <result name="success">/liste.jsp</result>
+        </action>
 
     </package>
 
