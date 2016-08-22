@@ -1,0 +1,20 @@
+exercicestruts2_2
+------------------
+liste d'encheres
+
+Enchere
+---------
+id
+description
+prixDepart
+enchereMinimum
+prixActuel
+
+pouvoir lister les encheres
+	-> creer la base/table
+	-> mettre en place listener+dao
+	-> une action struts2 + page jsp
+
+bonus:
+	-> pouvoir encherir sur une des encheres
+	
