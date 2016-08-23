@@ -9,6 +9,7 @@
     <constant name="struts.enable.SlashesInActionNames" value="true" />
 
     <package name="default" namespace="/" extends="struts-default">
+		
 
         <default-action-ref name="index"/>
 
@@ -29,14 +30,25 @@
 				<!--  il faut bien sur creer la page contact.jsp!! -->
 				<result name="success">/contact.jsp</result>
 		</action>
-
+		<action name="contact2"
+				class="com.courtalon.firstStruts2Form.actions.HomeAction"
+				method="index">
+				<!--  il faut bien sur creer la page contact.jsp!! -->
+				<result name="success">/contact2.jsp</result>
+		</action>
+		
 		<action name="saveContact"
 				class="com.courtalon.firstStruts2Form.actions.HomeAction"
 				method="save">
 				<result name="success">/welcome.jsp</result>
 				<result name="input">/contact.jsp</result>
 		</action>
-		
+		<action name="saveContact2"
+				class="com.courtalon.firstStruts2Form.actions.HomeAction"
+				method="save">
+				<result name="success">/welcome.jsp</result>
+				<result name="input">/contact2.jsp</result>
+		</action>
  		<!-- cette action est responsable d'afficher la liste des messages -->
  		<action  name="liste"
         		 class="com.courtalon.firstStruts2Form.actions.MessageAction"

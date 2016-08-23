@@ -1,5 +1,7 @@
 package com.courtalon.firstStruts2Form.actions;
 
+import java.util.Arrays;
+
 import com.opensymphony.xwork2.ActionSupport;
 
 public class HomeAction extends ActionSupport {
@@ -36,6 +38,28 @@ public class HomeAction extends ActionSupport {
 	
 	// receptionner le formulaire
 	public String save() {
+		// liste de noms interdits
+		String[] forbiddenNames = {"hitler", "bieber", "hilton", "kylo"};
+		boolean found = false;
+		for (String name : forbiddenNames) {
+			if (name.equals(getNom().toLowerCase())) {
+				found = true;
+				break;
+			}
+		}
+		// si le nom correspond a un des noms interdit
+		if (found) {
+			// ajouter l'erreur sur le champ nom
+			addFieldError("nom", "nom interdit");
+			// et renvoyer le resultat "input"
+			return INPUT;
+		}
+		if (getNom().equals("jobs") && getPrenom().equals("steve")) {
+			addActionError("nous n'acceptons pas les gens non vivant apple");
+			return INPUT;
+		}
+		
+		
 		this.message = "bonjour, " 
 						+ getNom() + " " 
 						+ getPrenom() + ", tu as " 

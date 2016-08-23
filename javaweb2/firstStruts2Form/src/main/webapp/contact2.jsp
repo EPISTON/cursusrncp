@@ -20,10 +20,10 @@
 <body>
 <h2>coolPeople.io</h2>
 <s:actionerror cssErrorClass="errorMessage"/>
-<s:form action="saveContact" method="post">
-	<s:textfield name="nom" label="ton nom" cssErrorClass="errorField" />
-	<s:textfield name="prenom" label="ton prenom" cssErrorClass="errorField"/>
-	<s:textfield name="age" label="ton age" cssErrorClass="errorField"/>
+<s:form action="saveContact2" method="post" theme="simple">
+	<s:fielderror  fieldName="nom"/><s:textfield name="nom" label="ton nom" cssErrorClass="errorField" /><br />
+	<s:fielderror  fieldName="prenom"/><s:textfield name="prenom" label="ton prenom" cssErrorClass="errorField"/><br />
+	<s:fielderror  fieldName="age"/><s:textfield name="age" label="ton age" cssErrorClass="errorField"/><br />
 	<s:submit />
 </s:form>
 </body>
