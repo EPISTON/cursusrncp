@@ -10,7 +10,13 @@
 <body>
 <h2>SuperEnchere.io</h2>
 <table border="1">
-<tr><th>ID</th><th>description</th><th>prixDepart</th><th>enchereMinimum</th><th>prixActuel</th></tr>
+<tr>
+<th>ID</th>
+<th>description</th>
+<th>prixDepart</th>
+<th>enchereMinimum</th>
+<th>prixActuel</th>
+<th>actions</th></tr>
 <s:iterator value="encheres" >
 <tr>
 <td><s:property value="id" /></td>
@@ -18,8 +24,23 @@
 <td><s:property value="prixDepart" /></td>
 <td><s:property value="enchereMinimum" /></td>
 <td><s:property value="prixActuel" /></td>
+<td>
+<s:form action="encherir" method="post" theme="simple">
+	<s:hidden name="id" /><s:submit value="encherir" />	
+</s:form>
+<s:form action="edit" method="post" theme="simple">
+	<s:hidden name="id" /><s:submit value="editer" />	
+</s:form>
+<s:form action="delete" method="post" theme="simple">
+	<s:hidden name="id" /><s:submit value="supprimer" />	
+</s:form>
+</td>
 </tr>
 </s:iterator>
 </table>
+<s:form action="create" method="post" theme="simple">
+	<s:submit value="creation" />	
+</s:form>
+
 </body>
 </html>

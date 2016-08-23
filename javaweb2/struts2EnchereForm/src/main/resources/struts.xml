@@ -17,7 +17,35 @@
         		method="liste" >
             <result name="success">/liste.jsp</result>
         </action>
-
+ 		<action name="edit"
+        		class="com.courtalon.struts2EnchereForm.actions.EnchereAction"
+        		method="edit" >
+            <result name="success">/edit.jsp</result>
+            <result name="notfound" type="redirect">liste</result>
+        </action>
+		<action name="create"
+        		class="com.courtalon.struts2EnchereForm.actions.EnchereAction"
+        		method="create" >
+            <result name="success">/edit.jsp</result>
+        </action>
+        <action name="save"
+        		class="com.courtalon.struts2EnchereForm.actions.EnchereAction"
+        		method="save" >
+            <result name="success" type="redirect">liste</result>
+            <result name="input" >/edit.jsp</result>
+        </action>
+        <action name="delete"
+        		class="com.courtalon.struts2EnchereForm.actions.EnchereAction"
+        		method="delete" >
+            <result name="success" type="redirect">liste</result>
+        </action>
+        <action name="encherir"
+        		class="com.courtalon.struts2EnchereForm.actions.EnchereAction"
+        		method="encherir" >
+            <result name="success" type="redirect">liste</result>
+        </action>
+        
+        
     </package>
 
     <!-- Add addition packages and configuration here. -->
