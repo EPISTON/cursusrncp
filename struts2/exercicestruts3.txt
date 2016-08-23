@@ -1,0 +1,19 @@
+exercice struts2_3
+-------------------
+a partir de l'exercice précedent (encheres)
+permetre la saisie(création et edition, suppression)
+des encheres
+applique une validation sur les encheres sauvegardées
+	- description (entre 2 et 100 caracteres, requis)
+	- prixDepart (forcément positif, requis)
+	- enchereMinimum (optionnelle, forcément positive ou 0)
+	- au début, le prix actuel est le même que le prix
+	de départ
+
+ - permettre d'encherir simplement (un clic que bouton) de la
+ valeur minimum sur une enchere
+ 
+ bonus:
+	- interdir la creation/edition d'une enchere avec la meme
+	description qu'une autre
+	
