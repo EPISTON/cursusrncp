@@ -45,6 +45,38 @@
             <result name="success" type="redirect">liste</result>
         </action>
         
+       <action name="listeMD"
+        		class="com.courtalon.struts2EnchereForm.actions.EnchereActionMD"
+        		method="liste" >
+            <result name="success">/listeMD.jsp</result>
+        </action>
+ 		<action name="editMD"
+        		class="com.courtalon.struts2EnchereForm.actions.EnchereActionMD"
+        		method="edit" >
+            <result name="success">/editMD.jsp</result>
+            <result name="notfound" type="redirect">listeMD</result>
+        </action>
+		<action name="createMD"
+        		class="com.courtalon.struts2EnchereForm.actions.EnchereActionMD"
+        		method="create" >
+            <result name="success">/editMD.jsp</result>
+        </action>
+        <action name="saveMD"
+        		class="com.courtalon.struts2EnchereForm.actions.EnchereActionMD"
+        		method="save" >
+            <result name="success" type="redirect">listeMD</result>
+            <result name="input" >/editMD.jsp</result>
+        </action>
+        <action name="deleteMD"
+        		class="com.courtalon.struts2EnchereForm.actions.EnchereActionMD"
+        		method="delete" >
+            <result name="success" type="redirect">listeMD</result>
+        </action>
+        <action name="encherirMD"
+        		class="com.courtalon.struts2EnchereForm.actions.EnchereActionMD"
+        		method="encherir" >
+            <result name="success" type="redirect">listeMD</result>
+        </action>
         
     </package>
 
