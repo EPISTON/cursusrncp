@@ -1,0 +1,39 @@
+
+validation Struts2
+-------------------
+- verification de la validité des champs formulaire
+	-> un champ est il requis
+	-> taille du champs
+	-> format de la saisie
+	-> interval de valeurs
+	-> etc...
+	
+struts2 a une validation déclarative + code si nécéssaire (rarement)
+
+HTTP(Form) ---> intercepteurs(validation)
+					|
+					v						OK
+				verification des champs  ------> Action
+					|								|
+					|NOK							|
+					v								|
+JSP(vue)  <----	renvoyer "input"					|
+													v
+JSP(vue)  <------------------------------------ (result)
+
+une action peut elle même renvoyer une résultat "input"
+
+2 types de messages d'erreur
+	-> spécifique a un champ : FieldError
+	-> erreur générale du formulaire : ActionError
+pour affichage:
+	-> s:fieldError
+	   s:actionError
+
+les fieldError, pour peu que vous utilisiez s:form, sont automatiquement
+affichées
+
+-----------------------
+pour le déclaratif cela passe par un fichier xml
+actionClass-action-validation.xml 
+	-> placé dans le même package que l'action
