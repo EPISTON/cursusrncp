@@ -16,4 +16,6 @@ applique une validation sur les encheres sauvegardées
  bonus:
 	- interdir la creation/edition d'une enchere avec la meme
 	description qu'une autre
-	
+
+tip:
+https://struts.apache.org/docs/validation.html	
