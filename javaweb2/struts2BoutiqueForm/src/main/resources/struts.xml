@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE struts PUBLIC
+        "-//Apache Software Foundation//DTD Struts Configuration 2.3//EN"
+        "http://struts.apache.org/dtds/struts-2.3.dtd">
+<struts>
+    <constant name="struts.enable.DynamicMethodInvocation" value="false"/>
+    <constant name="struts.devMode" value="true"/>
+	<constant name="struts.action.extension" value=","/>
+    <constant name="struts.enable.SlashesInActionNames" value="true" />
+
+    <package name="default" namespace="/" extends="struts-default">
+
+		<interceptors>
+			 <interceptor-stack name="myStack">
+                <interceptor-ref name="exception"/>
+                <interceptor-ref name="alias"/>
+                <interceptor-ref name="servletConfig"/>
+                <interceptor-ref name="i18n"/>
+                <interceptor-ref name="prepare"/>
+                <interceptor-ref name="chain"/>
+                <interceptor-ref name="scopedModelDriven"/>
+                <interceptor-ref name="modelDriven">
+                	<param name="refreshModelBeforeResult">true</param>
+                </interceptor-ref>
+                <interceptor-ref name="fileUpload"/>
+                <interceptor-ref name="checkbox"/>
+                <interceptor-ref name="datetime"/>
+                <interceptor-ref name="multiselect"/>
+                <interceptor-ref name="staticParams"/>
+                <interceptor-ref name="actionMappingParams"/>
+                <interceptor-ref name="params"/>
+                <interceptor-ref name="conversionError"/>
+                <interceptor-ref name="validation">
+                    <param name="excludeMethods">input,back,cancel,browse</param>
+                </interceptor-ref>
+                <interceptor-ref name="workflow">
+                    <param name="excludeMethods">input,back,cancel,browse</param>
+                </interceptor-ref>
+                <interceptor-ref name="debugging"/>
+                <interceptor-ref name="deprecation"/>
+            </interceptor-stack>
+		</interceptors>
+
+		<default-interceptor-ref name="myStack" />
+		
+        <default-action-ref name="liste"/>
+
+        <action name="liste"
+        		class="com.courtalon.struts2BoutiqueForm.actions.ProduitAction"
+        		method="liste" >
+            <result name="success">/liste.jsp</result>
+        </action>
+       <action name="edit"
+        		class="com.courtalon.struts2BoutiqueForm.actions.ProduitAction"
+        		method="edit" >
+            <result name="success">/edit.jsp</result>
+            <result name="notfound" type="redirect">/liste</result>
+        </action>
+        
+        <action name="change/*"
+        		class="com.courtalon.struts2BoutiqueForm.actions.ProduitAction"
+        		method="edit" >
+        		<param name="id">{1}</param>
+            <result name="success">/edit.jsp</result>
+            <result name="notfound" type="redirect">/liste</result>
+        </action>
+        
+       <action name="create"
+        		class="com.courtalon.struts2BoutiqueForm.actions.ProduitAction"
+        		method="create" >
+            <result name="success">/edit.jsp</result>
+        </action>
+       <action name="save"
+        		class="com.courtalon.struts2BoutiqueForm.actions.ProduitAction"
+        		method="save" >
+            <result name="success" type="redirect">/liste</result>
+            <result name="input" >/edit.jsp</result>
+        </action>
+
+        <action name="delete"
+        		class="com.courtalon.struts2BoutiqueForm.actions.ProduitAction"
+        		method="delete" >
+            <result name="success" type="redirect">liste</result>
+        </action>
+
+
+    </package>
+
+    <!-- Add addition packages and configuration here. -->
+</struts>

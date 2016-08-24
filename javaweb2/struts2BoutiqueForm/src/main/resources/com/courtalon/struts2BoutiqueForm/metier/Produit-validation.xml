@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE validators PUBLIC "-//Apache Struts//XWork Validator 1.0.3//EN"
+        "http://struts.apache.org/dtds/xwork-validator-1.0.3.dtd">
+<validators>
+	<field name="nom">
+		<field-validator type="requiredstring">
+			<param name="trim">true</param>
+			<message>le champs nom doit etre rempli</message>
+		</field-validator>
+		<field-validator type="stringlength">
+			<param name="minLength">1</param>
+			<param name="maxLength">50</param>
+			<param name="trim">true</param>
+			<message>le nom doit faire entre ${minLength} et ${maxLength} caracteres</message>
+		</field-validator>
+	</field>
+	<field name="prix">
+		<field-validator type="double">
+			<param name="minInclusive">0</param>
+			<message>le prix ne peut etre negatif</message>
+		</field-validator>
+	</field>
+	<field name="poids">
+		<field-validator type="double">
+			<param name="minInclusive">0</param>
+			<message>le poids ne peut etre negatif</message>
+		</field-validator>
+	</field>
+	<field name="stock">
+		<field-validator type="int">
+			<param name="min">0</param>
+			<message>le stock ne peut etre negatif</message>
+		</field-validator>
+	</field>
+</validators>
