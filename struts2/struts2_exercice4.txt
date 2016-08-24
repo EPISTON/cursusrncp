@@ -1,0 +1,40 @@
+exercice Struts 4
+------------------
+ecrire une petite application web permettant
+de gérer un catalogue de Produit
+
+Produit
+---------
+id
+nom
+prix
+poids
+stock
+
+1) lister les produits
+2) crud sur les produits
+3) validation produit
+	-> nom doit faire entre 1 et 50 caracteres
+	-> prix, poids supérieur ou égal à 0
+	-> stock >= 0
+
+Bonus ++)
+Categorie 1) --- (n Produit
+lorsque l'on affiche un Produit, afficher sa categorie
+
+Categorie
+---------
+id
+libelle
+
+lorsque l'on edite un produit, proposer une liste des categorie
+dans un champ déroulant
+indice: OGNL (affichage)
+indice2: il existe en struts2 des balise pour les select
+
+
+
+
+
+
+
