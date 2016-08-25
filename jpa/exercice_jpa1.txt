@@ -1,0 +1,29 @@
+exercice jpa 1
+-----------------
+creer un nouveau projet JPA
+avec une entité
+	Enchere
+	-------
+	id
+	description
+	prixDepart
+	prixActuel
+	enchereMinimum
+	
+la description doit faire un champ de 200 caracteres
+
+le champs prixDepart -> colonne P_depart
+le champs prixActuel -> colonne P_actuel
+
+1) faire la mapping
+2) inserer 4 ou 5 encher pour tester
+3) trouver une encher particuliere
+4) lister toutes les encheres
+5) modifier une enchere existante
+6) lister les encheres dont le prixActuel est supérieur à
+une valeur choisie
+
+bonus:
+lister les description et prixDepart de encheres 
+dont le prixActuel est supérieur à une valeur choisie
+et dont l'enchereMinimum est supérieur a une deuxieme valeur choisie
