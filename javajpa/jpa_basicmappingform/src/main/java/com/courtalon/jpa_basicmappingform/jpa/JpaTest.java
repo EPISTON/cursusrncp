@@ -6,6 +6,7 @@ import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.EntityTransaction;
 import javax.persistence.Persistence;
+import javax.persistence.Query;
 import javax.persistence.TypedQuery;
 
 import com.courtalon.jpa_basicmappingform.beans.*;
@@ -24,13 +25,17 @@ public class JpaTest {
         System.out.println("--------------------------------------");
 		test1(emf);
 
-        input.nextLine();
+      /*  input.nextLine();
 		System.out.println("--------------------------------------");
 		test2(emf);
         
 		input.nextLine();
 		System.out.println("--------------------------------------");
 		test3(emf);
+		*/
+		input.nextLine();
+		System.out.println("--------------------------------------");
+		test4(emf);
 		
         input.nextLine();
 		System.out.println("--------------------------------------");		
@@ -112,7 +117,7 @@ public class JpaTest {
 		EntityTransaction tx = em.getTransaction();
 		tx.begin();
 		//----------------------------------------------------
-		
+		Scanner input = new Scanner(System.in);
 		Produit p2 = em.find(Produit.class, 3);
 		
 		//em.persist(savep);
@@ -122,10 +127,55 @@ public class JpaTest {
 		System.out.println("p == p2 ? " + (p == p2));
 		System.out.println(p);
 		
+		input.nextLine();
+		
+		// effacement/delete d'une entite
+		em.remove(p);
+		
+		
 		//----------------------------------------------------
 		tx.commit();
 		em.close();
 	}
-	
+	public static void test4(EntityManagerFactory emf)
+	{
+		// on recupere un entityManager
+		EntityManager em = emf.createEntityManager();
+		// et une transaction
+		EntityTransaction tx = em.getTransaction();
+		tx.begin();
+		//----------------------------------------------------
+		Scanner input = new Scanner(System.in);
+		System.out.println("poids minimum ? ");
+		double poidsmin = Double.parseDouble(input.nextLine());
+		
+		/*TypedQuery<Produit> requette = em.createQuery(
+				"select p from Produit as p where p.poids > :pmin",
+				Produit.class);
+		requette.setParameter("pmin", poidsmin);
+		List<Produit> produits = requette.getResultList();
+		
+		input.nextLine();
+		
+		for (Produit p : produits) {
+			//em.refresh(p);
+			System.out.println(p);		
+		}*/
+		
+		Query requette2 = em.createQuery(
+				"select p.nom, p.prix from Produit as p where p.poids > :pmin");
+		requette2.setParameter("pmin", poidsmin);
+		
+		List<Object[]> data = requette2.getResultList();
+		for (Object[] ligne : data) {
+			System.out.println(Arrays.toString(ligne));
+		}
+		
+		
+		//----------------------------------------------------
+		tx.commit();
+		em.close();
+	}
+
 	
 }
