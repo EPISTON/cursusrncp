@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<persistence xmlns="http://java.sun.com/xml/ns/persistence"
+             xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+             xsi:schemaLocation="http://java.sun.com/xml/ns/persistence http://java.sun.com/xml/ns/persistence/persistence_2_0.xsd"
+             version="2.0">
+             
+   <persistence-unit name="testHibernate">
+
+      
+       <provider>org.hibernate.ejb.HibernatePersistence</provider>
+
+	   <class>com.courtalon.firstjpaform.beans.Message</class>
+  
+
+      <properties>
+          <!-- Scan for annotated classes and Hibernate mapping XML files -->
+          <property name="hibernate.archive.autodetection" value="class, hbm"/>
+
+       	<!-- utile pour test/debuggage, affiche dans la console les requettes executés --> 
+          <property name="hibernate.show_sql" value="true"/>
+          <property name="hibernate.format_sql" value="true"/>
+          <property name="use_sql_comments" value="true"/>
+         
+		<!-- defini notre connection a la base, c'est en gros notre DataSource -->
+          <property name="javax.persistence.jdbc.driver"
+                    value="com.mysql.jdbc.Driver"/>
+          <property name="javax.persistence.jdbc.url"
+                    value="jdbc:mysql://localhost:3306/base_firstjpaform"/>
+          <property name="javax.persistence.jdbc.user"
+                    value="root"/>
+            <property name="javax.persistence.jdbc.password"
+                    value=""/>
+
+	<!-- gestion du pool de connection a la base "optimise", a ne modifier qu'en fonction de la charge -->
+          <property name="hibernate.c3p0.min_size"
+                    value="5"/>
+          <property name="hibernate.c3p0.max_size"
+                    value="20"/>
+          <property name="hibernate.c3p0.timeout"
+                    value="300"/>
+          <property name="hibernate.c3p0.max_statements"
+                    value="50"/>
+          <property name="hibernate.c3p0.idle_test_period"
+                    value="3000"/>
+
+	<!-- le dialect spécifique de SQL pour la base utilisee, ici, du MYSQL5 -->
+          <property name="hibernate.dialect"
+                    value="org.hibernate.dialect.MySQL5Dialect"/>
+    <!-- configuration de la génération automatique ou pas des tables a partir des objets -->
+		  <property name="hibernate.hbm2ddl.auto" value="create-drop"/>
+      </properties>
+   </persistence-unit>
+
+</persistence>
