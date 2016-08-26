@@ -1,0 +1,37 @@
+exercice jpa 2
+-------------------
+
+Produit
+-------
+id
+nom
+prix
+poids
+stock
+
+
+categorie
+----------
+id
+libelle
+
+Categorie 1)-----(n  Produit
+
+1) faire le mapping
+2) inserer des données (50 produit, 5 categorie)
+3) lister les produits avec le nom de la categorie ou ils sont
+4) pouvoir parcourir les produits d'une categorie
+5) changer un produit de categorie
+
+bonus+)
+6) lister le prix et poids moyen des produit des categories
+7)  lister le prix et poids moyen des produit des categories
+uniquement pour les produits dont le stock est supérieur a une valeur
+choisie
+
+bonus++)
+8) lister les produits n'appartenant pas a une categorie
+
+
+
+
