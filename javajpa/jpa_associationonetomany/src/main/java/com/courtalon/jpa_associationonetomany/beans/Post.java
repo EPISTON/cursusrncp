@@ -26,6 +26,14 @@ public class Post {
 	public int getRating() {return rating;}
 	public void setRating(int rating) {this.rating = rating;}
 	
+	/*
+	* fetch permet de configurer si hibernate precharge ou pas l'association 
+	* lazy -> chargement paresseux, le chargement ne se fera qu'au dernier moment si nécéssaire
+	* eager -> chargement précoce, le chargement se fait tout de suite
+	* 
+	* cascade, propagation d'opérations via les associations
+	* par exemple cascase remove -> propagation de l'effacement
+	*/	
 	@ManyToOne(/*fetch=FetchType.LAZY*/ cascade=CascadeType.PERSIST)
 	public Auteur getAuteur() {return auteur;}
 	public void setAuteur(Auteur auteur) {this.auteur = auteur;}
