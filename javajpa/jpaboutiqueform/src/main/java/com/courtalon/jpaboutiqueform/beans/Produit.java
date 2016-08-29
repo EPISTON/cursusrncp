@@ -3,6 +3,7 @@ package com.courtalon.jpaboutiqueform.beans;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 
 @Entity
@@ -47,6 +48,7 @@ public class Produit {
 	}
 	
 	@ManyToOne
+	@JoinColumn(name="CAT_ID") // permet de personnaliser la cle étrangère
 	public Categorie getCategorie() {
 		return categorie;
 	}
