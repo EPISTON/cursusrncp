@@ -6,6 +6,8 @@ import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.EntityTransaction;
 import javax.persistence.Persistence;
+import javax.persistence.Query;
+import javax.persistence.TypedQuery;
 
 import com.courtalon.jpa_associationmanytomanyform.beans.*;
 
@@ -21,9 +23,9 @@ public class JpaTest {
 
         input.nextLine();
         System.out.println("--------------------------------------");
-		test1(emf);
+		createData(emf);
 
-        input.nextLine();
+      /*  input.nextLine();
 		System.out.println("--------------------------------------");
 		test2(emf);
 
@@ -34,7 +36,12 @@ public class JpaTest {
 		input.nextLine();
 		System.out.println("--------------------------------------");
 		test4(emf);
-		
+		*/
+
+		input.nextLine();
+		System.out.println("--------------------------------------");
+		complexQuery(emf);
+
         input.nextLine();
 		System.out.println("--------------------------------------");		
 
@@ -45,7 +52,7 @@ public class JpaTest {
 
 
 
-	public static void test1(EntityManagerFactory emf)
+	public static void createData(EntityManagerFactory emf)
 	{
 		// on recupere un entityManager
 		EntityManager em = emf.createEntityManager();
@@ -164,5 +171,87 @@ public class JpaTest {
 		tx.commit();
 		em.close();
 	}
+	
+	public static void complexQuery(EntityManagerFactory emf)
+	{
+		// on recupere un entityManager
+		EntityManager em = emf.createEntityManager();
+		// et une transaction
+		EntityTransaction tx = em.getTransaction();
+		tx.begin();
+		//----------------------------------------------------
+		Scanner input = new Scanner(System.in);
+		System.out.println("prix minimum ? ");
+		double prixmin = Double.parseDouble(input.nextLine());
+		TypedQuery<Livre> q1 = em.createQuery(
+				"select l from Livre as l "
+				+ " join l.auteurs as a where l.prix > :prixmin AND a.id = :aid",
+				Livre.class);
+
+		q1.setParameter("prixmin", prixmin);
+		q1.setParameter("aid", 3);
+		List<Livre> livres = q1.getResultList();
+		for (Livre l : livres)
+			System.out.println(l);
+		
+		// je calcul la moyenne du prix des livres de justin Bieber
+		System.out.println("----------------------------------");
+		Query q2 = em.createQuery("select a.nom, avg(l.prix) from Auteur as a "
+				+ " join a.livres as l where a.id= :aid group by a.nom");
+		
+		q2.setParameter("aid", 3);
+		System.out.println("-------------------------------------");
+		List<Object[]> data = q2.getResultList();
+		for (Object[] ligne : data)
+			System.out.println(Arrays.toString(ligne));
+		
+		System.out.println("----------------------------------");
+		Query q3 = em.createQuery("select a.nom, avg(l.prix) from Auteur as a "
+				+ " join a.livres as l group by a.nom");
+		
+		System.out.println("-------------------------------------");
+		data = q3.getResultList();
+		for (Object[] ligne : data)
+			System.out.println(Arrays.toString(ligne));
+		
+		
+		System.out.println("----------------------------------");
+		// cette requette filtre les livres pour ne considérer que ceux dont le
+		// nombre de pages est > 300 (clause where)
+		// ensuite, regroupe par auteur les lignes en calculant la moyenne des prix
+		// puis ne garde sur ces regroupements que ceux dont le prix moyen
+		// est > 36 (clause having)
+		Query q4 = em.createQuery("select a.nom, avg(l.prix) from Auteur as a "
+				+ " join a.livres as l where l.nbPages > 300 group by a.nom "
+				+ " having avg(l.prix) > 35");
+		
+		System.out.println("-------------------------------------");
+		data = q4.getResultList();
+		for (Object[] ligne : data)
+			System.out.println(Arrays.toString(ligne));
+		
+		System.out.println("----------------------------------");
+		// selectionner tous les livres dont justin Bieber n'est pas auteur
+		// le mot clé DISTINCT est disponnible si nécéssaire
+		// JPA est plus limité que SQL
+		// vous ne pouvez pas faire d'aggregation sur le resultat d'une sous-requette
+		Query q5 = em.createQuery("select l.titre, l.nbPages from Livre as l "
+				+ " where NOT EXISTS("
+				+ "select l2 from Livre as l2 join l2.auteurs as a2 "
+				+ " where l2.id = l.id AND a2.id = 3"
+				+ ")");
+		
+		System.out.println("-------------------------------------");
+		data = q5.getResultList();
+		for (Object[] ligne : data)
+			System.out.println(Arrays.toString(ligne));
+		
+		
+		
+		//----------------------------------------------------
+		tx.commit();
+		em.close();
+	}
+	
 	
 }
