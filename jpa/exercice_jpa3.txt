@@ -1,0 +1,45 @@
+exercice_jpa3
+--------------------
+
+Etudiant
+---------
+id
+nom
+email
+
+Cours
+---------
+id
+date
+capaciteMax (nb etudiant maximum)
+
+Professeur
+----------
+id
+nom
+salaire
+
+Matiere
+--------
+id
+libelle
+
+Etudiant n)---(n Cours n)------(1 Professeur
+Cours n)------(1 Matiere
+
+1) faire le mapping
+2) inserer des données (100 etudiants, 10 cours,
+						3 professeur, 4 matieres)
+
+3) lister tous les etudiants assistant a un cours 
+	après une date données
+4) lister les cours et leur nombre de participants
+5) lister les cours et leur taux de remplissage
+6) lister les matieres et le nombre d'etudiant qui suivent 
+	chacune d'entre elles
+--------------------- bonus
+7) lister les etudiants qui assistent a au moins un cours d'un
+professeur choisi
+8) lister les etudiants qui assistent a aucun cours d'un
+professeur choisi
+
