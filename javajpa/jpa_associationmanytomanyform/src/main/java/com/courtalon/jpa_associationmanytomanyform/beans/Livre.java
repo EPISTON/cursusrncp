@@ -5,6 +5,7 @@ import java.util.HashSet;
 import java.util.Set;
 
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.ManyToMany;
@@ -64,9 +65,21 @@ public class Livre {
 		this.prix = prix;
 	}
 
+	// la fonction utilitaire qui met en place une association
+	// entre un livre et un auteur
+	public void addAuteur(Auteur a) {
+		if ( a == null)
+			return;
+		getAuteurs().add(a); // ici, provoquera une insertion dans la table de jointure
+		a.getLivres().add(this); // purement utilitaire, n'affecte pas la base de données
+	}
 	
-	@ManyToMany
+	// par defaut en lazy, EAGER forcerais hibernate a précharger les auteurs des qu'un livre
+	// est requetté
+	@ManyToMany(/*fetch=FetchType.EAGER*/)
 	public Set<Auteur> getAuteurs() {
+		// creer la collection si elle n'est pas déjà présente
+		// la première fois qu'on y accede
 		if (auteurs == null)
 			auteurs = new HashSet<>();
 		return auteurs;

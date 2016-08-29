@@ -1,11 +1,14 @@
 package com.courtalon.jpa_associationmanytomanyform.beans;
 
+import java.util.HashSet;
 import java.util.Set;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.ManyToMany;
+import javax.persistence.PreRemove;
 
 @Entity
 public class Auteur {
@@ -27,8 +30,30 @@ public class Auteur {
 	public String getLangue() {return langue;}
 	public void setLangue(String langue) {this.langue = langue;}
 
-	@ManyToMany(mappedBy="auteurs")
+	// fonction "cosmetique", elle rapelle son symmetrique chez Livre
+	// pour faire l'association
+	public void addLivre(Livre l) {
+		if (l == null)
+			return;
+		l.addAuteur(this);
+	}
+	
+	// cette fonction desassocie l'auteur de tous ses livres
+	// nécéssaire pour eviter des erreur contraintes dans la base
+	@PreRemove // appeler cette méthode automatiquement avant remove
+	public void clearLivre() {
+		for (Livre l : getLivres()) {
+			l.getAuteurs().remove(this);
+		}
+		getLivres().clear();
+	}
+	
+	// attention, la cascade remove ici SUPPRIMERAIS les livres associés a l'auteur
+	// et pas seulement l'association
+	@ManyToMany(mappedBy="auteurs"/*, cascade=CascadeType.REMOVE*/)
 	public Set<Livre> getLivres() {
+		if (livres == null)
+			livres = new HashSet<>();
 		return livres;
 	}
 	public void setLivres(Set<Livre> livres) {this.livres = livres;}

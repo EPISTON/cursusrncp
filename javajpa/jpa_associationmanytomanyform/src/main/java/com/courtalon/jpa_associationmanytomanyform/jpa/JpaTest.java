@@ -27,6 +27,14 @@ public class JpaTest {
 		System.out.println("--------------------------------------");
 		test2(emf);
 
+		input.nextLine();
+		System.out.println("--------------------------------------");
+		test3(emf);
+
+		input.nextLine();
+		System.out.println("--------------------------------------");
+		test4(emf);
+		
         input.nextLine();
 		System.out.println("--------------------------------------");		
 
@@ -101,4 +109,60 @@ public class JpaTest {
 		em.close();
 	}
 
+	public static void test3(EntityManagerFactory emf)
+	{
+		// on recupere un entityManager
+		EntityManager em = emf.createEntityManager();
+		// et une transaction
+		EntityTransaction tx = em.getTransaction();
+		tx.begin();
+		//----------------------------------------------------
+		Auteur a = new Auteur(0, "j.r.r Tolkien", "tolkien@gandalfForever.com","anglais");
+		
+		Livre l = new Livre(0, "le hobbit", new Date(69, 10, 10), 287, 25.99);
+		em.persist(a);
+		em.persist(l);
+		
+		//l.getAuteurs().add(a);
+		
+		 // cet appel ne sauvegarderas PAS l'association, car
+		// la collection livres de Auteur n'est pas maitre de l'association
+		// c'est ici juste le "mirroir" de la collection "auteurs" de Livre
+		//a.getLivres().add(l);
+		
+		// peut importe laquelle on appele, au final addAuteur sera appelé
+		//l.addAuteur(a);
+		a.addLivre(l);
+	
+		//----------------------------------------------------
+		tx.commit();
+		em.close();
+	}
+
+	public static void test4(EntityManagerFactory emf)
+	{
+		// on recupere un entityManager
+		EntityManager em = emf.createEntityManager();
+		// et une transaction
+		EntityTransaction tx = em.getTransaction();
+		tx.begin();
+		//----------------------------------------------------
+		
+		
+		Scanner input = new Scanner(System.in);
+		System.out.println("id auteur a supprimer ?");
+		Auteur a = em.find(Auteur.class, Integer.parseInt(input.nextLine()));
+		System.out.println(a);
+		// appel manuel possible de clearLivre
+		// mais il sera de toute facon appelé automatiquement avant remove
+		// grace a l'annotation @PostRemove
+		//a.clearLivre();
+		System.out.println("---------------");
+		em.remove(a);
+	
+		//----------------------------------------------------
+		tx.commit();
+		em.close();
+	}
+	
 }
