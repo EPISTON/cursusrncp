@@ -20,15 +20,50 @@
 			http://www.springframework.org/schema/mvc/spring-mvc-4.0.xsd"
 			default-autowire="byName">
 
+<bean id="merlin" class="com.courtalon.springCamelotForm.beans.QueteBuilder" />
+
 <bean id="quete1" class="com.courtalon.springCamelotForm.beans.QueteBasique">
 	<property name="description" value="nettoyer les ecuries" />
 	<property name="difficulte" value="0.2"/>
 </bean>
 
+<bean id="quete2" class="com.courtalon.springCamelotForm.beans.QueteBasique">
+	<property name="description" value="compter les pierres du chateau" />
+	<property name="difficulte" value="0.4"/>
+</bean>
+
+<bean 	id="quete3"
+		class="com.courtalon.springCamelotForm.beans.QueteEpique"
+		factory-bean="merlin"
+		factory-method="obtenirQuete"/>
+
+
 <bean id="jacqouille" class="com.courtalon.springCamelotForm.beans.ChevalierBasique">
 	<property name="nom" value="jacqouille"/>
 	<property name="reussite" value="0.4"/>
 	<property name="quete" ref="quete1" />
+</bean>
+
+<bean id="perceval" class="com.courtalon.springCamelotForm.beans.ChevalierTableRonde">
+	<property name="nom" value="perceval"/>
+	<property name="reussite" value="0.5"/>
+	<property name="quete" ref="quete2" />
+	<property name="monture">
+		<bean class="com.courtalon.springCamelotForm.beans.Cheval">
+			<property name="nom" value="trainePatte" />
+		</bean>
+	</property>
+</bean>
+
+<bean id="caradoc" class="com.courtalon.springCamelotForm.beans.ChevalierTableRonde">
+	<property name="nom" value="caradoc"/>
+	<property name="reussite" value="0.3"/>
+	<property name="quete" ref="quete3" />
+	<property name="monture">
+		<bean class="com.courtalon.springCamelotForm.beans.Cheval">
+			<property name="nom" value="bayonne" />
+		</bean>
+	</property>
 </bean>
 
 </beans>

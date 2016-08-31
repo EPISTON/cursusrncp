@@ -23,9 +23,13 @@ public class SpringApp {
         System.out.println("--------------------------------------");
      
         // je récupere le bean "jacqouille" qui fournit le service IChevalier
-        IChevalier c1 = ctx.getBean(IChevalier.class, "jacqouille");
+        IChevalier c1 = ctx.getBean("jacqouille", IChevalier.class );
+        IChevalier c2 = ctx.getBean("perceval", IChevalier.class);
+        IChevalier c3 = ctx.getBean("caradoc", IChevalier.class);
         
         c1.partirEnQuete();
+        c2.partirEnQuete();
+        c3.partirEnQuete();
         
         
         input.nextLine();
