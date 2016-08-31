@@ -32,6 +32,16 @@ public class SpringApp {
         c2.partirEnQuete();
         c3.partirEnQuete();
         
+        //Cheval b1 = ctx.getBean("cheval3", Cheval.class);
+        //System.out.println("cheval = " + b1.getNom());
+        //b1.setNom("ahahah");
+        
+        // comme le scope du cheval3 est prototype
+        // le vhavalier roland n'est pas impacter par la modification
+        // sur le premier exemplaire du cheval3
+        // il recoit son propre nouvel exemplaire du cheval3
+        IChevalier c4 = ctx.getBean("roland", IChevalier.class);
+        c4.partirEnQuete();
         
         input.nextLine();
 		System.out.println("--------------------------------------");

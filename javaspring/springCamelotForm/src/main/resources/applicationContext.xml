@@ -21,6 +21,39 @@
 			default-autowire="byName">
 
 <bean id="merlin" class="com.courtalon.springCamelotForm.beans.QueteBuilder" />
+<bean id="augias" class="com.courtalon.springCamelotForm.beans.Ecurie">
+	<property name="nomChevaux">
+		<list>
+			<value>tonerre</value>
+			<value>pegase</value>
+			<value>jolly jumper</value>
+			<value>ourasi</value>
+		</list>
+	</property>
+</bean>
+
+<!--  lazy-init indique a spring de ne creer ce bean que si necessaire 
+	par defaut, spring creer tous les beans au demarrage du contexte 
+	prototype indique de ne pas reutiliser la meme instance du bean
+	s'il est injecte plusieurs fois -->
+<bean id="cheval3" class="com.courtalon.springCamelotForm.beans.Cheval"
+	 factory-bean="augias" factory-method="fournirCheval"
+	 scope="prototype"
+	 lazy-init="true" />
+
+<bean id="roland"
+	class="com.courtalon.springCamelotForm.beans.ChevalierTableRonde"
+	lazy-init="true">
+	<property name="nom"  value="roland"/>
+	<property name="reussite" value="0.5" />
+	<property name="monture" ref="cheval3"/>
+	<property name="quete">
+		<bean 	class="com.courtalon.springCamelotForm.beans.QueteEpique"
+				factory-bean="merlin"
+				factory-method="obtenirQuete" />
+	</property>
+</bean>
+
 
 <bean id="quete1" class="com.courtalon.springCamelotForm.beans.QueteBasique">
 	<property name="description" value="nettoyer les ecuries" />
@@ -31,6 +64,8 @@
 	<property name="description" value="compter les pierres du chateau" />
 	<property name="difficulte" value="0.4"/>
 </bean>
+
+
 
 <bean 	id="quete3"
 		class="com.courtalon.springCamelotForm.beans.QueteEpique"
