@@ -1,0 +1,33 @@
+INTRODUCTION SPRING
+--------------------
+
+Spring est en quelque sorte le couteau suisse des librairies/framework
+java ee
+
+ -Spring Core
+	librairie centrale de spring (service indispensables au fonctionnement
+	de spring)
+ - de multiples modules/librairies construit par dessus spring core comme
+	- spring context (injection de dépendance/AOP)
+	- spring jpa/data (jpa/persistence)
+	- spring mvc (framework web de spring)
+	- spring security (gestion de la security)
+	- spring batch (traitement par lots)
+	- struts2/spring (plugin spring pour struts2)
+	- spring boot (conteneur leger)
+	- etc....
+	
+quels sont les principes fondamentaux de spring ?
+	- injection de dépendance (DI: dependency injection, IOC: inversion of control)
+		spring nous fournis les services/objets dont on a besoin pour
+		fonctionner, au lieu que l'on se charge nous même d'aller les chercher
+		-> spring encourage fortement l'utilisation d'interfaces
+	- AOP -> aspect oriented programming
+		-> injection de code/traitement (advice/conseil)
+		
+le nom spring -> ressort		
+		
+		
+		
+
+	

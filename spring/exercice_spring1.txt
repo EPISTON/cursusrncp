@@ -1,0 +1,34 @@
+SpringAcademy
+-------------
+Interface -> IArtiste
+			 ------------
+			 faireNumero
+			 getNom
+
+différent types d'artistes:
+
+Musicien
+--------
+injection d'un instrument de musique
+faireNumero -> joue de l'instrument
+
+Jongleur
+--------
+injection un certain nombre de balle (via le constructeur)
+faireNumero -> jongle avec le nombre de balles indiquées
+
+HommeOrchestre
+--------------
+injection une collection d'instrument
+faireNumero -> joue de tous ses instruments
+
+certains instruments sont a usage individuel (a ne pas partager entre musicien)
+un certain type d'instrument est fournis par une factory
+
+bonus++)
+la SpringAcademy fournit automatiquement un service publique
+qui applaudit avant et apres le numero d'un artistes
+aleatoirement, il peut huer l'artiste au lieu de l'applaudir
+
+
+
