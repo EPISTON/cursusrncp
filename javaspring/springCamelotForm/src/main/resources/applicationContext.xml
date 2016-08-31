@@ -66,4 +66,34 @@
 	</property>
 </bean>
 
+<bean id="assurancetourix" class="com.courtalon.springCamelotForm.beans.Menestrel">
+	<constructor-arg index="0" value="assurancetourix" />
+</bean>
+
+<!-- configuration de l'AOP pour notre projet -->
+<aop:config>
+	<!--  defini assurancetourix comme fournisseur de "conseil/advice", du code a inserer -->
+	<aop:aspect ref="assurancetourix">
+		<!--  le point de coupe séléctionne les methodes du projets sur lequel on peu appliquer un advice -->
+		<aop:pointcut 
+expression="execution(* com.courtalon.springCamelotForm.beans.IChevalier.partir*(..)) and target(bean)"
+id="tousChevalier"/>
+		<aop:pointcut 
+expression="execution(* com.courtalon.springCamelotForm.beans.ChevalierTable*.partir*(..)) and target(bean)"
+id="ChevalierTable"/>
+
+		<!-- applique un advice avant l'appel de méthode, en spécifiant la methode advice a appeler
+		et le point de coup a utiliser. A noter, notre methode d'advice recoit en parametre
+		le bean sur lequel est applique le conseil, ici, le chevalier concerne -->
+		<aop:before method="chanterAvant"
+					pointcut-ref="tousChevalier"
+					arg-names="bean"/>
+		<aop:after-returning method="chanterApres"
+					pointcut-ref="ChevalierTable"
+					arg-names="bean"/>
+					
+	</aop:aspect>
+
+</aop:config>
+
 </beans>
