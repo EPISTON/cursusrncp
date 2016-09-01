@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:aop="http://www.springframework.org/schema/aop"
+       xmlns:util="http://www.springframework.org/schema/util"
+       xmlns:context="http://www.springframework.org/schema/context"
+       xmlns:tx="http://www.springframework.org/schema/tx"
+       xmlns:mvc="http://www.springframework.org/schema/mvc"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans 
+            http://www.springframework.org/schema/beans/spring-beans-4.0.xsd
+          http://www.springframework.org/schema/aop 
+            http://www.springframework.org/schema/aop/spring-aop-4.0.xsd
+          http://www.springframework.org/schema/util
+            http://www.springframework.org/schema/util/spring-util-4.0.xsd
+            http://www.springframework.org/schema/context
+			http://www.springframework.org/schema/context/spring-context-4.0.xsd
+			http://www.springframework.org/schema/tx
+           http://www.springframework.org/schema/tx/spring-tx-4.0.xsd
+           http://www.springframework.org/schema/mvc
+			http://www.springframework.org/schema/mvc/spring-mvc-4.0.xsd"
+			default-autowire="byName">
+
+<!--  declaration de mes instruments disponnibles -->
+
+<!-- pas besoin de redonner le nom via une property pour les instruments
+ car les instruments on implemente l'interface BeanNameAware
+ indiquant a Spring d'injecter l'idenfiant/nom du bean automatiquement -->
+<bean id="stradivarius" class="com.courtalon.springAcademyForm.beans.Violon" />
+<bean id="yamaha" class="com.courtalon.springAcademyForm.beans.Violon" />
+<bean id="jericho" class="com.courtalon.springAcademyForm.beans.Trompette" />
+<bean id="vuvuzella" class="com.courtalon.springAcademyForm.beans.Trompette" />
+<bean id="bomtempi" class="com.courtalon.springAcademyForm.beans.Piano" />
+
+<bean id="AndreRieu" class="com.courtalon.springAcademyForm.beans.Musicien">
+	<property name="nom" value="Andre Rieu" />
+	<!-- l'instrument injecte dans la propriéte instrument est un autre bean deja declare
+	dans spring, j'utilise donc ref avec l'identifiant du bean en question -->
+	<property name="instrument" ref="bomtempi"/>
+</bean>
+
+<bean id="patrickTopalof" class="com.courtalon.springAcademyForm.beans.HommeOrchestre">
+	<property name="nom" value="Patrick Topalof" />
+	<!--  un homme orchestre a besoin de multiples instruments
+	 en l'occurence une collection(set) d'instrument -->
+	<property name="instruments">
+		<set>
+			<!-- ref permet d'ajouter au set un bean deja existant -->
+			<ref bean="yamaha"/>
+			<ref bean="vuvuzella"/>
+			<!--  bean permet de declarer directement un nouveau bean a ajouter au Set -->
+			<bean id="klaxonne" class="com.courtalon.springAcademyForm.beans.Trompette" />
+			<!-- ici ce bean sera construit en appelant la methode fabriqueInstrument
+			 du bean fender (Luthier) -->
+			<bean id="dingre" class="com.courtalon.springAcademyForm.beans.Violon"
+				factory-bean="fender" factory-method="fabriqueInstrument" />
+		</set>
+	</property>
+</bean>
+
+<bean id="anthonyGatto" class="com.courtalon.springAcademyForm.beans.Jongleur">
+<!-- construtor-arg permet de specifier le constucteur a appeler et le(s) parametres
+ a passer, l'index indiquant la position du parametre -->
+	<constructor-arg index="0" value="anthony Gatto"/>
+	<constructor-arg index="1" value="12"/>
+</bean> 
+
+<bean id="fender" class="com.courtalon.springAcademyForm.beans.Luthier">
+	<property name="sonorites">
+		<list>
+			<value>grriiooooonnng groooouuuiii</value>
+			<value>wrrriiinnnggg waaaaooooo</value>
+			<value>wooooonnn PLING</value>
+		</list>
+	</property>
+</bean>
+
+</beans>
