@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<schema xmlns="http://www.w3.org/2001/XMLSchema" targetNamespace="http://www.example.org/repertoire" xmlns:tns="http://www.example.org/repertoire" elementFormDefault="qualified">
+
+<complexType name="adresse">
+<sequence>
+	<element name="rue" type="string" minOccurs="1" maxOccurs="1"/>
+	<element name="ville" type="string" minOccurs="1" maxOccurs="1"/>
+	<element name="CP" minOccurs="1" maxOccurs="1">
+		<simpleType>
+			<restriction base="string">
+				<pattern value="[0-9]{5}" />
+			</restriction>
+		</simpleType>
+	</element>
+</sequence>
+<attribute name="codePays" type="integer" use="required"/>
+</complexType>
+
+<complexType name="contact">
+<sequence>
+	<element name="tel" minOccurs="1" maxOccurs="1">
+		<simpleType>
+			<restriction base="string">
+				<pattern value="([0-9]{2}[-. ]?){4}[0-9]{2}" />
+			</restriction>
+		</simpleType>
+	</element>
+	<element name="email" minOccurs="1" maxOccurs="1">
+		<simpleType>
+			<restriction base="string">
+				<pattern value="[a-zA-Z0-9]+@[a-zA-Z0-9]+[.][a-zA-Z]{2,4}" />
+			</restriction>
+		</simpleType>
+	</element>
+</sequence>
+</complexType>
+
+<element name="repertoire">
+	<complexType>
+		<sequence>
+			<element name="entree" minOccurs="1" maxOccurs="unbounded">
+			<complexType>
+				<sequence>
+					<element name="nom" type="string" minOccurs="1" maxOccurs="1" />
+					<element name="prenom" type="string" minOccurs="1" maxOccurs="1"/>
+					<element name="adresse" type="tns:adresse" minOccurs="1" maxOccurs="2"/>
+					<element name="contact" type="tns:contact" minOccurs="1" maxOccurs="1"/>
+				</sequence>
+				<attribute name="no" type="positiveInteger" use="required"/>
+			</complexType>
+			</element>
+		</sequence>
+	</complexType>
+</element>
+</schema>
