@@ -20,6 +20,33 @@
 			http://www.springframework.org/schema/mvc/spring-mvc-4.0.xsd"
 			default-autowire="byName">
 
+<bean 	id="dbf"
+		class="javax.xml.parsers.DocumentBuilderFactory"
+		factory-method="newInstance"/>
+<bean	id="db"
+		class="javax.xml.parsers.DocumentBuilder"
+		factory-bean="dbf"
+		factory-method="newDocumentBuilder" />
+<bean	id="doc"
+		class="org.w3c.dom.Document"
+		factory-bean="db"
+		factory-method="parse">
+		<constructor-arg value="repertoire.xml"/>
+</bean>
+<bean 	id="xpf"
+		class="javax.xml.xpath.XPathFactory"
+		factory-method="newInstance" />
+<bean	id="xp"
+		class="javax.xml.xpath.XPath"
+		factory-bean="xpf"
+		factory-method="newXPath" />
+<bean 	id="xpe"
+		class="javax.xml.xpath.XPathExpression"
+		factory-bean="xp"
+		factory-method="compile" >
+		<constructor-arg value="//adresse[@codePays='2']/rue/text()"/>
+</bean>
 
+		
 
 </beans>
