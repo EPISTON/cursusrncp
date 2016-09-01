@@ -11,7 +11,9 @@ public class Violon implements IInstrument, BeanNameAware
 	public String getSonorite() {return sonorite;}
 	public void setSonorite(String sonorite) {this.sonorite = sonorite;}
 
-	
+	public void accorder(){
+		System.out.println("j'accorde le violon " + this.nom);
+	}
 	
 	public Violon() {
 		setSonorite("wiooouuunnnnggwiaaiiiing");

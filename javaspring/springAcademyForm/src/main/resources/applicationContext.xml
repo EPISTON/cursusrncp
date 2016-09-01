@@ -25,10 +25,17 @@
 <!-- pas besoin de redonner le nom via une property pour les instruments
  car les instruments on implemente l'interface BeanNameAware
  indiquant a Spring d'injecter l'idenfiant/nom du bean automatiquement -->
-<bean id="stradivarius" class="com.courtalon.springAcademyForm.beans.Violon" />
+ <!--  init-method permet de demander a spring d'appeler la methode choisi avant
+  d'injecter ce bean ailleur, mais apres que spring ai injecté les dépendances de
+  ce bean -->
+<bean id="stradivarius"
+	  class="com.courtalon.springAcademyForm.beans.Violon"
+	  init-method="accorder" />
 <bean id="yamaha" class="com.courtalon.springAcademyForm.beans.Violon" />
 <bean id="jericho" class="com.courtalon.springAcademyForm.beans.Trompette" />
-<bean id="vuvuzella" class="com.courtalon.springAcademyForm.beans.Trompette" />
+<!--  si un vuvuzella doit etre injecter une deuxieme fois , en recreer un nouveau -->
+<bean id="vuvuzella" class="com.courtalon.springAcademyForm.beans.Trompette" 
+	scope="prototype"/>
 <bean id="bomtempi" class="com.courtalon.springAcademyForm.beans.Piano" />
 
 <bean id="AndreRieu" class="com.courtalon.springAcademyForm.beans.Musicien">
@@ -73,5 +80,19 @@
 		</list>
 	</property>
 </bean>
+
+<bean id="publique" class="com.courtalon.springAcademyForm.beans.Publique" />
+
+<aop:config>
+	<aop:aspect ref="publique">
+		<aop:pointcut 
+		expression="execution(void com.courtalon.springAcademyForm.beans.IArtiste.faireNumero(..)) and target(bean)"
+		id="reaction"/>
+		<aop:before method="applaudirAvant" pointcut-ref="reaction" arg-names="bean" />
+		<aop:after-returning method="applaudirApres" pointcut-ref="reaction" arg-names="bean" />
+		
+	</aop:aspect>
+</aop:config>
+
 
 </beans>
