@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:aop="http://www.springframework.org/schema/aop"
+       xmlns:util="http://www.springframework.org/schema/util"
+       xmlns:context="http://www.springframework.org/schema/context"
+       xmlns:tx="http://www.springframework.org/schema/tx"
+       xmlns:mvc="http://www.springframework.org/schema/mvc"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans 
+            http://www.springframework.org/schema/beans/spring-beans-4.0.xsd
+          http://www.springframework.org/schema/aop 
+            http://www.springframework.org/schema/aop/spring-aop-4.0.xsd
+          http://www.springframework.org/schema/util
+            http://www.springframework.org/schema/util/spring-util-4.0.xsd
+            http://www.springframework.org/schema/context
+			http://www.springframework.org/schema/context/spring-context-4.0.xsd
+			http://www.springframework.org/schema/tx
+           http://www.springframework.org/schema/tx/spring-tx-4.0.xsd
+           http://www.springframework.org/schema/mvc
+			http://www.springframework.org/schema/mvc/spring-mvc-4.0.xsd"
+			default-autowire="byName">
+
+<bean id="tu" class="com.courtalon.springAOPForm.beans.TextUtils" />
+
+<bean id="minusculeAdvice" class="com.courtalon.springAOPForm.beans.MinusculeAdvice" />
+<bean id="logAfterAdvice" class="com.courtalon.springAOPForm.beans.LogAfterAdvice" />
+<bean id="nullAdvice" class="com.courtalon.springAOPForm.beans.NullAdvice" />
+<bean id="voyelleAdvice" class="com.courtalon.springAOPForm.beans.VoyelleInterceptor" />
+
+<aop:config>
+	<aop:pointcut 
+expression="execution(* com.courtalon.springAOPForm.beans.TextUtils.censure(java.lang.String))"
+	 id="censure"/>
+	 	<aop:pointcut 
+expression="execution(int com.courtalon.springAOPForm.beans.TextUtils.compteVoyelle(java.lang.String))"
+	 id="compte"/>
+	 
+	<aop:advisor advice-ref="minusculeAdvice" pointcut-ref="censure" order="20" />
+	<aop:advisor advice-ref="logAfterAdvice" pointcut-ref="censure"/>
+	<aop:advisor advice-ref="nullAdvice" pointcut-ref="censure" order="5"/>
+	<aop:advisor advice-ref="voyelleAdvice" pointcut-ref="compte"/>
+</aop:config>
+
+</beans>
