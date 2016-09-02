@@ -1,0 +1,41 @@
+exercice Spring 2
+-------------------
+ecriture d'un "service AOP" de cache type memento
+dans le cas on un appel de méthode est déterministe
+	meme valeur en entrée -> meme valeur sortie
+on veut pouvoir "economiser" l'appel de la méthode si
+on connait déjà le résultat
+
+factorielle(5) -> connait pas -> calcul -> 120(mis en cache) -> renvoyer
+factorielle(6) -> connait pas -> calcul -> 720(mis en cache) -> renvoyer
+factorielle(5) -> connait! -> renvoyer depuis cache (120)-> renvoyer
+carre(5) -> 25 (et pas 120)
+
+
+compteVoyelle("bonjour") -> connait pas -> calcul -> 3(mis en cache) -> renvoyer
+compteVoyelle("salut") -> connait pas -> calcul -> 2(mis en cache) -> renvoyer
+compteVoyelle("bonjour") -> connait! -> renvoyer depuis cache (3)-> renvoyer
+
+etape 1
+-------
+ecrire ce mecanisme de cache et ne l'appliquer qu'a une seule méthode
+vérifier son fonctionnement
+
+etape 2
+-------
+ameliorer le cache pour qu'il fonctionne même si appliqué sur de multiples
+méthodes, de signature similaire (attention a ne pas melanger les caches)
+
+etape 3
+-------
+gérer le cache pour de multiples méthodes de signatures variables
+
+etape 4
+-------
+ameliorer le cache pour qu'il soit configurable, avec timeout d'oubli
+au bout de une minute; il oublie les valeurs anciennes
+
+
+
+
+
