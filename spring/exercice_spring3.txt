@@ -16,6 +16,10 @@ compteVoyelle("bonjour") -> connait pas -> calcul -> 3(mis en cache) -> renvoyer
 compteVoyelle("salut") -> connait pas -> calcul -> 2(mis en cache) -> renvoyer
 compteVoyelle("bonjour") -> connait! -> renvoyer depuis cache (3)-> renvoyer
 
+etape 0
+-------
+mettre en place l'intercepteur et afficher les informations sur l'appel
+
 etape 1
 -------
 ecrire ce mecanisme de cache et ne l'appliquer qu'a une seule méthode
