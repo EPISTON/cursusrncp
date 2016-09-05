@@ -16,7 +16,10 @@
 	<td><s:property value="id" /></td>
 	<td><s:property value="titre" /></td>
 	<td><s:property value="corps" /></td>
-	<td><s:a action="edit/%{id}">edition</s:a></td>	
+	<td>
+	<s:a action="edit/%{id}">edition</s:a>
+	<s:a action="remove/%{id}" onclick="return confirm('etes vous sur?');" >suppression</s:a>
+	</td>	
 </tr>
 </s:iterator>
 </table>

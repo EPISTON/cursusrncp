@@ -39,6 +39,15 @@
             <result name="success">/edit.jsp</result>
         </action>
         
+         
+        <action name="remove/*"
+        		class="com.courtalon.firstStrutsSpringJpaForm.actions.IndexAction"
+        		method="remove" >
+        		<param name="id">{1}</param>
+            <result name="success" type="redirect">/index</result>
+        </action>
+        
+        
         <action name="save"
         		class="com.courtalon.firstStrutsSpringJpaForm.actions.IndexAction"
         		method="save" >

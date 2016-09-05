@@ -69,6 +69,12 @@ public class IndexAction extends ActionSupport implements ModelDriven<Message>
 		return SUCCESS;
 	}
 	
+	// pour supprimer un message
+	public String remove() {
+		messageDAO.remove(getModel().getId());
+		return SUCCESS;
+	}
+	
 	public String save() {
 		Message m = getModel();
 		m = messageDAO.save(m);
