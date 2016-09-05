@@ -11,6 +11,9 @@
   		/WEB-INF/applicationContext.xml
   	</param-value>
   </context-param>
+  <!-- ce filtre demande a spring de rouvrir le contexte de persistence
+   lors du rendu des pages jsp, ce qui permet, si nécéssaire, de charger
+   des associations lazy a ce moment la -->
   <filter>
   	<filter-name>SpringOpenEntityManagerInViewFilter</filter-name>
   	<filter-class>org.springframework.orm.jpa.support.OpenEntityManagerInViewFilter</filter-class>

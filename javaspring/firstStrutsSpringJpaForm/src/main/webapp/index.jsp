@@ -10,12 +10,16 @@
 <body>
 <h2>liste des messages</h2>
 <table border="1">
-<tr><th>ID</th><th>titre</th><th>corps</th><th>actions</th></tr>
+<tr><th>ID</th><th>titre</th><th>corps</th><th></th><th>actions</th></tr>
 <s:iterator  value="messages" >
 <tr>
 	<td><s:property value="id" /></td>
 	<td><s:property value="titre" /></td>
 	<td><s:property value="corps" /></td>
+	<td><s:iterator value="etiquetages" status="pos">
+		<s:property value="libelle"/>
+		<s:if test="#pos.last == false">,</s:if>
+	</s:iterator></td>
 	<td>
 	<s:a action="edit/%{id}">edition</s:a>
 	<s:a action="remove/%{id}" onclick="return confirm('etes vous sur?');" >suppression</s:a>
