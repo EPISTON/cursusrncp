@@ -48,6 +48,7 @@
         <include>.classpath</include>
         <include>.project</include>
         <include>*.launch</include>
+        <include>*.xml</include>
       </includes>
     </fileSet>
   </fileSets>
