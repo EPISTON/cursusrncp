@@ -1,0 +1,45 @@
+exercice spring 4
+-------------------
+
+Produit
+--------
+id
+nom
+prix
+poids
+stock
+
+
+Categorie
+---------
+id
+libelle
+
+Produit n)------(1 Categorie
+
+etape 1)
+deployer l'application avec les mapping fonctionnels 
+
+etape 2)(avec ModelDriven si possible)
+mettre en place DAO + actions pour permettre le CRUD sur les Produits
+sans gérer les catégories
+
+etape 3)
+CRUD Produit avec categorie
++ permettre de filtrer la liste des produits par categorie
+
+etape/bonus 4)
+CRUD Categorie
+etape/bonus 5)
+validation Produit avec:
+	prix,poids,stock >= 0
+	poids < 50
+	nom produit entre 2 et 100 caracteres
+
+
+
+
+
+
+
+
