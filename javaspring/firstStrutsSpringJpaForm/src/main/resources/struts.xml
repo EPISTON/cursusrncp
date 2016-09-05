@@ -6,15 +6,46 @@
     <constant name="struts.enable.DynamicMethodInvocation" value="false"/>
     <constant name="struts.devMode" value="true"/>
 	<constant name="struts.action.extension" value=","/>
+	<!-- cette constante autorise les slashes dans les noms d'actions
+	 indispensable si vous voulez faire de "belles" url type rest -->
     <constant name="struts.enable.SlashesInActionNames" value="true" />
 
     <package name="default" namespace="/" extends="json-default">
 
         <default-action-ref name="index"/>
 
-        <action name="index" class="com.courtalon.firstStrutsSpringJpaForm.actions.IndexAction" method="index" >
+        <action name="index"
+        		class="com.courtalon.firstStrutsSpringJpaForm.actions.IndexAction"
+        		method="index" >
             <result name="success">/index.jsp</result>
         </action>
+        
+        <action name="edit/*"
+        		class="com.courtalon.firstStrutsSpringJpaForm.actions.IndexAction"
+        		method="edit" >
+        		<!-- la balise param permet d'ajoute un parametre avec un valeur par defaut
+        		comme s'il venait d'un formulaire
+        		le {1} indique d'utiliser comme valeur ce qui match la premiere etoile
+        		dans l'url exemple: edit/3  -> id=3
+        		 -->
+        		<param name="id">{1}</param>
+            <result name="success">/edit.jsp</result>
+            <result name="notfound" type="redirect">/index</result>
+        </action>
+        
+        <action name="create"
+        		class="com.courtalon.firstStrutsSpringJpaForm.actions.IndexAction"
+        		method="create" >
+            <result name="success">/edit.jsp</result>
+        </action>
+        
+        <action name="save"
+        		class="com.courtalon.firstStrutsSpringJpaForm.actions.IndexAction"
+        		method="save" >
+            <result name="success" type="redirect">/index</result>
+            <result name="input">/edit.jsp</result>
+        </action>
+        
 
     </package>
 

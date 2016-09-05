@@ -11,8 +11,10 @@ import org.springframework.beans.factory.annotation.Qualifier;
 import com.courtalon.firstStrutsSpringJpaForm.metier.Message;
 import com.courtalon.firstStrutsSpringJpaForm.repository.IMessageDAO;
 import com.opensymphony.xwork2.ActionSupport;
+import com.opensymphony.xwork2.ModelDriven;
 
-public class IndexAction extends ActionSupport {
+public class IndexAction extends ActionSupport implements ModelDriven<Message>
+{
 	
 	private static Logger log = LogManager.getLogger(ActionSupport.class); 
 	private static final long serialVersionUID = 1L;
@@ -29,6 +31,18 @@ public class IndexAction extends ActionSupport {
 	private List<Message> messages;
 	public List<Message> getMessages() {return messages;}
 
+	// cet attribut et son getter seront automatiquement appelé par struts2
+	// car nous implémentons ModelDriven
+	// l'objet message renvoyé servira a communiquer pour tout les champs d'un
+	// message individuel
+	private Message model;
+	@Override
+	public Message getModel() {
+		if (model == null)
+			model = new Message();
+		return model;
+	}
+
 
 
 	public String index() {
@@ -37,4 +51,31 @@ public class IndexAction extends ActionSupport {
 		return SUCCESS;
 	}
 
+	public String edit() {
+		// j'essaye de charger le Message avec l'dientifiant en provenance de PARAM
+		// celui-ci, normalement, a été injecté dans le model
+		Message m = messageDAO.findByID(getModel().getId());
+		if (m == null)
+			return "notfound";
+		
+		getModel().setTitre(m.getTitre());
+		getModel().setCorps(m.getCorps());
+		return SUCCESS;
+	}
+	
+	// pour editer un nouveau message
+	// rien besoin de faire ici, sauf si on veu "pré-remplir" le formulaire
+	public String create() {
+		return SUCCESS;
+	}
+	
+	public String save() {
+		Message m = getModel();
+		m = messageDAO.save(m);
+		return SUCCESS;
+	}
+	
+	
+
+	
 }
