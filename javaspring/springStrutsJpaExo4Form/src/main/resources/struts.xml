@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE struts PUBLIC
+        "-//Apache Software Foundation//DTD Struts Configuration 2.3//EN"
+        "http://struts.apache.org/dtds/struts-2.3.dtd">
+<struts>
+    <constant name="struts.enable.DynamicMethodInvocation" value="false"/>
+    <constant name="struts.devMode" value="true"/>
+	<constant name="struts.action.extension" value=","/>
+    <constant name="struts.enable.SlashesInActionNames" value="true" />
+
+    <package name="default" namespace="/" extends="json-default">
+
+        <default-action-ref name="produit/index"/>
+
+        <action name="produit/index" class="com.courtalon.springStrutsJpaExo4Form.actions.IndexAction" method="index" >
+            <result name="success">/produit/index.jsp</result>
+        </action>
+        <action name="produit/filter/*" class="com.courtalon.springStrutsJpaExo4Form.actions.IndexAction" method="filter" >
+        	<param name="categorieID">{1}</param>
+            <result name="success">/produit/index.jsp</result>
+        </action>
+
+
+
+        <action name="produit/edit/*" class="com.courtalon.springStrutsJpaExo4Form.actions.IndexAction" method="edit" >
+        	<param name="id">{1}</param>
+        	<result name="notfound" type="redirect">/produit/index</result>
+            <result name="success">/produit/edit.jsp</result>
+        </action>
+
+        <action name="produit/create" class="com.courtalon.springStrutsJpaExo4Form.actions.IndexAction" method="create" >
+            <result name="success">/produit/edit.jsp</result>
+        </action>
+
+        <action name="produit_save" class="com.courtalon.springStrutsJpaExo4Form.actions.IndexAction" method="save" >
+            <result name="success" type="redirect">/produit/index</result>
+            <result name="input">/produit/edit.jsp</result>
+        </action>
+
+        <action name="produit/remove/*" class="com.courtalon.springStrutsJpaExo4Form.actions.IndexAction" method="remove" >
+        	<param name="id">{1}</param>
+            <result name="success" type="redirect">/produit/index</result>
+        </action>
+
+		<!-- actions pour categories -->
+
+        <action name="categorie/index" class="com.courtalon.springStrutsJpaExo4Form.actions.CategorieAction" method="index" >
+            <result name="success">/categorie/index.jsp</result>
+        </action>
+
+        <action name="categorie/edit/*" class="com.courtalon.springStrutsJpaExo4Form.actions.CategorieAction" method="edit" >
+        	<param name="id">{1}</param>
+        	<result name="notfound" type="redirect">/categorie/index</result>
+            <result name="success">/categorie/edit.jsp</result>
+        </action>
+
+        <action name="categorie/create" class="com.courtalon.springStrutsJpaExo4Form.actions.CategorieAction" method="create" >
+            <result name="success">/categorie/edit.jsp</result>
+        </action>
+
+        <action name="categorie/save" class="com.courtalon.springStrutsJpaExo4Form.actions.CategorieAction" method="save" >
+            <result name="success" type="redirect">/categorie/index</result>
+            <result name="input">/categorie/edit.jsp</result>
+        </action>
+
+        <action name="categorie/remove/*" class="com.courtalon.springStrutsJpaExo4Form.actions.CategorieAction" method="remove" >
+        	<param name="id">{1}</param>
+            <result name="success" type="redirect">/categorie/index</result>
+        </action>
+
+
+    </package>
+
+    <!-- Add addition packages and configuration here. -->
+</struts>
