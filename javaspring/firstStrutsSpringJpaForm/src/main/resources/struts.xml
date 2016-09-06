@@ -55,6 +55,18 @@
             <result name="input">/edit.jsp</result>
         </action>
         
+        <action name="image/edit"
+        		class="com.courtalon.firstStrutsSpringJpaForm.actions.ImageAction"
+        		method="edit" >
+            <result name="success">/imageupload.jsp</result>
+        </action>
+        
+        <action name="image/save"
+        		class="com.courtalon.firstStrutsSpringJpaForm.actions.ImageAction"
+        		method="save" >
+            <result name="success" type="redirect">/image/edit</result>
+        </action>
+        
 
     </package>
 
