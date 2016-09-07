@@ -16,6 +16,13 @@
         		class="com.courtalon.springStrutsJpaExo4Form.actions.IndexAction"
         		method="index" >
             <result name="success" type="json">
+            	<param name="root">
+            		produits
+            	</param>
+            	<param name="excludeProperties">
+            		.*categorie.*,
+            		.*illustration.*
+            	</param>
 			</result>
         </action>
 
