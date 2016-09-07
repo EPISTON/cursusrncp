@@ -51,6 +51,13 @@
 <!--  bean custom -->
 
 <bean id="messageDAO" class="com.courtalon.firstStrutsSpringJpaForm.repository.MessageDAO" />
+<bean id="avatarDAO" class="com.courtalon.firstStrutsSpringJpaForm.repository.AvatarDAO" />
+
+
+<bean id="fileStorageManager"
+	  class="com.courtalon.firstStrutsSpringJpaForm.utils.FileStorageManager">
+	  <property name="storageRoot"  value="C:\stockage"/>
+</bean>
 
 
 </beans>

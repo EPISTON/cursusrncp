@@ -61,6 +61,25 @@
             <result name="success">/imageupload.jsp</result>
         </action>
         
+        <action name="image/gallerie"
+        		class="com.courtalon.firstStrutsSpringJpaForm.actions.ImageAction"
+        		method="index" >
+            <result name="success">/gallerie.jsp</result>
+        </action>
+        
+        
+        <action name="image/affiche/*"
+        		class="com.courtalon.firstStrutsSpringJpaForm.actions.ImageAction"
+        		method="affiche" >
+        	<param name="avatarID">{1}</param>
+            <result name="success" type="stream">
+            	<param name="inputName">imageStream</param>
+            	<param name="contentType">${imageContentType}</param>
+            	<param name="contentDisposition">attachment;filename="${imageFileName}"</param>
+            </result>
+        </action>
+        
+        
         <action name="image/save"
         		class="com.courtalon.firstStrutsSpringJpaForm.actions.ImageAction"
         		method="save" >
