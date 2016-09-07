@@ -1,0 +1,30 @@
+exercice spring 5
+------------------
+mettre a jour la webapp boutique (exercice 4)
+
+1)
+ajouter une Entite Illustration
+
+Illustration
+------------
+id
+description
+fileName
+contentType
+
+représente une image uploadé sur le serveur
+
+Illustration 1)------(n Produit
+c'est l'image d'illustration d'un produit
+
+2) permettre l'upload et l'affichage d'une image
+3) permettre d'associer une image avec un produit
+
+
+
+
+
+
+
+
+ 
