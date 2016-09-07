@@ -13,10 +13,63 @@
 
     <package name="default" namespace="/" extends="json-default">
 
-        <default-action-ref name="index"/>
+ 
+ 		 <default-action-ref name="produit/index"/>
 
-        <action name="index" class="${package}.actions.IndexAction" method="index" >
-            <result name="success">/index.jsp</result>
+        <action name="produit/index" class="${package}.actions.IndexAction" method="index" >
+            <result name="success">/produit/index.jsp</result>
+        </action>
+        <action name="produit/filter/*" class="${package}.actions.IndexAction" method="filter" >
+        	<param name="categorieID">{1}</param>
+            <result name="success">/produit/index.jsp</result>
+        </action>
+
+
+
+        <action name="produit/edit/*" class="${package}.actions.IndexAction" method="edit" >
+        	<param name="id">{1}</param>
+        	<result name="notfound" type="redirect">/produit/index</result>
+            <result name="success">/produit/edit.jsp</result>
+        </action>
+
+        <action name="produit/create" class="${package}.actions.IndexAction" method="create" >
+            <result name="success">/produit/edit.jsp</result>
+        </action>
+
+        <action name="produit_save" class="${package}.actions.IndexAction" method="save" >
+            <result name="success" type="redirect">/produit/index</result>
+            <result name="input">/produit/edit.jsp</result>
+        </action>
+
+        <action name="produit/remove/*" class="${package}.actions.IndexAction" method="remove" >
+        	<param name="id">{1}</param>
+            <result name="success" type="redirect">/produit/index</result>
+        </action>
+
+		<!-- actions pour categories -->
+
+        <action name="categorie/index" class="${package}.actions.CategorieAction" method="index" >
+            <result name="success">/categorie/index.jsp</result>
+        </action>
+
+        <action name="categorie/edit/*" class="${package}.actions.CategorieAction" method="edit" >
+        	<param name="id">{1}</param>
+        	<result name="notfound" type="redirect">/categorie/index</result>
+            <result name="success">/categorie/edit.jsp</result>
+        </action>
+
+        <action name="categorie/create" class="${package}.actions.CategorieAction" method="create" >
+            <result name="success">/categorie/edit.jsp</result>
+        </action>
+
+        <action name="categorie/save" class="${package}.actions.CategorieAction" method="save" >
+            <result name="success" type="redirect">/categorie/index</result>
+            <result name="input">/categorie/edit.jsp</result>
+        </action>
+
+        <action name="categorie/remove/*" class="${package}.actions.CategorieAction" method="remove" >
+        	<param name="id">{1}</param>
+            <result name="success" type="redirect">/categorie/index</result>
         </action>
 
     </package>
