@@ -1,0 +1,21 @@
+si vous voulez rennomer un projet maven (en provenance de mon git)
+
+depuis windows
+
+1) copier le repertoire du projet de git vers votre votre
+propre workspace
+2) renommer le répertoire du projet avec le nouveau nom
+	par exemple "monProjetContinue"
+3) il faut remplacer le nom du projet dans
+	pom.xml -> artifactId, project name
+	*.lauch -> remplacer le nom du projet
+	.projetc -> remplacer le name
+
+dans eclipse
+
+4) importer "existing maven project"
+5) selectionner le répertoire du projet -> importer
+
+Ca marche
+n'oubliez pas le nom de la BDD, etc si necessaire 
+	
