@@ -1,0 +1,52 @@
+1)
+	creer la base de donée correspondant au nom présent dans la dataSource
+	définie dans WEB-INF/applicationContext.xml
+2)
+	nettoyer les objets metier non nécéssaire en provenance de l'archetype
+	ici, Message, nettoyer le code dans IndexAction
+	
+3)
+	creation des objets metier Produit et Categorie dans un package "metier"
+	
+4) annoter avec la persistence (@entity, etc...) les entite pour définir
+le mapping a la base
+	-> ne pas oublier le @ManyToOne et @OneToMany sur les associations
+
+5) tester le mapping en démarrant la webapp (nettoyer index.jsp)
+
+6) ecriture des DAO pour Produit et Categorie
+	ne pas oublier le @PersistenceContext et les @Transactionnal
+	la difficulte, il faut, au moment de sauvegarde un Produit
+	ne pas oublier de récupérer la categorie associée
+	sinon, la relation entre le produit et la categorie ne sera
+	pas sauvegardée
+
+7)	déclaration des DAO dans le contexte spring
+	-> ecriture des beans dans le fichier applicationContext
+
+8) mise en place du squelette des Actions, en particulier l'injection
+des DAO (mise en place du setter, ATTENTION, utiliser le type de l'interface
+et pas de la classe)
+
+9) objectif, afficher la liste des produits
+	mettre a jour la fonction index de IndexAction
+	fournir un getter de la liste des produits
+	ecrire la page index.jsp
+	
+10) ecriture des actions pour l'edition/creation/suppression des produits
+	attention, nous auront besoin de la liste des categories pour editer
+	un produit dans la classe action
+		- implementer ModelDriven<Produit>
+11) mise place des actions dans Struts.xml
+12) ecriture de la page edit.jsp
+13) crud categorie.....
+14) mise en place validation, creation des qpaquetage dans le rep resource
+en mirroir des action/metier a valider
+	2 fichier a mettre en place
+		Produit-validation.xml -> validation du modele produit
+		IndexAction-produit_save-validation -> validation pour action save, rapelle
+		celle du dessus
+		
+
+
+
