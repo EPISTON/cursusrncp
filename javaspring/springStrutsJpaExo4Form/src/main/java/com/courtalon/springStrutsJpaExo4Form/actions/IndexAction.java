@@ -7,8 +7,10 @@ import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
 import com.courtalon.springStrutsJpaExo4Form.metier.Categorie;
+import com.courtalon.springStrutsJpaExo4Form.metier.Illustration;
 import com.courtalon.springStrutsJpaExo4Form.metier.Produit;
 import com.courtalon.springStrutsJpaExo4Form.repositories.ICategorieDAO;
+import com.courtalon.springStrutsJpaExo4Form.repositories.IIllustrationDAO;
 import com.courtalon.springStrutsJpaExo4Form.repositories.IProduitDAO;
 import com.opensymphony.xwork2.ActionSupport;
 import com.opensymphony.xwork2.ModelDriven;
@@ -21,10 +23,13 @@ public class IndexAction extends ActionSupport implements ModelDriven<Produit>
 
 	private IProduitDAO produitDAO;
 	private ICategorieDAO categorieDAO; 
+	private IIllustrationDAO illustrationDAO;
+	
 	// j'ai besoin deu categorieDAO pour le formulaire d'edition du produit
 	// afin d'afficher les choix possible de categorie
 	public void setProduitDAO(IProduitDAO produitDAO) {this.produitDAO = produitDAO;}
 	public void setCategorieDAO(ICategorieDAO categorieDAO) {this.categorieDAO = categorieDAO;}
+	public void setIllustrationDAO(IIllustrationDAO illustrationDAO) {this.illustrationDAO = illustrationDAO;}
 
 	// liste des produits a afficher dans la page JSP
 	private List<Produit> produits;
@@ -54,6 +59,19 @@ public class IndexAction extends ActionSupport implements ModelDriven<Produit>
 		return categories;
 	}
 	
+	private int illustrationID;
+	public int getIllustrationID() {return illustrationID;}
+	public void setIllustrationID(int illustrationID) {this.illustrationID = illustrationID;}
+
+	private List<Illustration> illustrations;
+	public List<Illustration> getIllustrations() {
+		if (illustrations == null)
+			illustrations = illustrationDAO.findAll();
+		return illustrations;
+	}
+	
+	
+	
 	// actions
 	
 	public String index() {
@@ -82,6 +100,11 @@ public class IndexAction extends ActionSupport implements ModelDriven<Produit>
 			setCategorieID(0);
 		else
 			setCategorieID(p.getCategorie().getId());
+		if (p.getIllustration() == null)
+			setIllustrationID(0);
+		else
+			setIllustrationID(p.getIllustration().getId());
+		
 		return SUCCESS;
 	}
 	
@@ -97,7 +120,7 @@ public class IndexAction extends ActionSupport implements ModelDriven<Produit>
 		// categorie a associer a ce produit
 		// ce qui permet a save de récupérer l'entite categorie
 		// correspondante
-		produitDAO.save(getModel(), getCategorieID());
+		produitDAO.save(getModel(), getCategorieID(), getIllustrationID());
 		return SUCCESS;
 	}
 	

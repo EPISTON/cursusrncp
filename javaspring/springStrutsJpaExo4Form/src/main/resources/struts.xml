@@ -68,7 +68,36 @@
             <result name="success" type="redirect">/categorie/index</result>
         </action>
 
-
+  		<action name="image/edit"
+        		class="com.courtalon.springStrutsJpaExo4Form.actions.ImageAction"
+        		method="edit" >
+            <result name="success">/image/imageupload.jsp</result>
+        </action>
+        
+        <action name="image/gallerie"
+        		class="com.courtalon.springStrutsJpaExo4Form.actions.ImageAction"
+        		method="index" >
+            <result name="success">/image/gallerie.jsp</result>
+        </action>
+        
+        
+        <action name="image/affiche/*"
+        		class="com.courtalon.springStrutsJpaExo4Form.actions.ImageAction"
+        		method="affiche" >
+        	<param name="illustrationID">{1}</param>
+            <result name="success" type="stream">
+            	<param name="inputName">imageStream</param>
+            	<param name="contentType">${imageContentType}</param>
+            	<param name="contentDisposition">attachment;filename="${imageFileName}"</param>
+            </result>
+        </action>
+        
+        
+        <action name="image/save"
+        		class="com.courtalon.springStrutsJpaExo4Form.actions.ImageAction"
+        		method="save" >
+            <result name="success" type="redirect">/image/edit</result>
+        </action>
     </package>
 
     <!-- Add addition packages and configuration here. -->

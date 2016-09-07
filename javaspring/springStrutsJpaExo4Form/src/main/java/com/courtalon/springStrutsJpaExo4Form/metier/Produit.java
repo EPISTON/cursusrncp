@@ -13,7 +13,16 @@ public class Produit {
 	private double poids;
 	private int stock;
 	private Categorie categorie;
+	private Illustration illustration;
 	
+	
+	@ManyToOne
+	public Illustration getIllustration() {
+		return illustration;
+	}
+	public void setIllustration(Illustration illustration) {
+		this.illustration = illustration;
+	}
 	@Id @GeneratedValue
 	public int getId() {return id;}
 	public void setId(int id) {this.id = id;}

@@ -9,6 +9,7 @@ import javax.persistence.TypedQuery;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.courtalon.springStrutsJpaExo4Form.metier.Categorie;
+import com.courtalon.springStrutsJpaExo4Form.metier.Illustration;
 import com.courtalon.springStrutsJpaExo4Form.metier.Produit;
 
 public class ProduitDAO implements IProduitDAO {
@@ -45,19 +46,18 @@ public class ProduitDAO implements IProduitDAO {
 
 	@Override
 	public Produit save(Produit p) {
-		if (p.getCategorie() == null)
-			return save(p, 0);
-		else
-			return save(p, p.getCategorie().getId());
+		return save(p,
+				(p.getCategorie() == null )? 0 : p.getCategorie().getId(),
+				(p.getIllustration() == null )? 0 : p.getIllustration().getId()	);
 	}
 
 	@Override
 	@Transactional
-	public Produit save(Produit p, int cid) {
+	public Produit save(Produit p, int cid, int iid) {
 		Produit existing = em.find(Produit.class, p.getId());
 		// je récupere la categorie choisie pour ce produit
 		Categorie c = em.find(Categorie.class, cid);
-
+		Illustration i = em.find(Illustration.class, iid);
 		if (existing != null) {
 			// produit existant
 			// ici, si le Produit est déjà associé a cette categorie c
@@ -66,12 +66,14 @@ public class ProduitDAO implements IProduitDAO {
 			// ici, l'important est de bien sauvegarde un objet produit associé
 			// a un objet categorie en provenance de la base/entityManager
 			p.setCategorie(c);
+			p.setIllustration(i);
 			return em.merge(p);
 		}
 		else {
 			// nouveau produit
 			// j'associe le nouveau Produit a cette categorie
 			p.setCategorie(c);
+			p.setIllustration(i);
 			em.persist(p);
 			return p;
 		}

@@ -52,6 +52,12 @@
 
 <bean id="produitDAO" class="com.courtalon.springStrutsJpaExo4Form.repositories.ProduitDAO" />
 <bean id="categorieDAO" class="com.courtalon.springStrutsJpaExo4Form.repositories.CategorieDAO" />
+<bean id="illustrationDAO" class="com.courtalon.springStrutsJpaExo4Form.repositories.IllustrationDAO" />
 
+
+<bean id="fileStorageManager"
+	  class="com.courtalon.springStrutsJpaExo4Form.utils.FileStorageManager">
+	  <property name="storageRoot" value="C:\stockage" />
+</bean>
 
 </beans>

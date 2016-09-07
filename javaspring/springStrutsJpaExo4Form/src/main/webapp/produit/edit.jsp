@@ -20,6 +20,11 @@
 		  listKey="id"
 		  listValue="libelle"
 		  label="categorie produit" />
+<s:select list="illustrations"
+		  name="illustrationID"
+		  listKey="id"
+		  listValue="description"
+		  label="image produit" />
 <s:submit value="sauvegarder"/>
 </s:form>
 </body>

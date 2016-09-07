@@ -12,10 +12,12 @@
 <s:a action="produit/index">liste des produits</s:a>
 <s:a action="categorie/index">liste des categories</s:a>
 <table border="1">
-<tr><th>ID</th><th>nom</th><th>prix</th><th>poids</th><th>stock</th><th>categorie</th><th>actions</th></tr>
+<tr><th>Image</th><th>nom</th><th>prix</th><th>poids</th><th>stock</th><th>categorie</th><th>actions</th></tr>
 <s:iterator  value="produits" >
 <tr>
-	<td><s:property value="id" /></td>
+	<td>
+		<img src="../image/affiche/<s:property value="illustration.id" />" width="64" />
+	</td>
 	<td><s:property value="nom" /></td>
 	<td><s:property value="prix" /></td>
 	<td><s:property value="poids" /></td>

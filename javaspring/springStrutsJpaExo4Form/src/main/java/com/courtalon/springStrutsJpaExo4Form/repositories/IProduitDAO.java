@@ -9,7 +9,7 @@ public interface IProduitDAO {
 	List<Produit> findByCategorie(int cid);
 	Produit findByID(int id);
 	Produit save(Produit p);
-	Produit save(Produit p, int cid);
+	Produit save(Produit p, int cid, int iid);
 	void remove(int pid);
 
 }
