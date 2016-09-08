@@ -1,0 +1,171 @@
+XML
+	-> langage de représentation de données a base de balise
+	-> markup language
+a l'origine
+	-> SGML (Standard general markup language)
+SGML est très complet, très flexible et a servit de base
+pour les autres langage. Il est cependant complexe a manipuler
+
+des langage "simplifié/spécialisé" issue des idées de SGML
+
+d'abord HTML
+ensuite, le langage XML
+	XML définit très peu de regle sur ce qu'il contient
+	XML est personnalisable, pour contenir ce dont vous avez besoin
+	en faite, html est une version spécialisée de xml
+
+vous avez des balises:
+	<produit>contenu....</produit>
+toute balise ouverte doit être fermée
+vous pouvez mettre des balises a l'intérieur d'autre balise
+	<produit><nom>chaise</nom><prix>45.5</prix></produit>
+
+ceci génére une structure arborescente
+vous ne pouvez pas croisez les balises
+	<produit><nom></produit></nom>   -> NON
+
+vous pouvez faire des balises autofermantes
+	<produit />    equivalent a <produit></produit>
+
+le nom d'une balise ne peu contenir d'espace
+	<pro duit>  -> faux, marche pas
+le nom d'une balise ne peut contenir certains caracteres spéciaux
+	:<>/"'? (et quelques autres)
+
+a la racine du document XML, il ne peut y avoir qu'une seule balise
+qui est donc la balise racine de votre document
+------------------------
+<data>
+	<item>kjkjhkjhkj</item>
+	<item>kjkljhkjhk</item>
+	<categorie>hjkljkjg</categorie>
+</data>
+------------------------ OK!!!
+------------------------
+<data>
+	<item>kjkjhkjhkj</item>
+	<item>kjkljhkjhk</item>
+</data>
+<categorie>hjkljkjg</categorie>
+------------------------ PAS BON
+
+vous avez aussi des attributs
+
+<produit id="5">.......</produit>
+par exemple ici, le produit a l'attribut id, de valeur 5
+
+vous ne pouves mettre d'attribut que sur les balises ouvrantes
+
+les regles de nommage d'attribut sont en gros les meme que pour les
+balises
+il existe, en xml, un attribut prédéfini qui est "id"
+l'id a ceci de particulier, que vous n'avez pas le droit,
+a l'intérieur d'un même document xml, d'avoir 2 fois la même valeur
+d'id
+
+legal
+<produit prix="45" nom="table" />
+
+possibilité d'avoir plusieurs valeurs pour un attribut
+<produit magasin="paris lyon toulouse" />
+
+premiere remarque!
+	on a le choix, si on représente un Objet en XML, de stocker
+	ses attributs sous forme d'attribut xml, ou de sous balise
+	enfant de la balise de l'objet
+ceci étant, il existe des bonnes pratiques qui maximise la facilité
+de manipulation de vos données XML
+
+<produits>
+	<chaise pid="1" prix="45" poids="2" />
+	<lit pid="2" prix="95" poids="5" />
+</produits>
+pas recommandé!!!!
+
+<mydata type="produit">
+	<oneitem name="chaise">
+		<column name="pid">1</column>
+	</oneitem>
+</mydata>
+recommandé
+
+---------------
+vous pouvez avoir, en début de document, une "processing instruction"
+cela donne des informations sur comment lire le document xml
+par exemple
+
+A)
+<?xml version="1.0" encoding="UTF-8"?>
+
+on reconnait au ?
+<? ..... ?>
+
+B)
+<!--  -->   :  commentaire
+
+C)
+du texte
+
+D)
+la balise CDATA
+<![CDATA[  .....   ]]>
+cous avez besoin de mettre le document xml du texte contenant des caracteres
+spéciaux, ou encore des données binaires en base64
+CDATA vous permet de les inserer
+
+E)
+les entités:
+	 -> &eacute;  -> é
+	 &gt; : >
+	 &lt; : <
+	 
+	 
+Les parseurs XML (ici en java)
+--------------------------------------
+
+ grands types de parser
+	SAX  -> simple asynchronous XML
+	DOM  -> Document object Model
+	
+parser SAX ne maintient aucune mémoire du document XML
+qu'il lit, il l'analyse en "streaming"
+pas de représentation du contenu
+	-> il vous prévient, au fur et a mesure, des elements qu'il
+	rencontre dans le document
+	je rencontre une balise ouvrante, je rencontre du texte...
+c'est un parser "bas niveau"
+
+parser DOM construit une représentation objet complete de votre
+document XML en mémoire
+	-> une foit l'objet Document obtenu on peu l'interroger
+	pour connaitre son contenu, faire des recherches ou encore
+	altération
+	il existe des classes représentant ce qu'on rencontre
+		Element (balise)
+		Attribute
+		Text
+		....
+
+avantages/inconvénients:
+	pour DOM avantages
+	1) facile a l'usage
+	2) beaucoup de fonctionnalité très puissante
+	3) validation, XPATH etc...
+	inconvenients
+	1) consommation mémoire et execution
+	2) vous devez avoir le fichier complet avant de pouvoir l'exploiter
+	
+	pour SAX avantages
+	1) très leger en mémoire et a l'exécution
+	2) vous n'avez pas besoin du fichier complet
+	inconvénients SAX
+	1) très basique, charge au programme de l'exploiter
+	2) peu de fonctionnalitées fournies
+	
+	
+
+
+
+
+	
+
