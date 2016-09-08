@@ -1,0 +1,4 @@
+exercice xml 1
+----------------
+afficher le nom et email
+de tous les contact qui sont du codePays no 2
