@@ -30,7 +30,8 @@ public class Program {
 			// obtenir le parser sax
 			XMLReader reader = XMLReaderFactory.createXMLReader();
 			// j'associe mon content handler au reader
-			reader.setContentHandler(new MyContentHandler());
+			//reader.setContentHandler(new MyContentHandler());
+			reader.setContentHandler(new FilterByCodePaysHandler("2"));
 			
 			System.out.println("demarrage du parser");
 			
