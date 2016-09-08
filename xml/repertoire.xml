@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<repertoire 	xmlns="http://www.example.org/repertoire"
+			 	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+			 	xsi:schemaLocation="http://www.example.org/repertoire repertoire.xsd">
+  <entree no="1">
+    <nom>Courtalon</nom>
+    <prenom>Vincent</prenom>    
+    <adresse codePays="1">
+	    <rue>221b baker street</rue>
+	    <ville>Londre</ville>
+	    <CP>75013</CP>
+    </adresse>
+    <contact>
+	    <tel>01.02.03.04.05</tel>
+	    <email>vincent@bob.com</email>
+    </contact>
+  </entree>
+  <entree no="2">
+    <nom>Bob</nom>
+    <prenom>Joe</prenom>
+    <adresse codePays="2">
+	    <rue>221b baker street</rue>
+	    <ville>Paris</ville>
+	    <CP>75013</CP>
+    </adresse>
+    <contact>
+	    <tel>01.02.03.04.05</tel>
+	    <email>bob@bob.com</email>
+    </contact>
+  </entree>
+  <entree no="3">
+    <nom>john</nom>
+    <prenom>bobby</prenom>
+    <adresse codePays="2">
+	    <rue>1 rue de la ville</rue>
+	    <ville>Lille</ville>
+	    <CP>59000</CP>
+    </adresse>
+    <contact>
+	    <tel>01.02.03.04.05</tel>
+	    <email>john@bob.com</email>
+    </contact>
+  </entree>
+</repertoire>
