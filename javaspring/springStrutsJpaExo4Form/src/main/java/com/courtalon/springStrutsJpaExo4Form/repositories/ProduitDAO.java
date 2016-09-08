@@ -33,6 +33,20 @@ public class ProduitDAO implements IProduitDAO {
 
 	@Override
 	@Transactional
+	public List<Produit> searchByName(String searchTerm) {
+		if (searchTerm == null || searchTerm.isEmpty())
+			return findAll();
+		
+		TypedQuery<Produit> q = em.createQuery(
+				"select p from Produit as p where p.nom like :search",
+				Produit.class);
+		q.setParameter("search", "%" + searchTerm + "%");
+		
+		return q.getResultList();
+	}
+	
+	@Override
+	@Transactional
 	public List<Produit> findAll() {
 		return em.createQuery("from Produit", Produit.class).getResultList();
 	}
@@ -86,5 +100,6 @@ public class ProduitDAO implements IProduitDAO {
 		if (existing != null)
 			em.remove(existing);
 	}
+
 
 }

@@ -6,6 +6,7 @@ import com.courtalon.springStrutsJpaExo4Form.metier.Produit;
 
 public interface IProduitDAO {
 	List<Produit> findAll();
+	List<Produit> searchByName(String searchTerm);	
 	List<Produit> findByCategorie(int cid);
 	Produit findByID(int id);
 	Produit save(Produit p);

@@ -12,9 +12,10 @@
 
         <default-action-ref name="produit/index"/>
 
-        <action name="produit/indexjson"
+        <action name="produit/indexjson/*"
         		class="com.courtalon.springStrutsJpaExo4Form.actions.IndexAction"
-        		method="index" >
+        		method="indexsearch" >
+        	<param name="searchTerm">{1}</param>
             <result name="success" type="json">
             	<param name="root">
             		produits

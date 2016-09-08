@@ -70,9 +70,19 @@ public class IndexAction extends ActionSupport implements ModelDriven<Produit>
 		return illustrations;
 	}
 	
-	
+	// terme de recherche, pour la boite de recherche de produit ajax
+	private String searchTerm;
+	public String getSearchTerm() {return searchTerm;}
+	public void setSearchTerm(String searchTerm) {this.searchTerm = searchTerm;}
 	
 	// actions
+	public String indexsearch() {
+		log.info("appel de index search avec " + getSearchTerm());
+		
+		produits = produitDAO.searchByName(searchTerm);
+		return SUCCESS;
+	}
+	
 	
 	public String index() {
 		log.info("appel de index!");
