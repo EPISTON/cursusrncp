@@ -2,7 +2,8 @@
 <repertoire>
    <entree no="1">
     <nom>Courtalon</nom>
-    <prenom>Vincent</prenom>    
+    <prenom>Vincent</prenom>
+    <age>39</age>    
     <adresse codePays="1">
 	    <rue>221b baker street</rue>
 	    <ville>Londre</ville>
@@ -16,6 +17,7 @@
   <entree no="2">
     <nom>Bob</nom>
     <prenom>Joe</prenom>
+    <age>55</age>
     <adresse codePays="2">
 	    <rue>221b baker street</rue>
 	    <ville>Paris</ville>
@@ -29,6 +31,7 @@
   <entree no="3">
     <nom>john</nom>
     <prenom>bobby</prenom>
+    <age>22</age>
     <adresse codePays="2">
 	    <rue>1 rue de la ville</rue>
 	    <ville>Lille</ville>

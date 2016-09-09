@@ -7,8 +7,9 @@
 				<xs:element name="entree" maxOccurs="unbounded">
 					<xs:complexType>
 						<xs:sequence>
-							<xs:element name="nom" type="xs:string" />
-							<xs:element name="prenom" type="xs:string" />
+							<xs:element name="nom" type="nomPersonne" />
+							<xs:element name="prenom" type="nomPersonne" />
+							<xs:element name="age" type="agePersonne"/>
 							<xs:element name="adresse">
 								<xs:complexType>
 									<xs:sequence>
@@ -30,10 +31,29 @@
 	
 <xs:complexType name="contact">
 	<xs:sequence>
-		<xs:element name="tel" type="xs:string" />
-		<xs:element name="email" type="xs:string" />
+		<xs:element name="tel" type="xs:string" maxOccurs="10" />
+		<xs:element name="email" type="email" />
 	</xs:sequence>
 </xs:complexType>
 
+<xs:simpleType name="nomPersonne">
+	<xs:restriction base="xs:string">
+		<xs:maxLength value="50" />
+		<xs:minLength value="2" />
+	</xs:restriction>
+</xs:simpleType>
+
+<xs:simpleType name="agePersonne">
+	<xs:restriction base="xs:integer">
+		<xs:minInclusive value="0" />
+		<xs:maxInclusive value="130" />
+	</xs:restriction>
+</xs:simpleType>
+
+<xs:simpleType name="email">
+	<xs:restriction base="xs:string">
+		<xs:pattern value="[-a-zA-Z0-9._]+@[-a-zA-Z0-9._]+" />
+	</xs:restriction>
+</xs:simpleType>
 	
 </xs:schema>
