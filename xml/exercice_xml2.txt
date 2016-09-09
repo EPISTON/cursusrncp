@@ -1,0 +1,23 @@
+exercice xml 2
+---------------
+on travaille sur le fichier books.xml, avec dom et XPATH
+
+A) requeter les titres de tous les livres
+B) requeter les titres de tous les livres de langue anglaise
+C) requeter les titres de tous les livres de langue anglaise dont le prix
+est supérieur a une certaine valeur
+D) requeter les titres de tous les livres dont le prix
+est supérieur a une certaine valeur et le stock inférieur a une autre valeur
+
+E) en utilisant XPATH, exporter un nouveau fichier XML contenant
+uniquement les livres d'un certain auteur
+
+F) en utilisant XPATH, exporter un nouveau fichier XML contenant
+uniquement les titres et stock des livres d'un prix > valeur
+<livres>
+	<livre>
+		<titre>..</titre>
+		<stock>...</stock>
+	</livre>
+	...
+</livres>
