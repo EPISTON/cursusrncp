@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<livres>
+  <livre>
+    <title>XML Developer's Guide</title>
+    <stock>10</stock>
+  </livre>
+  <livre>
+    <title>Microsoft .NET: The Programming Bible</title>
+    <stock>6</stock>
+  </livre>
+  <livre>
+    <title>MSXML3: A Comprehensive Guide</title>
+    <stock>12</stock>
+  </livre>
+  <livre>
+    <title>Visual Studio 7: A Comprehensive Guide</title>
+    <stock>3</stock>
+  </livre>
+</livres>
