@@ -1,21 +1,39 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<schema xmlns="http://www.w3.org/2001/XMLSchema"
-		targetNamespace="http://courtalon.com/repertoire"
-		xmlns:tns="http://courtalon.com/repertoire" elementFormDefault="qualified">
 
-	<element name="repertoire">
-		<complexType>
-			<sequence>
-				<element name="entree" maxOccurs="unbounded">
-					<complexType>
-						<sequence>
-							<element name="nom" type="string" />
-							<element name="prenom" type="string" />
-						</sequence>
-						<attribute name="no" type="integer" use="required" />
-					</complexType>
-				</element>
-			</sequence>
-		</complexType>
-	</element>
-</schema>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema">
+	<xs:element name="repertoire">
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element name="entree" maxOccurs="unbounded">
+					<xs:complexType>
+						<xs:sequence>
+							<xs:element name="nom" type="xs:string" />
+							<xs:element name="prenom" type="xs:string" />
+							<xs:element name="adresse">
+								<xs:complexType>
+									<xs:sequence>
+										<xs:element name="rue" type="xs:string" />
+										<xs:element name="ville" type="xs:string" />
+										<xs:element name="CP" type="xs:string" />
+									</xs:sequence>
+									<xs:attribute name="codePays" type="xs:integer" />
+								</xs:complexType>
+							</xs:element>
+							<xs:element name="contact" type="contact" />
+						</xs:sequence>
+						<xs:attribute name="no" type="xs:integer" use="required" />
+					</xs:complexType>
+				</xs:element>
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+	
+<xs:complexType name="contact">
+	<xs:sequence>
+		<xs:element name="tel" type="xs:string" />
+		<xs:element name="email" type="xs:string" />
+	</xs:sequence>
+</xs:complexType>
+
+	
+</xs:schema>

@@ -15,6 +15,7 @@ public class Program {
 
 	public static void main(String[] args) {
 		SchemaFactory sfactory = SchemaFactory.newInstance(XMLConstants.W3C_XML_SCHEMA_NS_URI);
+		
 		try {
 			Schema schema = sfactory.newSchema(new File("repertoire.xsd"));
 			
