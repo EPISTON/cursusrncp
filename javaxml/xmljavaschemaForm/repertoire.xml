@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<repertoire xmlns="http://courtalon.com/repertoire"
+			xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+			xsi:schemaLocation="http://courtalon.com/repertoire repertoire.xsd" >
+  <entree no="1">
+    <nom>Courtalon</nom>
+    <prenom>Vincent</prenom>
+  </entree>
+  <entree no="2">
+    <nom>Bob</nom>
+    <prenom>Joe</prenom>
+  </entree>
+  <entree no="3">
+    <nom>Bohn</nom>
+    <prenom>bobby</prenom>
+  </entree>
+   
+</repertoire>

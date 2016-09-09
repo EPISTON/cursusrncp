@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<schema xmlns="http://www.w3.org/2001/XMLSchema"
+		targetNamespace="http://courtalon.com/repertoire"
+		xmlns:tns="http://courtalon.com/repertoire" elementFormDefault="qualified">
+
+	<element name="repertoire">
+		<complexType>
+			<sequence>
+				<element name="entree" maxOccurs="unbounded">
+					<complexType>
+						<sequence>
+							<element name="nom" type="string" />
+							<element name="prenom" type="string" />
+						</sequence>
+						<attribute name="no" type="integer" use="required" />
+					</complexType>
+				</element>
+			</sequence>
+		</complexType>
+	</element>
+</schema>
