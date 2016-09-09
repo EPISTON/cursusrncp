@@ -13,7 +13,7 @@
 	    <tel>01.02.03.04.05</tel>
 	    <email>vincent@bob.com</email>
     </contact>
-  <age>59</age>
+  <age>50</age>
 </entree>
   <entree no="2">
     <nom>Bob</nom>
@@ -27,7 +27,7 @@
 	    <tel>01.02.03.04.05</tel>
 	    <email>bob@bob.com</email>
     </contact>
-  <age>20</age>
+  <age>33</age>
 </entree>
   <entree no="3">
     <nom>john</nom>
@@ -41,6 +41,6 @@
 	    <tel>01.02.03.04.05</tel>
 	    <email>john@bob.com</email>
     </contact>
-  <age>30</age>
+  <age>59</age>
 </entree>
 </repertoire>

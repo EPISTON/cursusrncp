@@ -77,6 +77,40 @@ public class Program {
 			
 			tf.transform(source, destination);
 			
+			// exporter un fichier xml "nouveau" avec juste les informations qui nous intéresse
+			
+			// creation en mémoire d'un document vide
+			Document doc2 = db.newDocument();
+			
+			// creation de la balise racine
+			Element racine = doc2.createElement("contacts");
+			
+			NodeList entrees = doc.getElementsByTagName("entree");
+			// je parcours les balises entrees du document d'origine
+			for(int i =0; i < entrees.getLength(); i++) {
+				// pour chaque entree, je creer une balise contact
+				Element contact = doc2.createElement("contact");
+				Element entree = (Element)entrees.item(i);
+				NodeList nom = entree.getElementsByTagName("nom");
+				// attention, vous ne pouvez pas directement ajouter un noeud
+				// en provenance d'un autre document
+				// il faut d'abord le faire "adopter" par le nouveau document
+				if (nom.getLength() == 1)
+					contact.appendChild(doc2.adoptNode(nom.item(0))); // dans laquel j'ajoute la balise nom d'origine
+				NodeList ville = entree.getElementsByTagName("ville");
+				if (ville.getLength() == 1)
+					contact.appendChild(doc2.adoptNode(ville.item(0))); // ainsi que la balise ville d'origine
+				racine.appendChild(contact);
+			}
+			doc2.appendChild(racine); // ajouter la balise racine au document
+			
+			StreamResult destination2 = new StreamResult(new File("contacts.xml"));
+			DOMSource source2 = new DOMSource(doc2);
+			tf.setOutputProperty("{http://xml.apache.org/xslt}indent-amount", "2");
+			tf.transform(source2, destination2);
+			
+			
+			
 			
 		} catch (ParserConfigurationException e) {e.printStackTrace();}
 		catch (SAXException e) {e.printStackTrace();}

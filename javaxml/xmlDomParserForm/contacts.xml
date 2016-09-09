@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<contacts>
+  <contact>
+    <nom>Courtalon</nom>
+    <ville>Londre</ville>
+  </contact>
+  <contact>
+    <nom>Bob</nom>
+    <ville>Paris</ville>
+  </contact>
+  <contact>
+    <nom>john</nom>
+    <ville>Lille</ville>
+  </contact>
+</contacts>
