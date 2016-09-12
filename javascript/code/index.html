@@ -1,0 +1,35 @@
+<html>
+    <head>
+        <title>bienvenue</title>
+    </head>
+    <body>
+        <script type="text/javascript" language="javascript">
+            // ceci est un commentaire
+            alert('bonjour monde');
+            /*
+                un autre commentaire
+            */
+            /*
+                suite d'instruction séparée par ;
+                attention, sensible a la casse
+                un script javascript est exécuté dés qu'il est
+                chargé par le navigateur
+
+                le javascript est un langage dynamique/interprété
+                en général, le script javascript est séparé dans son
+                propre fichier.
+                on peu aussi mettre du javascript directement dans le html
+
+                attention!!! jamais de balise auto fermante pour le script
+                il ne chargera pas le code pointé par src
+            */
+            function evenement1() {
+                console.log('bonjour console');
+            };
+        </script>
+        <script type="text/javascript" src="script1.js" ></script>
+        <h2>bienvenue!</h2>
+        <button id="bt1" onclick="alert('hello!')" >clickez moi!</button><br />
+        <button id="bt2" onclick="evenement1()" >clickez moi!</button><br />
+    </body>
+</html>
