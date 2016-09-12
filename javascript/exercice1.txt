@@ -1,0 +1,19 @@
+exercice javascript 1
+-----------------------
+creer une petite interface html permettant de saisir
+un produit ( nom, prix, poids)
+ce produit apparait par la suite dans une div "panier"
+en bas du panier, est afficher en plus le poids total des produits
+et le prix d'ensemble (somme)
+
+etapes:
+
+1) pouvoir ajouter un produit dans le panier
+2) calculer et afficher en bas du panier le total prix e poids
+bonus)
+3) pouvoir retirer un produit du panier, pouvoir vider le panier
+4) ajouter un bouton pour augmenter la quantite d'un produit dans
+le panier
+
+indice/aide, la fonction push d'un tableau permet d'ajouter un element
+dedans
