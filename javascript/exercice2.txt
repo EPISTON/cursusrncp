@@ -1,0 +1,47 @@
+exercice 2
+----------
+
+creer 3 'classes' de tickets
+
+Ticket
+------
+id (nombre)
+description (texte)
+urgence  (nombre)
+date  (bonus bien gerer)
+
+TicketPanne : Ticket
+------------
+noMateriel
+localisation
+
+TicketLogiciel : Ticket
+--------------
+bugReport
+nomLogiciel
+
+etape 1, mettre en place ces "classes et heritage"
+
+etape 2
+Ticket
+------
+toTableLine() -> retourne un element (ligne <tr>) 
+
+bonus (le faire sous forme de div au lieu d'un tableau)
+
+fillFromForm(identifiant form) -> remplir un ticket depuis
+ un formulaire
+ 
+permettre de saisir les differents types de ticket 
+	soit un menu deroulant pour le type de ticket
+	soit (plus simple), 3 boutons différent
+
+etape 3
+une fois un ticket saisie, l'ajouter dans une liste de ticket
+avec affichage de cette liste dans un div (table)
+
+Bonus
+trier les tickets par urgence,
+permettre de changer l'urgence d'un ticket
+
+
