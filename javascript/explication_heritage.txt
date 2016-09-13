@@ -1,0 +1,38 @@
+
+Personne
+--------
+Personne(nom, prenom) {
+	this.nom = nom;
+	this.prenom = prenom;
+}
+
+en javascript
+
+function Personne(nom, prenom)  -> construit un objet personne
+new Personne(nom, prenom) -> creer l'objet et associe son prototype
+en y mettant le prototype de la fonction personne
+
+astuce 1 -> changer le prototype de la fonction Client -> 1 personne
+
+Personne(nom, prenom) -> une instance "vide" qui aura comme prototype
+ Personne
+
+Personne --> prototype --> {}
+
+je rajoute les methodes de ma "classe Personne"
+
+Personne --> prototype --> { affiche()}
+
+je veux une "classe" Client qui herite de la classe Personne
+constructeur Client
+Client(nom, prenom, email) --> prototype --> Personne.prototype
+
+Personne ---P---> { affiche()}
+						^			
+						|			
+						P			
+						|			
+Client ---P---> { contacter()}
+------
+nom,prenom, email
+
