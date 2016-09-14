@@ -17,6 +17,9 @@
          		method="liste" >
             <result name="success" type="json">
             	<param name="root">produits</param>
+            	<param name="excludeProperties">
+            		.*categorie.*
+            	</param>
             </result>
         </action>
         <action name="produit/search/*"
@@ -25,6 +28,9 @@
          	<param name="searchTerm">{1}</param>
             <result name="success" type="json">
             	<param name="root">produits</param>
+            	<param name="excludeProperties">
+            		.*categorie.*
+            	</param>
             </result>
         </action>
         
