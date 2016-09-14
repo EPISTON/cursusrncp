@@ -11,6 +11,16 @@
   		/WEB-INF/applicationContext.xml
   	</param-value>
   </context-param>
+  
+  <!-- ce filtre autorise les requettes ajax cross domaine -->
+  <filter>
+  	<filter-name>CorsFilter</filter-name>
+  	<filter-class>org.apache.catalina.filters.CorsFilter</filter-class>
+  	<init-param>
+  		<param-name>cors.allowed.origins</param-name>
+  		<param-value>http://localhost, http://localhost:8080</param-value>
+  	</init-param>
+  </filter>
   <filter>
   	<filter-name>SpringOpenEntityManagerInViewFilter</filter-name>
   	<filter-class>org.springframework.orm.jpa.support.OpenEntityManagerInViewFilter</filter-class>
@@ -23,6 +33,10 @@
     </filter-class>
   </filter>
 
+  <filter-mapping>
+  	<filter-name>CorsFilter</filter-name>
+  	 <url-pattern>/*</url-pattern>
+  </filter-mapping>
   <filter-mapping>
   	<filter-name>SpringOpenEntityManagerInViewFilter</filter-name>
   	 <url-pattern>/*</url-pattern>
