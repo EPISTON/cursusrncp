@@ -1,0 +1,26 @@
+<html>
+    <head>
+        <title>ticket agile</title>
+    </head>
+    <body onload="ticketManager.initManager()">
+        <script type="text/javascript" src="exercice2.js" ></script>
+        <h2>bienvenue dans la gestion de ticket acrobatique</h2>
+        <div id="ticketForm">
+            <select name="typeTicket" id="typeTicket">
+                    <option value="ticket" selected >ticket</option>
+                    <option value="ticketPanne" >ticketPanne</option>
+                    <option value="ticketLogiciel" >ticketLogiciel</option>
+            </select>
+            description: <input type="text" name="description" id="description"  /><br />
+            urgence: <input type="number" name="urgence" id="urgence"  /><br />
+            date: <input type="date" name="date" id="date"  /><br />
+            noMateriel: <input type="text" name="noMateriel" id="noMateriel"  /><br />
+            localisation: <input type="text" name="localisation" id="localisation"  /><br />
+            bugReport: <input type="text" name="bugReport" id="bugReport"  /><br />
+            nomLogiciel: <input type="text" name="nomLogiciel" id="nomLogiciel"  /><br />
+            <button id="creer">creer ticket</button>
+        </div>
+        <div id="listeTicket">
+        </div>
+    </body>
+</html>
