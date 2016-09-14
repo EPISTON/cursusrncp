@@ -31,6 +31,29 @@ ticketManager = function(idliste,idform) {
           divliste.appendChild(table);
     };
  
+    var updateForm = function(baliseSelect) {
+         var choix = baliseSelect.value;
+                 switch(choix) {
+                        case "ticket":
+                            document.getElementById("noMateriel").style.visibility = 'hidden';
+                            document.getElementById("localisation").style.visibility = 'hidden';
+                            document.getElementById("bugReport").style.visibility = 'hidden';
+                            document.getElementById("nomLogiciel").style.visibility = 'hidden';
+                            break;
+                        case "ticketPanne":
+                            document.getElementById("noMateriel").style.visibility = 'visible';
+                            document.getElementById("localisation").style.visibility = 'visible';
+                            document.getElementById("bugReport").style.visibility = 'hidden';
+                            document.getElementById("nomLogiciel").style.visibility = 'hidden';
+                            break;
+                        case "ticketLogiciel":
+                            document.getElementById("noMateriel").style.visibility = 'hidden';
+                            document.getElementById("localisation").style.visibility = 'hidden';
+                            document.getElementById("bugReport").style.visibility = 'visible';
+                            document.getElementById("nomLogiciel").style.visibility = 'visible';
+                            break;
+                }
+    };
      var moduleTicket = {
         "initManager" : function() {
          
@@ -39,7 +62,11 @@ ticketManager = function(idliste,idform) {
              btCreer.addEventListener('click', function() {
                  moduleTicket.ajouterTicket();
              });
-             
+             var listeselect = document.getElementById("typeTicket");
+             listeselect.addEventListener('change', function() {
+                 updateForm(this);
+             });
+             updateForm(listeselect);
         },
 
         "ajouterTicket" : function() {
