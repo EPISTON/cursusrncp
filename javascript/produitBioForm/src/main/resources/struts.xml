@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE struts PUBLIC
+        "-//Apache Software Foundation//DTD Struts Configuration 2.3//EN"
+        "http://struts.apache.org/dtds/struts-2.3.dtd">
+<struts>
+    <constant name="struts.enable.DynamicMethodInvocation" value="false"/>
+    <constant name="struts.devMode" value="true"/>
+	<constant name="struts.action.extension" value=","/>
+    <constant name="struts.enable.SlashesInActionNames" value="true" />
+
+    <package name="default" namespace="/" extends="json-default">
+
+        <default-action-ref name="index"/>
+
+        <action name="produit"
+        		class="com.courtalon.produitBioForm.actions.ProduitAction"
+         		method="liste" >
+            <result name="success" type="json">
+            	<param name="root">produits</param>
+            </result>
+        </action>
+        <action name="produit/search/*"
+        		class="com.courtalon.produitBioForm.actions.ProduitAction"
+         		method="searchByName" >
+         	<param name="searchTerm">{1}</param>
+            <result name="success" type="json">
+            	<param name="root">produits</param>
+            </result>
+        </action>
+        
+        
+        
+
+    </package>
+
+    <!-- Add addition packages and configuration here. -->
+</struts>
