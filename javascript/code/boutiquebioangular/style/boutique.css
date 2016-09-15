@@ -1,0 +1,19 @@
+body {
+  padding-top: 50px;
+}
+.starter-template {
+  padding: 40px 15px;
+  text-align: center;
+}
+
+div.box1 {
+    background-color: palevioletred;
+}
+
+div.box2 {
+    background-color: lightgreen;
+}
+
+div.box3 {
+    background-color: dodgerblue;
+}
