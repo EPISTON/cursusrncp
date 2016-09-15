@@ -3,6 +3,7 @@ $(document).ready(function() {
 
     // initialisation du module de recuperation des produits
     produitService.initModule();
+    searchService.initModule();
 });
 
 // le service responsable de la recuperation des produits
@@ -63,9 +64,44 @@ produitService = function(idDivListe, urlServiceJson) {
         },
 
         "setSearchTerm" : function(searchTerm) {
-
+            currentSearch = searchTerm;
+            refreshList();
         }
     };
     return produitServiceModule;
 }("listeProduit", "http://localhost:8080/produitBioForm/produit");
 
+
+// service responsable du champs de recherche de produit
+// il a besoin, comme dépendance, du service des produits
+// pour pouvoir demander le rafraichissement de la liste des produits  
+searchService = function(idInputSearch, produitServiceModule) {
+    var idInput = idInputSearch; // identifiant du champ de recherche
+    var produitService = produitServiceModule; // le service produit
+    var currentSearch = ""; // terme de recherche actuel mémorisé
+
+    // cette fonction verifie si le contenu du champ de recherche
+    // a changé, et si c'est le cas, préviens le service produit
+    // de rafraichir la liste avec la nouvelle recherche
+    // de plus, une fois le controle effectué, il "programme" le prochain
+    // controle pour dans 2 secondes
+    var checkSearchInput = function() {
+        var searchTerm = $("#" + idInput).val();
+        // la recherche a t'elle changée ?
+        if (currentSearch != searchTerm) {
+            currentSearch = searchTerm;
+            // ce qui provoque la requette ajax et le rafraichissement
+            produitService.setSearchTerm(currentSearch);
+        }
+        // on revérifie dans 2 secondes
+        setTimeout(checkSearchInput, 2000);
+    };
+
+    var searchModule = {
+        "initModule" : function() {
+            checkSearchInput();
+        }
+    };
+
+    return searchModule;
+}("searchTerm", produitService);
