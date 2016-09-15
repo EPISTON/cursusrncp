@@ -1,0 +1,24 @@
+exercice javascript 3
+---------------------
+version simple:
+	rajouter un panier dans l'application
+	qui liste les produits
+	
+	1) un bouton sur chaque produit
+		-> clique -> ajoute dans un panier
+					 affiché à droite de la liste
+	2) ce panier affiche le prix et poids total, plus
+	liste des produits
+	
+	3) un bouton permet de passer la commande
+		-> simuler la commande en envoyant au serveur
+		une requette ajax indiquant le prix total
+		-> cela vide le panier
+version complexe:
+	refaire l'application de gestion de tickets
+	en ajax/jquery/json
+	-> afficher la liste des tickets
+	-> pouvoir changer l'urgence d'un ticket
+	-> pouvoir indiquer qu'un tickect est clos
+		-> remove de la base
+	
