@@ -12,12 +12,15 @@ produitService = function(idDivListe, urlServiceJson) {
     var produits = []; // la liste des produits
     var idDiv =  idDivListe; // identifiant du div ou sera affiché la liste
     var url = urlServiceJson; // url on envoyer les requettes ajax pour les produits
-    var currentSearch = ""; // terme de recherche pour filtrer les produits 
+    var currentSearch = ""; // terme de recherche pour filtrer les produits
+    var searchInProgress = false;
+    var searchWaiting = false; 
 
     // la fonction refreshList se charge d'nevouyer une requete ajax au serveur
     // pour recuperer la liste des produits a jour (stockée dans produits)
     // et appel ensuite displayList pour rafraichir le html
     var refreshList = function() {
+        searchInProgress = true;
         var requesturl = url;
         // si c'est une recherche, ajouter ce qu'il faut a l'url
         if (currentSearch != "") {
@@ -30,6 +33,13 @@ produitService = function(idDivListe, urlServiceJson) {
             produits = data;
             // et rafraichir l'affichage
             displayList();
+            searchInProgress = false;
+            // si on a recu une nouvelle demande de recherche entre temps
+            // on relance tout de suite une nouvelle recherche
+            if (searchWaiting) {
+                searchWaiting = false;
+                setTimeout(refreshList, 0);
+            }
         });
     };
     // cette fonction rafraichi l'affichage, c.a.d regenere le tableau html
@@ -65,7 +75,14 @@ produitService = function(idDivListe, urlServiceJson) {
 
         "setSearchTerm" : function(searchTerm) {
             currentSearch = searchTerm;
-            refreshList();
+            // je ne declenche tout de suite une recherche que s'il n'y en a pas en cours
+            if (searchInProgress)
+                // sinon, j'indique qu'il faudra relancer la recherche des que c'est possible
+                searchWaiting = true;
+            else {
+                refreshList();
+            }
+            
         }
     };
     return produitServiceModule;
