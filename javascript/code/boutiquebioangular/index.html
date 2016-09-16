@@ -7,6 +7,7 @@
         <script type="text/javascript" src="js/angular.js" ></script>
         <script type="text/javascript" src="js/bootstrap.js" ></script>
         <script type="text/javascript" src="js/boutiquebio.js" ></script>
+        <script type="text/javascript" src="js/customfilters.js" ></script>
     </head>
     <body>
          <nav class="navbar navbar-inverse navbar-fixed-top">
@@ -38,8 +39,28 @@
                 </div>
             </div>
             <div class="col-md-7" id="listeProduit" ng-controller="produitCtrl">
-                <input type="text" ng-model="data.message" />
-                bienvenue {{data.message}}
+                <div class="checkbox">
+                    <label>
+                        <input type="checkbox" ng-model="data.isStockFilterActive"> masquer les produits epuise
+                    </label>
+                </div>
+                <table class="table table-stripped">
+                    <thead>
+                        <tr>
+                            <th ng-repeat="col in data.columns">
+                                {{col}}
+                            </th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr ng-repeat="produit in data.produits | noStock: data.isStockFilterActive">
+                            <td>{{produit.nom}}</td>
+                            <td>{{produit.poids}}</td>
+                            <td>{{produit.prix | currency}}</td>
+                            <td>{{produit.stock}}</td>
+                        </tr>
+                    </tbody>
+                </table>
             </div>
             <div class="col-md-3" id="panier">
                 panier
