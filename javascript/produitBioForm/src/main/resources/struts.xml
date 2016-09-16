@@ -33,7 +33,16 @@
             	</param>
             </result>
         </action>
-        
+           <action name="categorie"
+        		class="com.courtalon.produitBioForm.actions.CategorieAction"
+         		method="index" >
+            <result name="success" type="json">
+            	<param name="root">categories</param>
+            	<param name="excludeProperties">
+            		.*produits.*
+            	</param>
+            </result>
+        </action>
         
         
 

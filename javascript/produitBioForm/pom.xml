@@ -83,6 +83,13 @@
 		      <artifactId>spring-orm</artifactId>
 		      <version>${spring.version}</version>
     	</dependency>
+    	<!-- spring data jpa permet d'automatiser les DAO -->
+    	<dependency>
+    		<groupId>org.springframework.data</groupId>
+    		<artifactId>spring-data-jpa</artifactId>
+    		<version>1.9.4.RELEASE</version>
+    	</dependency>
+    	
 		<dependency>
 			<groupId>org.aspectj</groupId>
 			<artifactId>aspectjweaver</artifactId>
