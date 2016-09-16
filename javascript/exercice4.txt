@@ -70,3 +70,6 @@ conseil pour progression
 	-> CRUD basique et application angular sans la recherche et l'upload
 	-> après, integrer l'upload ajax et la recherche par tag
 	
+	
+	ngFileUpload
+	https://github.com/danialfarid/ng-file-upload
