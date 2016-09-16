@@ -1,6 +1,7 @@
 package com.courtalon.produitBioForm.repositories;
 
 
+import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.PagingAndSortingRepository;
 
 import com.courtalon.produitBioForm.metier.Produit;
