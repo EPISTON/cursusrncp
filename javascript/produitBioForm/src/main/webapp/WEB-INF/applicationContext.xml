@@ -24,6 +24,7 @@
 			default-autowire="byName">
 
 <bean class="org.springframework.orm.jpa.support.PersistenceAnnotationBeanPostProcessor"/>
+<!-- cette ligne la indique a spring ou chercher les repository/dao spring-data a generer -->
 <jpa:repositories base-package="com.courtalon.produitBioForm.repositories" />
 
 <bean id="dataSource"
@@ -51,7 +52,5 @@
 </bean>
 
 <tx:annotation-driven transaction-manager="transactionManager" />
-
-<bean id="produitDAO" class="com.courtalon.produitBioForm.repositories.ProduitDAO" />
 
 </beans>

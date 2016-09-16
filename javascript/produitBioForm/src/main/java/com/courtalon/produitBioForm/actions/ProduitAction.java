@@ -2,18 +2,24 @@ package com.courtalon.produitBioForm.actions;
 
 import java.util.List;
 
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Sort;
+
 import com.courtalon.produitBioForm.metier.Produit;
-import com.courtalon.produitBioForm.repositories.IProduitDAO;
+import com.courtalon.produitBioForm.repositories.ProduitRepository;
 import com.opensymphony.xwork2.ActionSupport;
 
 public class ProduitAction extends ActionSupport {
 	
-	private IProduitDAO produitDAO;
-	public void setProduitDAO(IProduitDAO produitDAO) {this.produitDAO = produitDAO;}
-	
+		
+	@Autowired
+	private ProduitRepository produitRepository;
+	public ProduitRepository getProduitRepository() {return produitRepository;}
+	public void setProduitRepository(ProduitRepository produitRepository) {this.produitRepository = produitRepository;}
 
-	private List<Produit> produits;
-	public List<Produit> getProduits() {
+	private Iterable<Produit> produits;
+	public Iterable<Produit> getProduits() {
 		return produits;
 	}
 	
@@ -23,13 +29,14 @@ public class ProduitAction extends ActionSupport {
 	
 	//  GET -> /produit/
 	public String liste() {
-		produits = produitDAO.findAll();
+		produits = produitRepository.findAll(); 
+		//produits = produitDAO.findAll();
 		return SUCCESS;
 	}
 	
 	//  GET -> /produit/search/:searchterm
 	public String searchByName() {
-		produits = produitDAO.findByName(getSearchTerm());
+		produits = produitRepository.findByNomContaining(getSearchTerm());
 		return SUCCESS;
 	}
 	
