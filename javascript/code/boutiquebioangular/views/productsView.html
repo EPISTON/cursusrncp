@@ -1,0 +1,40 @@
+    <div class="row" ng-controller="produitCtrl" ng-cloak>
+            <div class="col-md-2">
+                <div class="form-group">
+                    <label for="searchTerm" >search</label>
+                    <input class="form-control" name="searchTerm" id="searchTerm" />
+                </div>
+            </div>
+            <div class="col-md-7"
+                 id="listeProduit"
+                 ng-hide="data.error">
+                <div class="checkbox">
+                    <label>
+                        <input type="checkbox" ng-model="data.isStockFilterActive"> masquer les produits epuise
+                    </label>
+                </div>
+                <table class="table table-stripped">
+                    <thead>
+                        <tr>
+                            <th ng-repeat="col in data.columns" >
+                                <a ng-click="selectOrderColumn(col)"
+                                  class="btn btn-block btn-default btn-md"
+                                  ng-class="getOrderColumnClass(col)">{{col}}</a>
+                            </th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr ng-repeat="produit in data.produits | orderBy: data.filterColumn | noStock: data.isStockFilterActive">
+                            <td>{{produit.nom}}</td>
+                            <td>{{produit.poids}}</td>
+                            <td>{{produit.prix | currency}}</td>
+                            <td>{{produit.stock}}</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+            <div class="col-md-3" id="panier">
+                panier
+            </div>
+        </div>
+    </div>

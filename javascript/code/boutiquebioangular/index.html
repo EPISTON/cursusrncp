@@ -7,9 +7,11 @@
         <script type="text/javascript" src="js/angular.js" ></script>
         <script type="text/javascript" src="js/bootstrap.js" ></script>
         <script type="text/javascript" src="js/boutiquebio.js" ></script>
+        <script type="text/javascript" src="js/controllers/produitCtrl.js" ></script>
+        <script type="text/javascript" src="js/controllers/navigationCtrl.js" ></script>
         <script type="text/javascript" src="js/customfilters.js" ></script>
     </head>
-    <body>
+    <body ng-controller="navigationCtrl">
          <nav class="navbar navbar-inverse navbar-fixed-top">
       <div class="container">
         <div class="navbar-header">
@@ -23,77 +25,15 @@
         </div>
         <div id="navbar" class="collapse navbar-collapse">
           <ul class="nav navbar-nav">
-            <li class="active"><a href="#">Home</a></li>
-            <li><a href="#about">About</a></li>
+            <li class="active"><a ng-click="setCurrentView(0)" href="#">Produits</a></li>
+            <li><a ng-click="setCurrentView(1)" href="#about">Commandes</a></li>
             <li><a href="#contact">Contact</a></li>
           </ul>
         </div><!--/.nav-collapse -->
       </div>
     </nav>
     <div class="container">
-        <div class="row" ng-controller="produitCtrl" ng-cloak>
-            <div class="col-md-2">
-                <div class="form-group">
-                    <label for="searchTerm" >search</label>
-                    <input class="form-control" name="searchTerm" id="searchTerm" />
-                </div>
-            </div>
-            <div class="col-md-7"
-                 id="listeProduit"
-                 ng-hide="data.error">
-                <div class="checkbox">
-                    <label>
-                        <input type="checkbox" ng-model="data.isStockFilterActive"> masquer les produits epuise
-                    </label>
-                </div>
-                <table class="table table-stripped">
-                    <thead>
-                        <tr>
-                            <th ng-repeat="col in data.columns" >
-                                <a ng-click="selectOrderColumn(col)"
-                                  class="btn btn-block btn-default btn-md"
-                                  ng-class="getOrderColumnClass(col)">{{col}}</a>
-                            </th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr ng-repeat="produit in data.produits | orderBy: data.filterColumn | noStock: data.isStockFilterActive">
-                            <td>{{produit.nom}}</td>
-                            <td>{{produit.poids}}</td>
-                            <td>{{produit.prix | currency}}</td>
-                            <td>{{produit.stock}}</td>
-                        </tr>
-                    </tbody>
-                </table>
-            </div>
-            <div class="col-md-3" id="panier">
-                panier
-            </div>
-            
-        </div>
-    </div>
-    <!-- <div class="container">
-        <div class="row">
-            <div class="col-md-8 box1">
-                8 colonnes
-            </div>
-            <div class="col-md-4 box2">
-                4 colonnes
-            </div>
-        </div>
-        <div class="row">
-            <div class="col-md-2 box3">
-                2 colonnes
-            </div>
-            <div class="col-md-8 box1">
-                8 colonnes
-            </div>
-            <div class="col-md-2 box2">
-                2 colonnes
-            </div>
-        </div>
-        -->
-    
+        <ng-include src="getViewAdress()"></ng-include>
     </div>
     </body>
 </html>
