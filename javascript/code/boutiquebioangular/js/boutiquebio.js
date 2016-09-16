@@ -5,8 +5,12 @@ angular.module("produitBio", ["customFilters"]);
 // si vous ne mettez pas les dependances
 // cela veu dire que vous ne creer pas un module
 // mais recupérer un module déjà creer
+// constant permet de definie une constante, que vous ouvez par la suite
+// injecter dans les controller, filtre, service, etc... de votre module
 angular.module("produitBio")
-       .controller("produitCtrl", function($scope) {
+       .constant("orderColumnClass" , "btn-primary")
+       .constant("produitUrl", "http://localhost:8080/produitBioForm/produit")
+       .controller("produitCtrl", function($scope, $http, produitUrl, orderColumnClass) {
        // la variable $scope
        // c'est un contexte, zone de stockage de mon controlleur
        //
@@ -19,21 +23,45 @@ angular.module("produitBio")
        // qui permette de traiter, directement dans le html, les données
        // avant affichage : par exemple currency
        // donne | filter
-       //
+       // pour chainer plusieur filtres
+       // si on veu passer un parametre en 'dur', il faut le mettre en ''
+       // sinon, angular assume que c'est une propriété du scope
+       // <tr ng-repeat="produit in data.produits | orderBy: 'poids' | noStock: data.isStockFilterActive">
+
+/*
+*     <div class="row alert alert-danger" ng-show="data.error">
+                Error {{data.error.status}}. try loading again
+            </div>
+          
+*/
+
        $scope.data = {"message" : "vive la pizza",
-                      "produits" : [
-                          {"id":1,"nom":"acai amazonien sans gluten","poids":0.3,"prix":19.99,"stock":15},
-                          {"id":2,"nom":"biere oceania","poids":0.5,"prix":19.99,"stock":0},
-                          {"id":5,"nom":"pain au graine de courge","poids":0.25,"prix":4.99,"stock":450},
-                          {"id":6,"nom":"quinoa des andes","poids":0.5,"prix":25.99,"stock":26},
-                          {"id":8,"nom":"poulet equitable","poids":0.35,"prix":21.99,"stock":0},
-                          {"id":9,"nom":"steack de lama","poids":0.75,"prix":115.0,"stock":7},
-                          ]
-                        };
-        $scope.data.columns = [];
-        for (col in $scope.data.produits[0]){
-            if (col != "id")
-                $scope.data.columns.push(col);
-        }
+                      "produits" : []};
+
+        // recupération des produits depuis le serveur tomcat
+        $http.get(produitUrl)
+             .then(function (response) {
+                 $scope.data.produits = response.data;
+                 $scope.data.columns = [];
+                 for (col in $scope.data.produits[0]){
+                    if (col != "id")
+                        $scope.data.columns.push(col);
+                 }
+             }, function(response) {
+                 $scope.data.error = response.status;
+             });
+
+        
         $scope.data.isStockFilterActive = false;
+        $scope.data.filterColumn = 'nom';
+
+        $scope.selectOrderColumn = function(col) {
+            $scope.data.filterColumn = col;
+        }
+        $scope.getOrderColumnClass = function(col) {
+            if (col == $scope.data.filterColumn)
+                return orderColumnClass;
+            else
+                return "";
+        }
     });
