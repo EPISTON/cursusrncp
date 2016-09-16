@@ -1,0 +1,72 @@
+exercice de groupe angular/springjpa
+-------------------------------------
+
+d'ecrire une simple application de gestion de gallerie photographique
+en angularJS
+	
+	Photo
+	-----------------
+	id
+	nom
+	description
+	dateCreation
+	fileName
+	content/type
+	
+stocker le fichier correspondant
+
+Photo n)-----(1 gallerie
+
+Gallerie
+--------
+id
+titre
+dateCreation
+
+Tag
+-----
+id
+libelle
+
+Tag n)------(n Photo
+
+l'application doit permettre, la saisie des photos/tags/gallerie
+via une application angularjs
+
+en struts2, si vous utilisez le plugin json, les champs d'un formulaire
+ajax seront automatiquement injecté dans votre action
+
+$http({
+    method: 'POST',
+    url: url,
+    data: {fkey: "key", titrekey: "titre"}
+})
+-> struts2/json extraiera les champs individuels de data
+
+un plugin pour angular qui s'appelle , ngFileUpload
+qui permet d'uploader des fichier en ajax
+
+je veux, en plus des operations crud, la possibiliter de chercher
+des images par tag.
+	toutes les images taggées avec 'ocean'
+	toutes les images taggées avec 'ocean' et 'bateau' et 'nuages'
+
+1) la base du cote eclipse tomact (action/spring-data/repository)
+de difficultée simple/moyenne, si on exclu la recherche par tag
+
+2) l'application de base en angularjs est de difficulté simple/moyenne
+en excluant l'upload de fichier
+
+3) deux grande difficulté
+	A) l'upload ajax de fichier(bien gerer aussi les formulaire)
+	B) recherche par tag multiple d'image (efficacement par la base)
+
+Bonus)
+	1) gerer la pagination pour l'affichage des collection d'image,
+	[y compris avec la recherche par tag] difficile
+	2) gerer les recherche par "exclusion" de tag multiples
+	
+conseil pour progression
+	-> CRUD basique et application angular sans la recherche et l'upload
+	-> après, integrer l'upload ajax et la recherche par tag
+	
