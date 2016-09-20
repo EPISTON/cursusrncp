@@ -1,0 +1,5 @@
+pour le layout
+	-> taille possible en dp (pixel indépendant de la résolution)
+	ou : match_parent -> prend la taille du parent (centenant)
+	ou: wrap_content -> adapate a la taille du contenu
+	
