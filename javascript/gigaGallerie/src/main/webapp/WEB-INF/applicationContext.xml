@@ -6,6 +6,7 @@
        xmlns:context="http://www.springframework.org/schema/context"
        xmlns:tx="http://www.springframework.org/schema/tx"
        xmlns:mvc="http://www.springframework.org/schema/mvc"
+       xmlns:jpa="http://www.springframework.org/schema/data/jpa"
        xsi:schemaLocation="http://www.springframework.org/schema/beans 
             http://www.springframework.org/schema/beans/spring-beans-4.0.xsd
           http://www.springframework.org/schema/aop 
@@ -17,10 +18,13 @@
 			http://www.springframework.org/schema/tx
            http://www.springframework.org/schema/tx/spring-tx-4.0.xsd
            http://www.springframework.org/schema/mvc
-			http://www.springframework.org/schema/mvc/spring-mvc-4.0.xsd"
+			http://www.springframework.org/schema/mvc/spring-mvc-4.0.xsd
+			http://www.springframework.org/schema/data/jpa
+			http://www.springframework.org/schema/data/jpa/spring-jpa.xsd"
 			default-autowire="byName">
 
 <bean class="org.springframework.orm.jpa.support.PersistenceAnnotationBeanPostProcessor"/>
+<jpa:repositories base-package="com.courtalon.gigaGallerie.repositories" />
 
 <bean id="dataSource"
 	  class="org.springframework.jdbc.datasource.DriverManagerDataSource">

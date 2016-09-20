@@ -64,6 +64,9 @@ public class WidgetActivity extends AppCompatActivity {
 
         MyTweetAdapter adapter = new MyTweetAdapter(WidgetActivity.this, tweets);
         myTweetListView.setAdapter(adapter);
+        //adapter.notifyDataSetChanged();
+        //myTweetListView.invalidateViews();
+
 
         //ListView lv = (ListView)findViewById(R.id.listView);
        /* choix = new String[] {"lundi", "mardi", "mercredi", "jeudi", "vendredi", "samedi", "dimanche",

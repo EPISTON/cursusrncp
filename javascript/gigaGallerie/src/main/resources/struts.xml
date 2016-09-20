@@ -15,6 +15,11 @@
         <action name="index" class="com.courtalon.gigaGallerie.actions.IndexAction" method="index" >
             <result name="success">/index.jsp</result>
         </action>
+         <action name="tag/liste" class="com.courtalon.gigaGallerie.actions.TagAction" method="liste" >
+            <result name="success" type="json">
+            	<param name="root">tags</param>
+            </result>
+        </action>
 
     </package>
 

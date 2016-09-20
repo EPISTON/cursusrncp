@@ -2,6 +2,7 @@ package com.courtalon.secondlayoutform;
 
 
 import android.content.Context;
+import android.graphics.drawable.ColorDrawable;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -45,6 +46,10 @@ public class MyTweetAdapter extends ArrayAdapter<Tweet>
             viewHolder.avatar = (ImageView) convertView.findViewById(R.id.avatar);
             convertView.setTag(viewHolder);
         }
+        Tweet t = getItem(position);
+        viewHolder.pseudo.setText(t.getPseudo());
+        viewHolder.texte.setText(t.getTexte());
+        viewHolder.avatar.setImageDrawable(new ColorDrawable(t.getColor()));
         return convertView;
     }
 
