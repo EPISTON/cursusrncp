@@ -1,0 +1,20 @@
+exercice Android 1
+-------------------
+
+ecrire une petite application todoList an android
+ Tache
+ -----
+ titre			: texte  -> par exemple "faire courses"
+ contexte		: texte  -> par exemple "maison"
+ priorite		: entier -> 4
+ dateCreation	: date
+
+permettre de saisir une tache, vider les taches
+afficher une liste des taches
+
+layout de tache
+titre et contexte + date
+couleur de fond change en fonction de la priorité 
+
+bonus:
+moyen de supprimer/terminer une tache
