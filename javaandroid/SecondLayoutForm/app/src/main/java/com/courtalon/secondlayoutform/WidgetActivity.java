@@ -12,6 +12,7 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import java.util.ArrayList;
@@ -21,7 +22,7 @@ public class WidgetActivity extends AppCompatActivity {
 
 
     private ListView myTweetListView;
-
+    private MyTweetAdapter adapter;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -68,7 +69,7 @@ public class WidgetActivity extends AppCompatActivity {
         tweets.add(new Tweet(Color.YELLOW, "Bob Eponge", "shopping de nouveau pantalon"));
         tweets.add(new Tweet(Color.RED, "Bill gates", "nouvelle demo usb"));
         tweets.add(new Tweet(Color.RED, "Bill gates", "visual studio code sous linux :("));
-        MyTweetAdapter adapter = new MyTweetAdapter(WidgetActivity.this, tweets);
+        adapter = new MyTweetAdapter(WidgetActivity.this, tweets);
         myTweetListView.setAdapter(adapter);
         //adapter.notifyDataSetChanged();
 
@@ -113,4 +114,14 @@ public class WidgetActivity extends AppCompatActivity {
         }
         return super.onOptionsItemSelected(item);
     }
+
+    public void ajoutertweet(View v) {
+        //if (v.getId() == R.id.buttonAdd)
+        TextView champ = (TextView)findViewById(R.id.texteTweet);
+        adapter.add(new Tweet(Color.MAGENTA, "moi", champ.getText().toString()));
+    }
+    public void vidertweet(View v) {
+        adapter.clear();
+    }
+
 }
