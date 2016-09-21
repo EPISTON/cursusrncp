@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent" android:layout_height="match_parent">
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Titre"
+        android:id="@+id/textTitre"
+        android:textStyle="bold"
+        android:textSize="25sp"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentStart="true" />
+
+    <TextView
+        android:layout_width="150dp"
+        android:layout_height="wrap_content"
+        android:text="contexte"
+        android:textSize="20sp"
+        android:id="@+id/textContexte"
+        android:layout_below="@+id/textTitre"
+        android:layout_alignParentStart="true" />
+
+    <TextView
+        android:layout_width="100dp"
+        android:layout_height="wrap_content"
+        android:text="New Text"
+        android:textSize="20sp"
+        android:id="@+id/textDate"
+        android:layout_below="@+id/textTitre"
+        android:layout_toEndOf="@+id/textContexte" />
+
+    <Button
+        style="?android:attr/buttonStyleSmall"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="terminer"
+        android:id="@+id/buttonTerminer"
+        android:layout_below="@+id/textTitre"
+        android:layout_toEndOf="@+id/textDate"
+        android:onClick="terminerTache"/>
+
+</RelativeLayout>

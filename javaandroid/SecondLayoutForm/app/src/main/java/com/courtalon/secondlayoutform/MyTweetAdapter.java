@@ -44,7 +44,7 @@ public class MyTweetAdapter extends ArrayAdapter<Tweet>
         // je recupere le tweet correspondant
         Tweet t = getItem(position);
 
-        Log.i("info", "besoin d'une ligne pour " + t.getTexte());
+    //    Log.i("info", "besoin d'une ligne pour " + t.getTexte());
         // creer la vue d'une ligne si elle n'existe pas a partir du layout
         // c'est au demarrage, au premier affichage, que ca cas se présentera
         // cf, cas no 1
@@ -58,7 +58,7 @@ public class MyTweetAdapter extends ArrayAdapter<Tweet>
                     .inflate(R.layout.tweet_layout, parent, false);
         }
         else {
-            Log.i("info", "recuperation vue existante pour cette ligne");
+  //          Log.i("info", "recuperation vue existante pour cette ligne");
         }
 
 
@@ -78,7 +78,7 @@ public class MyTweetAdapter extends ArrayAdapter<Tweet>
         TweetViewHolder viewHolder = (TweetViewHolder)convertView.getTag();
         // si je ne peu pas la recuperer
         if (viewHolder == null) {
-            Log.i("info", "creation du ViewHolder associé a cette vue de ligne");
+//            Log.i("info", "creation du ViewHolder associé a cette vue de ligne");
             // on creer notre ViewHolder
             viewHolder = new TweetViewHolder();
             // on recupere les champs via le couteux findViewById
@@ -92,7 +92,7 @@ public class MyTweetAdapter extends ArrayAdapter<Tweet>
         // dans mon viewHolder, j'ai les 3 composants graphiques a mettre a jour
         // pour la logne en question
 
-        Log.i("info", "copie du contenu du tweet" + t.getTexte() + " dans la vue");
+        //Log.i("info", "copie du contenu du tweet" + t.getTexte() + " dans la vue");
         // je copie dans chaque composant graphique/champ la valeur correspondante du
         // tweet
         viewHolder.pseudo.setText(t.getPseudo());

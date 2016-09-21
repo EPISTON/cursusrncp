@@ -1,0 +1,30 @@
+I/cycleVie: appel de onCreate su mon activite
+I/cycleVie: appel de OnStart de notre application
+I/cycleVie: appel de onResume de notre application
+
+rotation
+
+I/cycleVie: appel de onPause de notre application
+I/cycleVie: appel de onStop de notre application
+I/cycleVie: appel de onDestroy de notre application
+I/cycleVie: appel de onCreate su mon activite
+I/cycleVie: appel de OnStart de notre application
+I/cycleVie: appel de onResume de notre application
+
+switch temporairement d'application (pas completement)
+
+I/cycleVie: appel de onPause de notre application
+I/cycleVie: appel de onStop de notre application
+
+je remet le focus sur l'application
+
+I/cycleVie: appel de onRestart de notre application
+I/cycleVie: appel de OnStart de notre application
+I/cycleVie: appel de onResume de notre application
+
+je fait back
+
+I/cycleVie: appel de onPause de notre application
+I/cycleVie: appel de onStop de notre application
+I/cycleVie: appel de onDestroy de notre application
+

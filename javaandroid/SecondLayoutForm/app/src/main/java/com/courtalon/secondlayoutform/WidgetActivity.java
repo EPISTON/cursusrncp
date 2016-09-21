@@ -1,5 +1,6 @@
 package com.courtalon.secondlayoutform;
 
+import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
@@ -26,6 +27,7 @@ public class WidgetActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        Log.i("cycleVie", "appel de onCreate su mon activite");
         setContentView(R.layout.activity_widget);
 
         // la toolbar correspond au menu avec settings (en haut)
@@ -50,6 +52,9 @@ public class WidgetActivity extends AppCompatActivity {
 
             }
         });*/
+        myTweetListView = (ListView) findViewById(R.id.listView);
+        adapter = new MyTweetAdapter(WidgetActivity.this, new ArrayList<Tweet>());
+        myTweetListView.setAdapter(adapter);
     }
 
     private String[] choix = null;
@@ -57,9 +62,10 @@ public class WidgetActivity extends AppCompatActivity {
     @Override
     protected void onStart() {
         super.onStart();
-        myTweetListView = (ListView) findViewById(R.id.listView);
+        Log.i("cycleVie", "appel de OnStart de notre application");
+
         List<Tweet> tweets = new ArrayList<Tweet>();
-        tweets.add(new Tweet(Color.BLACK, "steve jobs", "j'ai mange une pomme"));
+        /*tweets.add(new Tweet(Color.BLACK, "steve jobs", "j'ai mange une pomme"));
         tweets.add(new Tweet(Color.RED, "Bill gates", "vive la fondation gates"));
         tweets.add(new Tweet(Color.BLUE, "Patrick Etoile", "peu de meduses aujourd'hui"));
         tweets.add(new Tweet(Color.YELLOW, "Bob Eponge", "vive le crusty crab"));
@@ -68,9 +74,8 @@ public class WidgetActivity extends AppCompatActivity {
         tweets.add(new Tweet(Color.RED, "Bill gates", "encore un blue screen"));
         tweets.add(new Tweet(Color.YELLOW, "Bob Eponge", "shopping de nouveau pantalon"));
         tweets.add(new Tweet(Color.RED, "Bill gates", "nouvelle demo usb"));
-        tweets.add(new Tweet(Color.RED, "Bill gates", "visual studio code sous linux :("));
-        adapter = new MyTweetAdapter(WidgetActivity.this, tweets);
-        myTweetListView.setAdapter(adapter);
+        tweets.add(new Tweet(Color.RED, "Bill gates", "visual studio code sous linux :("));*/
+
         //adapter.notifyDataSetChanged();
 
 
@@ -122,6 +127,70 @@ public class WidgetActivity extends AppCompatActivity {
     }
     public void vidertweet(View v) {
         adapter.clear();
+    }
+
+    @Override
+    public void onResume() {
+        super.onResume();
+        Intent intent = getIntent();
+        Bundle b = intent.getBundleExtra("tweets");
+        if ( b != null) {
+            ArrayList<CharSequence> pseudos = b.getCharSequenceArrayList("pseudos");
+            ArrayList<CharSequence> textes = b.getCharSequenceArrayList("textes");
+            ArrayList<Integer> couleurs = b.getIntegerArrayList("couleurs");
+            for (int i = 0; i < pseudos.size(); i++) {
+                Tweet t = new Tweet(couleurs.get(i),
+                        pseudos.get(i).toString(),
+                        textes.get(i).toString()
+                );
+                adapter.add(t);
+            }
+        }
+        Log.i("cycleVie", "appel de onResume de notre application");
+
+
+
+    }
+
+    @Override
+    public void onPause() {
+        super.onPause();
+        Intent intent = getIntent();
+
+        Bundle b = new Bundle();
+        ArrayList<CharSequence> pseudos = new ArrayList<>();
+        ArrayList<CharSequence> textes = new ArrayList<>();
+        ArrayList<Integer> couleurs = new ArrayList<>();
+        for (int i = 0; i < adapter.getCount(); i++) {
+            Tweet t = adapter.getItem(i);
+            pseudos.add(t.getPseudo());
+            textes.add(t.getTexte());
+            couleurs.add(t.getColor());
+        }
+        b.putCharSequenceArrayList("pseudos", pseudos);
+        b.putCharSequenceArrayList("textes", textes);
+        b.putIntegerArrayList("couleurs", couleurs);
+        intent.putExtra("tweets", b);
+
+
+        Log.i("cycleVie", "appel de onPause de notre application");
+    }
+
+    @Override
+    public void onStop() {
+        super.onStop();
+        Log.i("cycleVie", "appel de onStop de notre application");
+    }
+
+    @Override
+    public void onDestroy() {
+        super.onDestroy();
+        Log.i("cycleVie", "appel de onDestroy de notre application");
+    }
+    @Override
+    public void onRestart() {
+        super.onRestart();
+        Log.i("cycleVie", "appel de onRestart de notre application");
     }
 
 }

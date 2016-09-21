@@ -1,8 +1,10 @@
 package com.courtalon.secondlayoutform;
 
 
+import java.io.Serializable;
 
-public class Tweet {
+public class Tweet implements Serializable
+{
     private int color;
     private String pseudo;
     private String texte;
