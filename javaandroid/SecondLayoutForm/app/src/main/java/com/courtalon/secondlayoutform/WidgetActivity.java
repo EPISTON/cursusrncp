@@ -52,6 +52,7 @@ public class WidgetActivity extends AppCompatActivity {
     }
 
     private String[] choix = null;
+
     @Override
     protected void onStart() {
         super.onStart();
@@ -61,11 +62,15 @@ public class WidgetActivity extends AppCompatActivity {
         tweets.add(new Tweet(Color.RED, "Bill gates", "vive la fondation gates"));
         tweets.add(new Tweet(Color.BLUE, "Patrick Etoile", "peu de meduses aujourd'hui"));
         tweets.add(new Tweet(Color.YELLOW, "Bob Eponge", "vive le crusty crab"));
-
+        tweets.add(new Tweet(Color.BLUE, "Patrick Etoile", "a la peche au meduse"));
+        tweets.add(new Tweet(Color.BLACK, "steve jobs", "j'aime android"));
+        tweets.add(new Tweet(Color.RED, "Bill gates", "encore un blue screen"));
+        tweets.add(new Tweet(Color.YELLOW, "Bob Eponge", "shopping de nouveau pantalon"));
+        tweets.add(new Tweet(Color.RED, "Bill gates", "nouvelle demo usb"));
+        tweets.add(new Tweet(Color.RED, "Bill gates", "visual studio code sous linux :("));
         MyTweetAdapter adapter = new MyTweetAdapter(WidgetActivity.this, tweets);
         myTweetListView.setAdapter(adapter);
         //adapter.notifyDataSetChanged();
-        //myTweetListView.invalidateViews();
 
 
         //ListView lv = (ListView)findViewById(R.id.listView);
