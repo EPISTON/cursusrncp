@@ -51,5 +51,8 @@
 </bean>
 
 <tx:annotation-driven transaction-manager="transactionManager" />
-
+<bean id="fileStorageManager"
+	  class="com.courtalon.gigaGallerie.utils.FileStorageManager">
+	  <property name="storageRoot" value="C:\stockage" />
+</bean>
 </beans>

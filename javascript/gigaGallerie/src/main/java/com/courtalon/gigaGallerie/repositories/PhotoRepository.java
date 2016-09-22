@@ -4,7 +4,8 @@ import org.springframework.data.repository.CrudRepository;
 
 import com.courtalon.gigaGallerie.metier.Photo;
 
-public interface PhotoRepository extends CrudRepository<Photo, Integer>
+public interface PhotoRepository 
+		extends CrudRepository<Photo, Integer>, PhotoRepositoryCustom
 {
-
+	
 }
