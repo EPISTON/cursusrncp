@@ -16,9 +16,12 @@ public class YesNoActivity extends AppCompatActivity {
     }
 
 
+
+    // WARNING, ne pas faire le finish dans onStop, c'est alors trop tard
+    // et le résultat n'est pas renvoyé
     @Override
-    public void onStop() {
-        super.onStop();
+    public void onPause() {
+        super.onPause();
         Log.i("cyclevie", "passage onStop de yesNo");
         Intent returnIntent = new Intent();
         returnIntent.putExtra("choix",

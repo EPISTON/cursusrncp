@@ -5,6 +5,7 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.graphics.Color;
 import android.os.Bundle;
+import android.preference.PreferenceManager;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
@@ -40,7 +41,7 @@ import org.json.JSONArray;
 import org.json.JSONException;
 
 public class WidgetActivity extends AppCompatActivity {
-
+    public static final int ACTION_YESNO = 1;
 
     private ListView myTweetListView;
     private MyTweetAdapter adapter;
@@ -93,7 +94,7 @@ public class WidgetActivity extends AppCompatActivity {
             case R.id.action_open:
                 Log.i("info", "clicked open");
                 Intent intent2 = new Intent(this, YesNoActivity.class);
-                startActivityForResult(intent2, 1);
+                startActivityForResult(intent2, ACTION_YESNO);
                 //Toast.makeText(this, "clicked open", Toast.LENGTH_LONG);
                 return true;
             case R.id.action_close:
@@ -143,7 +144,7 @@ public class WidgetActivity extends AppCompatActivity {
 
             adapter.addAll(tweets);
         }
-        prefs = getSharedPreferences("tweetAuthor", MODE_PRIVATE);
+        prefs = PreferenceManager.getDefaultSharedPreferences(getApplicationContext());
         authorName = prefs.getString("name", "moi");
         avatarColor = prefs.getInt("color", Color.RED);
 
@@ -223,7 +224,8 @@ public class WidgetActivity extends AppCompatActivity {
     public void onActivityResult(int requestCode,
                                     int resultCode, Intent data) {
         super.onActivityResult(requestCode,resultCode, data);
-        if (resultCode == Activity.RESULT_OK) {
+
+        if (resultCode == Activity.RESULT_OK && requestCode == ACTION_YESNO) {
             Log.i("resultchoix", " resultat = " + data.getBooleanExtra("choix", false));
         }
         else {

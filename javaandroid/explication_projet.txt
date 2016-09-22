@@ -24,5 +24,25 @@ creation projet
 	-> lancer avec StartActivity, ou startActivityWithResult
 	-> en retour, on recuper les donnes dans onActivityResult
 	
-	
-	
+
+j'ai 2 activite
+je veux recuprer un resultat de la 2eme activite
+
+Liste des taches					formulaire tache
+----------------					-----------------
+click(new tache)
+	Intent1(EDIT, formulairetache)
+		+---------------------->	start/resume
+				[intent1]				|
+									saisie
+										|
+									utilisateur fait back
+										|
+									creation intent
+									contenant la nouvelle tache
+									setResult(intent2)
+		start/resume <------------	finish()
+		|				[intent2]
+		|
+		onActivityResult(EDIT, OK, intent2)
+		

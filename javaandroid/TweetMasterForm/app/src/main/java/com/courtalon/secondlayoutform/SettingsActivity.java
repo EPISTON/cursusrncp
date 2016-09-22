@@ -3,6 +3,7 @@ package com.courtalon.secondlayoutform;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.graphics.Color;
+import android.preference.PreferenceManager;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
@@ -30,7 +31,7 @@ public class SettingsActivity extends AppCompatActivity {
         TextView tv = (TextView)findViewById(R.id.message_settings);
         tv.setText(message);
 
-        prefs = getSharedPreferences("tweetAuthor", MODE_PRIVATE);
+        prefs = PreferenceManager.getDefaultSharedPreferences(getApplicationContext());
         /*SharedPreferences.Editor peditor =  prefs.edit();
         peditor.putString("name", "bob");
         peditor.putInt("color", Color.YELLOW);
@@ -39,15 +40,21 @@ public class SettingsActivity extends AppCompatActivity {
         editName.setText(prefs.getString("name", "moi"));
         setChoixCouleur(prefs.getInt("color", Color.YELLOW));
     }
+
+    @Override
+    protected void onPause() {
+        super.onPause();
+        SharedPreferences.Editor peditor =  prefs.edit();
+        peditor.putString("name", ((EditText)findViewById(R.id.auteurname_edit))
+                .getText().toString());
+        peditor.putInt("color", getChoixCouleur());
+        peditor.commit();
+        Log.i("prefs", "passage dans onPause de settings");
+    }
+
     @Override
     public void onStop() {
         super.onStop();
-        SharedPreferences.Editor peditor =  prefs.edit();
-        peditor.putString("name", ((EditText)findViewById(R.id.auteurname_edit))
-                                            .getText().toString());
-        peditor.putInt("color", getChoixCouleur());
-        peditor.commit();
-        Log.i("prefs", "passage dans onStop de settings");
     }
 
 
