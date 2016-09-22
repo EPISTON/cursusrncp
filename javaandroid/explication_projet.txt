@@ -1,0 +1,28 @@
+creation projet
+---------------
+ 1) une activité principal est crée (ecran d'acceuil)
+	-> il creer la classe
+	-> il creer le layout
+	-> il declare l'activite dans le manifest
+ 2) bien gérer le cycle de vie de votre activité
+	-> en overidant onPause/onResume (ou onStop/OnStart)
+	-> en sauvegardant, via le bundle de l'intent, les parametres
+	ou etat de notre application leger (avec par exempl Gson -> json)
+	-> en restorant dans le symetrique (si on a sauver dans onPause, on
+	restore dans onResume)
+	-> pour les données lourdes, ecriture dans un fichier
+	(ou base de donnée)
+	-> on peu utiliser SharedPreference pour des parametre globaux
+	a l'application
+3) pour transitionner dans un deuxieme ecran
+	-> creer une nouvelle activite dans la même application
+	-> mettre l'activité parent pour la nouvelle activité
+	-> declarer l'intent recepteur pour la nouvelle activite dans
+	le manifest
+	-> pour lancer le deuxieme ecran, creer un nouvel objet intent
+	pointant vers la bonne activité 
+	-> lancer avec StartActivity, ou startActivityWithResult
+	-> en retour, on recuper les donnes dans onActivityResult
+	
+	
+	
