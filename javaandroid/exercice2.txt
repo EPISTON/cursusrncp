@@ -1,0 +1,7 @@
+etendre la TodoList
+-------------------
+	1) sauvegarder les taches de maniere persistente
+	2) faire la creation de tache via une activite(ecran distinct)
+	3) permettre de parametre, via settings, la couleur des taches
+	en fonction de la priorité
+	
