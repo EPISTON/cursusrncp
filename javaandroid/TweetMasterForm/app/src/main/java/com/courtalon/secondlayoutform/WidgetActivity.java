@@ -1,5 +1,6 @@
 package com.courtalon.secondlayoutform;
 
+import android.app.Activity;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.graphics.Color;
@@ -91,6 +92,8 @@ public class WidgetActivity extends AppCompatActivity {
                 return true;
             case R.id.action_open:
                 Log.i("info", "clicked open");
+                Intent intent2 = new Intent(this, YesNoActivity.class);
+                startActivityForResult(intent2, 1);
                 //Toast.makeText(this, "clicked open", Toast.LENGTH_LONG);
                 return true;
             case R.id.action_close:
@@ -211,6 +214,21 @@ public class WidgetActivity extends AppCompatActivity {
     public void onRestart() {
         super.onRestart();
         Log.i("cycleVie", "appel de onRestart de notre application");
+    }
+
+    // requestCode est le code passé initialement
+    // resultCode estle code de retour renvoye par l'activité
+    // Intent data -> Intent renvoyé avec les données
+    @Override
+    public void onActivityResult(int requestCode,
+                                    int resultCode, Intent data) {
+        super.onActivityResult(requestCode,resultCode, data);
+        if (resultCode == Activity.RESULT_OK) {
+            Log.i("resultchoix", " resultat = " + data.getBooleanExtra("choix", false));
+        }
+        else {
+            Log.i("resultchoix", "cancelled");
+        }
     }
 
 }

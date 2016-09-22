@@ -13,4 +13,34 @@
         android:layout_height="wrap_content"
         android:text="bonjour depuis settings"
         android:id="@+id/message_settings"/>
+    <EditText
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/auteurname_edit"
+        android:layout_below="@id/message_settings"/>
+    <RadioGroup
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/auteurname_edit"
+        android:id="@+id/choixCouleur">
+        <RadioButton
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="jaune"
+            android:textColor="@android:color/holo_orange_light"
+            android:id="@+id/choixjaune"/>
+        <RadioButton
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="bleue"
+            android:textColor="@android:color/holo_blue_dark"
+            android:id="@+id/choixbleue"/>
+        <RadioButton
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="vert"
+            android:textColor="@android:color/holo_green_light"
+            android:id="@+id/choixvert"/>
+    </RadioGroup>
+
 </RelativeLayout>

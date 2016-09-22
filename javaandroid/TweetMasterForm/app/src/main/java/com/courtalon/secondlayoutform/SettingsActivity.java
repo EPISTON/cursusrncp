@@ -5,6 +5,10 @@ import android.content.SharedPreferences;
 import android.graphics.Color;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.Log;
+import android.widget.EditText;
+import android.widget.RadioButton;
+import android.widget.RadioGroup;
 import android.widget.TextView;
 
 public class SettingsActivity extends AppCompatActivity {
@@ -27,10 +31,44 @@ public class SettingsActivity extends AppCompatActivity {
         tv.setText(message);
 
         prefs = getSharedPreferences("tweetAuthor", MODE_PRIVATE);
-        SharedPreferences.Editor peditor =  prefs.edit();
+        /*SharedPreferences.Editor peditor =  prefs.edit();
         peditor.putString("name", "bob");
         peditor.putInt("color", Color.YELLOW);
+        peditor.commit();*/
+        EditText editName = (EditText)findViewById(R.id.auteurname_edit);
+        editName.setText(prefs.getString("name", "moi"));
+        setChoixCouleur(prefs.getInt("color", Color.YELLOW));
+    }
+    @Override
+    public void onStop() {
+        super.onStop();
+        SharedPreferences.Editor peditor =  prefs.edit();
+        peditor.putString("name", ((EditText)findViewById(R.id.auteurname_edit))
+                                            .getText().toString());
+        peditor.putInt("color", getChoixCouleur());
         peditor.commit();
+        Log.i("prefs", "passage dans onStop de settings");
+    }
 
+
+    // selectionner le bon radioButton
+    private void setChoixCouleur(int couleur) {
+        RadioGroup rg = (RadioGroup)findViewById(R.id.choixCouleur);
+        switch(couleur) {
+            case Color.YELLOW: rg.check(R.id.choixjaune);
+            case Color.BLUE: rg.check(R.id.choixbleue);
+            case Color.GREEN: rg.check(R.id.choixvert);
+            default: rg.check(R.id.choixjaune);
+        }
+    }
+    // recuperer ce qui a été choisi par le radioButton
+    private int getChoixCouleur() {
+        RadioGroup rg = (RadioGroup)findViewById(R.id.choixCouleur);
+        switch(rg.getCheckedRadioButtonId()) {
+            case R.id.choixjaune: return Color.YELLOW;
+            case R.id.choixbleue: return Color.BLUE;
+            case R.id.choixvert: return Color.GREEN;
+            default: return Color.BLACK;
+        }
     }
 }
