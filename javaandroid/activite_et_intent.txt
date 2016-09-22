@@ -1,0 +1,37 @@
+navigation dans une application
+-------------------------------
+
+une application vas etre composée de multiples activitées
+chaque activité correspond en gros a un ecran de l'application
+
+il y a une activité spéciale, l'activite MAIN qui est l'ecran
+de démarrage
+
+je vais avoir besoin de naviquer entre mes ecrans, cela veu dire
+de passer d'une activité a une autre
+
+ceci passe par le mecanisme des Intent
+un Intent est un objet qui signifie a android que l'on veut lancer
+une autre activité. Cet intent contient les informations permettant
+a android de choisir l'activite a lancer, et aussi a passer des
+données si nécéssaire.
+
+concretement, on creer un objet Intent (new) que l'on configure
+on apelle StartActivity avec cet intent -> demarrage
+
+les Intent sont utilisé dans 2 principaux cas:
+
+	1) pour naviguer entre ecran(activite) de notre application
+	dans ce cas, ce sont des intent très spécifique (directement avec
+	la classe de l'activite a lancer)
+
+	2) pour lancer un traitement plus général, dont on ne connait
+	pas directement qui va fournir l'activite. par exemple, naviguer
+	vers une url, afficher un contact, enregistrer un son, jouer une
+	video, etc....
+	l'intent n'est pas spécifique, mais va declarer une categorie et une
+	action, et android choisira l'activite aproprié pour gerer cela
+	
+	
+	
+	
