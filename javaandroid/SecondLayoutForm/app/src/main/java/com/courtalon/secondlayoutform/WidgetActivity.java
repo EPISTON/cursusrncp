@@ -16,8 +16,19 @@ import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import java.io.InputStreamReader;
+import java.io.Reader;
+import java.io.StringReader;
+import java.lang.reflect.Type;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
+import com.google.gson.Gson;
+import com.google.gson.JsonObject;
+import com.google.gson.reflect.TypeToken;
+
+import org.json.JSONArray;
+import org.json.JSONException;
 
 public class WidgetActivity extends AppCompatActivity {
 
@@ -133,7 +144,21 @@ public class WidgetActivity extends AppCompatActivity {
     public void onResume() {
         super.onResume();
         Intent intent = getIntent();
-        Bundle b = intent.getBundleExtra("tweets");
+        String jsonTweets = intent.getStringExtra("tweets");
+        if (jsonTweets != null && !jsonTweets.isEmpty()) {
+
+            Gson gson = new Gson();
+            //Type listType = new TypeToken<ArrayList<Tweet>>() {}.getType();
+
+            // je deserialise le tableau de tweet
+            Tweet[] tweetArray = gson.fromJson(jsonTweets, Tweet[].class);
+            // je reconvertit mon tableau en ArrayList
+            ArrayList<Tweet> tweets = new ArrayList<>(Arrays.asList(tweetArray));
+
+            adapter.addAll(tweets);
+        }
+
+        /*Bundle b = intent.getBundleExtra("tweets");
         if ( b != null) {
             ArrayList<CharSequence> pseudos = b.getCharSequenceArrayList("pseudos");
             ArrayList<CharSequence> textes = b.getCharSequenceArrayList("textes");
@@ -145,7 +170,7 @@ public class WidgetActivity extends AppCompatActivity {
                 );
                 adapter.add(t);
             }
-        }
+        }*/
         Log.i("cycleVie", "appel de onResume de notre application");
 
 
@@ -157,6 +182,18 @@ public class WidgetActivity extends AppCompatActivity {
         super.onPause();
         Intent intent = getIntent();
 
+        Gson gson = new Gson();
+        ArrayList<Tweet> tweets = new ArrayList<>();
+        for (int i = 0; i < adapter.getCount(); i++) {
+            tweets.add(adapter.getItem(i));
+        }
+        // transformation de la collection en chaine json
+        String jsontweets = gson.toJson(tweets);
+        Log.i("json", jsontweets);
+        // sauvegarde de celle ci dans notre intent
+        intent.putExtra("tweets", jsontweets);
+
+/*
         Bundle b = new Bundle();
         ArrayList<CharSequence> pseudos = new ArrayList<>();
         ArrayList<CharSequence> textes = new ArrayList<>();
@@ -171,7 +208,7 @@ public class WidgetActivity extends AppCompatActivity {
         b.putCharSequenceArrayList("textes", textes);
         b.putIntegerArrayList("couleurs", couleurs);
         intent.putExtra("tweets", b);
-
+*/
 
         Log.i("cycleVie", "appel de onPause de notre application");
     }
