@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:paddingBottom="@dimen/activity_vertical_margin"
+    android:paddingLeft="@dimen/activity_horizontal_margin"
+    android:paddingRight="@dimen/activity_horizontal_margin"
+    android:paddingTop="@dimen/activity_vertical_margin"
+    tools:context="com.courtalon.appwithserviceform.MainActivity">
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Start service"
+        android:id="@+id/buttonStart"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentStart="true" />
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Stop service"
+        android:id="@+id/buttonStop"
+        android:layout_alignBottom="@+id/buttonStart"
+        android:layout_alignParentEnd="true" />
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Abonnement"
+        android:id="@+id/buttonBind"
+        android:layout_below="@+id/buttonStart"
+        android:layout_alignParentStart="true"
+        android:layout_marginTop="34dp" />
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="des-Abonnement"
+        android:id="@+id/buttonUnBind"
+        android:layout_alignTop="@+id/buttonBind"
+        android:layout_alignEnd="@+id/buttonStop" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="no info"
+        android:id="@+id/textAttached"
+        android:layout_below="@+id/buttonBind"
+        android:layout_alignParentStart="true"
+        android:layout_marginTop="35dp" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="message compteur:"
+        android:id="@+id/textCompteur"
+        android:layout_centerVertical="true"
+        android:layout_alignParentStart="true" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="str message:"
+        android:id="@+id/textString"
+        android:layout_below="@+id/textCompteur"
+        android:layout_alignParentStart="true"
+        android:layout_marginTop="43dp" />
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="increment de 1"
+        android:id="@+id/buttonInc1"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentStart="true"
+        android:layout_marginBottom="59dp" />
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="incremente de 5"
+        android:id="@+id/buttonInc5"
+        android:layout_alignBottom="@+id/buttonInc1"
+        android:layout_alignEnd="@+id/buttonUnBind" />
+</RelativeLayout>

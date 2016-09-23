@@ -1,0 +1,4 @@
+<resources>
+    <string name="app_name">AppWithServiceForm</string>
+    <string name="service_started">Compteur service is started</string>
+</resources>
