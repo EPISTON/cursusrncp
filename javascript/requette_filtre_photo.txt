@@ -1,0 +1,11 @@
+avec: t1, t2, t5
+sans: t3, t8
+
+select p from Photos as p join p.tags as tin1
+						  join p.tags as tin2
+						  join p.tags as tin3
+		where tin1.id=1 AND tin2.id=3 AND tin3.id=5
+		AND not exists (
+			select p2 from Photos as p2 join p2.tags as texcluded
+			WHERE p2.id = p.id AND (texcluded.id in(3, 8)) 
+		)

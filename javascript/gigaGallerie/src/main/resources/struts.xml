@@ -18,8 +18,29 @@
          <action name="tag/liste" class="com.courtalon.gigaGallerie.actions.TagAction" method="liste" >
             <result name="success" type="json">
             	<param name="root">tags</param>
+            	<param name="excludeProperties">
+            		.*photos.*
+            	</param>
             </result>
         </action>
+         <action name="tag/find/*" class="com.courtalon.gigaGallerie.actions.TagAction" method="findOne" >
+         	<param name="tagID">{1}</param>
+            <result name="success" type="json">
+            	<param name="root">tag</param>
+            	<param name="excludeProperties">
+            		.*photos.*
+            	</param>
+            </result>
+        </action>
+         <action name="tag/save" class="com.courtalon.gigaGallerie.actions.TagAction" method="save" >
+            <result name="success" type="json">
+            	<param name="root">tag</param>
+            	<param name="excludeProperties">
+            		.*photos.*
+            	</param>
+            </result>
+        </action>
+        
 
     </package>
 
