@@ -11,6 +11,7 @@ import android.os.IBinder;
 import android.os.Message;
 import android.os.Messenger;
 import android.os.RemoteException;
+import android.support.v4.app.NotificationCompat;
 import android.util.Log;
 
 import java.util.ArrayList;
@@ -38,15 +39,15 @@ public class MySecondService extends Service {
 
 
     private void doNotification() {
-        /*nm = (NotificationManager)getSystemService(NOTIFICATION_SERVICE);
+        nm = (NotificationManager)getSystemService(NOTIFICATION_SERVICE);
         CharSequence text = getText(R.string.service_started);
-        Notification notification = new Notification(
-                R.drawable.luma_jaune_icone_64
-                ,text
-                ,System.currentTimeMillis());
+        NotificationCompat.Builder builder = new NotificationCompat.Builder(this)
+                                                .setSmallIcon(R.drawable.luma_jaune_icone_64)
+                                                .setContentTitle(text)
+                                                .setContentText("yolo");
         PendingIntent contentIntent = PendingIntent.getActivity(this, 0, new Intent(this, MainActivity.class), 0);
 
-        nm.notify(R.string.service_started, notification);*/
+        nm.notify(R.string.service_started, builder.build());
     }
 
     public MySecondService() {

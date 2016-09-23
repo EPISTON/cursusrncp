@@ -1,0 +1,22 @@
+communication Activite et service
+-------------------------------------
+
+du coté activité:
+	-> un Handler (incomingHandler) -> recevoir les messages du service
+	-> un Messenger (Messenger) -> envoyer les messages au service
+	
+du coté service
+	-> un Handler (incomingHandler) -> recevoir les messages des activites
+	-> une collection de Messenger:
+		-> pour transmettre des messages a chacune des activité bindee
+
+quelques elements supplémentaires
+	-> on utilise aussi un ServiceConnection pour etre prévenu
+	coté activites, de la reussite de bind ou de unbind
+	
+	->  coté service, on utilise un Timer pour declencher un traitement
+	ici, incrementation du compteur a intervalle réguliers
+	
+	-> le classe Message, combinée avec les Messeger et Handler permet
+	de tranmettre "simplement" des messages entre activité et service
+	
