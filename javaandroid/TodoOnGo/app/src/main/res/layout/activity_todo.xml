@@ -13,35 +13,9 @@
 
     <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="100dp"
-        android:layout_weight="0.4"
+        android:layout_height="50dp"
+        android:layout_weight="0.2"
         android:layout_alignParentTop="true">
-
-        <EditText
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:id="@+id/editTitre"
-            android:layout_alignParentTop="true"
-            android:layout_alignParentStart="true"
-            android:hint="titre de la tache"/>
-
-        <EditText
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:hint="contexte de la tache"
-            android:id="@+id/editContexte"
-            android:layout_below="@+id/editTitre"
-            android:layout_alignParentStart="true" />
-
-        <EditText
-            android:layout_width="50dp"
-            android:layout_height="wrap_content"
-            android:inputType="number"
-            android:hint="1"
-            android:ems="10"
-            android:id="@+id/editPriorite"
-            android:layout_below="@+id/editContexte"
-            android:layout_alignParentStart="true" />
 
         <Button
             android:layout_width="wrap_content"
@@ -64,8 +38,8 @@
 
     <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_weight="0.6"
-        android:layout_height="250dp"
+        android:layout_weight="0.8"
+        android:layout_height="400dp"
         >
 
         <ListView

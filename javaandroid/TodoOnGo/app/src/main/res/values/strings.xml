@@ -1,3 +1,4 @@
 <resources>
     <string name="app_name">TodoOnGo</string>
+    <string name="edit_activity_name">Edition tache</string>
 </resources>

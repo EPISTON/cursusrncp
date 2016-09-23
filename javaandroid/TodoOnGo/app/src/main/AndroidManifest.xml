@@ -15,6 +15,14 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        <activity
+            android:name=".EditTacheActivity"
+            android:label="@string/edit_activity_name"
+            android:parentActivityName=".TodoActivity">
+            <intent-filter>
+                <action android:name="com.courtalon.todoongo.EditTacheActivity" />
+            </intent-filter>
+        </activity>
     </application>
 
 </manifest>
