@@ -4,6 +4,7 @@ import java.io.File;
 import java.util.Date;
 
 import com.courtalon.gigaGallerie.metier.Photo;
+import com.courtalon.gigaGallerie.repositories.PhotoRepository;
 import com.opensymphony.xwork2.ActionSupport;
 
 public class PhotoAction extends ActionSupport {
@@ -20,8 +21,15 @@ public class PhotoAction extends ActionSupport {
 	private String fileContentType;
 	
 	private Iterable<Photo> photos;
-	
-	
+	private Photo photo;
+
+	private PhotoRepository photoRepository;
+	public PhotoRepository getPhotoRepository() {return photoRepository;}
+	public void setPhotoRepository(PhotoRepository photoRepository) {this.photoRepository = photoRepository;}
+
+	public Photo getPhoto() {
+		return photo;
+	}
 	public Iterable<Photo> getPhotos() {
 		return photos;
 	}
@@ -77,6 +85,54 @@ public class PhotoAction extends ActionSupport {
 		this.photoContentType = photoContentType;
 	}
 	
+	public String liste() {
+		photos = photoRepository.findAll();
+		return SUCCESS;
+	}
 	
+	public String findOne() {
+		photo = photoRepository.findOne(getPhotoID());
+		return SUCCESS;		
+	}
+
+	public String save() {
+		photo = photoRepository.save(new Photo(getPhotoID(),
+								getPhotoNom(),
+								getPhotoDescription(),
+								getPhotoDateCreation(),
+								getPhotoFileName(),
+								getPhotoContentType()));
+		return SUCCESS;		
+	}
 	
+	public String saveWithUpload() {
+		photo = photoRepository.save(new Photo(getPhotoID(),
+				getPhotoNom(),
+				getPhotoDescription(),
+				new Date(),
+				getFileFileName(),
+				getFileContentType()));
+		photoRepository.saveImageFile(photo.getId(), file);
+		return SUCCESS;
+	}
+	
+	public String uploadNewOnly() {
+		photo = photoRepository.save(
+				new Photo(0,
+						getFileFileName(),
+						"description non fournie",
+						new Date(),
+						getFileFileName(),
+						getFileContentType()));
+		photoRepository.saveImageFile(photo.getId(), file);
+		return SUCCESS;
+	}
+	
+	public String delete() {
+		photoRepository.delete(getPhotoID());
+		// TODO removing file
+		//photoRepository.saveImageFile(photo.getId(), file);
+		return SUCCESS;
+	}
+
 }

@@ -33,7 +33,9 @@ public class FileStorageManager {
 	public File getStorageRoot() {return storageRoot;}
 	public void setStorageRoot(File storageRoot) {this.storageRoot = storageRoot;}
 	
-	public FileStorageManager() {}
+	public FileStorageManager() {
+		log.info("file storage manager démarré");
+	}
 	
 	// cette fonction servira a stocker le fichier a la demande d'un DAO
 	public boolean saveFile(String entityName, int id, File f) {

@@ -41,6 +41,45 @@
             </result>
         </action>
         
+        <action name="photo/liste" class="com.courtalon.gigaGallerie.actions.PhotoAction" method="liste" >
+            <result name="success" type="json">
+            	<param name="root">photos</param>
+            	<param name="excludeProperties">
+            		.*gallerie.*,
+            		.*tags.*
+            	</param>
+            </result>
+        </action>
+         <action name="photo/find/*" class="com.courtalon.gigaGallerie.actions.PhotoAction" method="findOne" >
+         	<param name="photoID">{1}</param>
+            <result name="success" type="json">
+            	<param name="root">photo</param>
+            	<param name="excludeProperties">
+            		.*gallerie.*,
+            		.*tags.*
+            	</param>
+            </result>
+        </action>
+        <action name="photo/save" class="com.courtalon.gigaGallerie.actions.PhotoAction" method="save" >
+            <result name="success" type="json">
+            	<param name="root">photo</param>
+            	<param name="excludeProperties">
+            		.*gallerie.*,
+            		.*tags.*
+            	</param>
+            </result>
+        </action>
+        <action name="photo/upload" class="com.courtalon.gigaGallerie.actions.PhotoAction" method="saveWithUpload" >
+            <result name="success" type="json">
+            	<param name="root">photo</param>
+            	<param name="excludeProperties">
+            		.*gallerie.*,
+            		.*tags.*
+            	</param>
+            </result>
+        </action>
+        
+        
 
     </package>
 
