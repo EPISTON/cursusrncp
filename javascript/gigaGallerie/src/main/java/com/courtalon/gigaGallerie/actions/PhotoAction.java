@@ -1,10 +1,15 @@
 package com.courtalon.gigaGallerie.actions;
 
 import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.InputStream;
 import java.util.Date;
 
 import com.courtalon.gigaGallerie.metier.Photo;
+import com.courtalon.gigaGallerie.metier.Tag;
 import com.courtalon.gigaGallerie.repositories.PhotoRepository;
+import com.courtalon.gigaGallerie.repositories.TagRepository;
 import com.opensymphony.xwork2.ActionSupport;
 
 public class PhotoAction extends ActionSupport {
@@ -16,6 +21,8 @@ public class PhotoAction extends ActionSupport {
 	private String photoFileName;
 	private String photoContentType;
 	
+	private InputStream photoStream;
+	
 	private File file;
 	private String fileFileName;
 	private String fileContentType;
@@ -23,10 +30,30 @@ public class PhotoAction extends ActionSupport {
 	private Iterable<Photo> photos;
 	private Photo photo;
 
+	private Tag tag;
+	private int tagID;
+	
+
 	private PhotoRepository photoRepository;
 	public PhotoRepository getPhotoRepository() {return photoRepository;}
 	public void setPhotoRepository(PhotoRepository photoRepository) {this.photoRepository = photoRepository;}
+	private TagRepository tagRepository;
+	public TagRepository getTagRepository() {return tagRepository;}
+	public void setTagRepository(TagRepository tagRepository) {this.tagRepository = tagRepository;}
 
+	
+	public InputStream getPhotoStream() {
+		return photoStream;
+	}
+	public Tag getTag() {
+		return tag;
+	}
+	public int getTagID() {
+		return tagID;
+	}
+	public void setTagID(int tagID) {
+		this.tagID = tagID;
+	}
 	public Photo getPhoto() {
 		return photo;
 	}
@@ -134,5 +161,31 @@ public class PhotoAction extends ActionSupport {
 		//photoRepository.saveImageFile(photo.getId(), file);
 		return SUCCESS;
 	}
+	
+	public String addTag() {
+		tag = photoRepository.addTagToPhoto(getPhotoID(), getTagID());
+		return SUCCESS;
+	}
+	
+	public String removeTag() {
+		tag = photoRepository.removeTagFromPhoto(getPhotoID(), getTagID());
+		return SUCCESS;
+	}
+	
+	public String affiche() {
+		Photo p = photoRepository.findOne(getPhotoID());
+		if (p != null) {
+			try {
+				setPhotoContentType(p.getContentType());
+				setPhotoFileName(p.getFileName());
+				photoStream = new FileInputStream(photoRepository.getImageFile(p.getId()).get());
+				return SUCCESS;
+			} catch (FileNotFoundException e) {
+				e.printStackTrace();
+			}
+		}
+		return ERROR;
+	}
+	
 
 }
