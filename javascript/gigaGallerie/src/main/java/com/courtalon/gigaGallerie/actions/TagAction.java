@@ -3,6 +3,7 @@ package com.courtalon.gigaGallerie.actions;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.PageRequest;
 
 import com.courtalon.gigaGallerie.metier.Tag;
 import com.courtalon.gigaGallerie.repositories.TagRepository;
@@ -45,6 +46,7 @@ public class TagAction extends ActionSupport {
 	}
 	
 	public String save() {
+		
 		Tag t = new Tag(getTagID(), getTagLibelle());
 		tag = tagRepository.save(t);
 		return SUCCESS;
