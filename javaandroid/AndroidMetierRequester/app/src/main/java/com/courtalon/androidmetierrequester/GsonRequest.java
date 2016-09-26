@@ -1,6 +1,7 @@
 package com.courtalon.androidmetierrequester;
 
 
+import com.android.volley.AuthFailureError;
 import com.android.volley.NetworkResponse;
 import com.android.volley.ParseError;
 import com.android.volley.Request;
@@ -67,5 +68,11 @@ public class GsonRequest<T> extends Request<T> {
     @Override
     protected void deliverResponse(T response) {
         listener.onResponse(response);
+    }
+
+    // fournit les headers par defaut si on en fournit pas
+    @Override
+    public Map<String, String> getHeaders() throws AuthFailureError {
+        return (headers != null)? headers : super.getHeaders();
     }
 }

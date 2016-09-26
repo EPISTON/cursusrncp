@@ -19,7 +19,7 @@
         android:layout_height="wrap_content"
         android:text="send request"
         android:id="@+id/sendRequestButton"
-        android:onClick="getServerJson"
+        android:onClick="getJsonProduits"
         android:layout_alignParentTop="true"
         android:layout_alignEnd="@+id/listViewItems" />
 
