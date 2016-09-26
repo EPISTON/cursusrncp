@@ -1,0 +1,18 @@
+exercice android final
+-----------------------
+realiser une application android permettant
+de consulter les images de l'application gigaGallerie
+
+1) une activité, permettant d'afficher dans une listView
+le descriptif de toutes les images de notre application
+(récupéré en json)
+
+2) recupérer aussi la liste des tags, et permettre de filtrer
+les images affichées en fonction des tags choisis
+
+3) afficher les images
+	-> indice (imageRequest et imageLoader dans volley)
+	-> indice2 (possibilité d'utiliser un service simple IntentService)
+	
+
+
