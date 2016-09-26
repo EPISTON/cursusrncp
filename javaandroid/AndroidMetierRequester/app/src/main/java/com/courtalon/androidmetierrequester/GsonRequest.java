@@ -8,6 +8,7 @@ import com.android.volley.Request;
 import com.android.volley.Response;
 import com.android.volley.toolbox.HttpHeaderParser;
 import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
 import com.google.gson.JsonSyntaxException;
 
 import java.io.UnsupportedEncodingException;
@@ -15,7 +16,7 @@ import java.util.Map;
 
 public class GsonRequest<T> extends Request<T> {
 
-    private final Gson gson = new Gson();
+    private final Gson gson = new GsonBuilder().setDateFormat("yyyy-MM-dd'T'HH:mm:ss").create();
     // contiendra le type d'objet a deserialiser
     private final Class<T> clazz;
     // en tete de la requete
@@ -33,6 +34,7 @@ public class GsonRequest<T> extends Request<T> {
         this.clazz = clazz;
         this.headers = headers;
         this.listener = listener;
+
     }
 
     // cette fonction sera appelée pour analyser la réponse
