@@ -4,6 +4,7 @@ import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.InputStream;
+import java.util.ArrayList;
 import java.util.Date;
 
 import com.courtalon.gigaGallerie.metier.Photo;
@@ -33,7 +34,10 @@ public class PhotoAction extends ActionSupport {
 	private Tag tag;
 	private int tagID;
 	
-
+	private String includedtags;
+	public void setIncludedtags(String includedtags) {
+		this.includedtags = includedtags;
+	}
 	private PhotoRepository photoRepository;
 	public PhotoRepository getPhotoRepository() {return photoRepository;}
 	public void setPhotoRepository(PhotoRepository photoRepository) {this.photoRepository = photoRepository;}
@@ -187,5 +191,16 @@ public class PhotoAction extends ActionSupport {
 		return ERROR;
 	}
 	
+	public String findByTags() {
+		// dans included tags, liste d'identifiant de tag séparé par ,
+		// 1,4,5  -> ["1", "4", "5"]
+		String[] tagsId = includedtags.split("_");
+		ArrayList<Integer> identifiants = new ArrayList<>();
+		for (String tid : tagsId) {
+			identifiants.add(Integer.parseInt(tid));
+		}
+		photos = photoRepository.findPhotoByTags(identifiants);
+		return SUCCESS;
+	}
 
 }

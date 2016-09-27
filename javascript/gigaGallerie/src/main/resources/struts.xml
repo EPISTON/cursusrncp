@@ -112,6 +112,19 @@
             </result>
         </action>
 
+        <action name="photo/filter/*"
+        		class="com.courtalon.gigaGallerie.actions.PhotoAction"
+        		method="findByTags" >
+        	<param name="includedtags">{1}</param>
+            <result name="success" type="json">
+            	<param name="root">photos</param>
+            	<param name="excludeProperties">
+            		.*tags.*,
+            		.*galerie.*
+            	</param>
+            </result>
+        </action>
+
     </package>
 
     <!-- Add addition packages and configuration here. -->

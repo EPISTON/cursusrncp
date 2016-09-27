@@ -3,6 +3,7 @@ package com.courtalon.gigaGallerie.repositories;
 import java.io.File;
 import java.util.Optional;
 
+import com.courtalon.gigaGallerie.metier.Photo;
 import com.courtalon.gigaGallerie.metier.Tag;
 
 // cette interface contiendra des methodes de mon repository
@@ -13,4 +14,5 @@ public interface PhotoRepositoryCustom {
 	
 	Tag addTagToPhoto(int photoId, int tagId);
 	Tag removeTagFromPhoto(int photoId, int tagId);
+	Iterable<Photo> findPhotoByTags(Iterable<Integer> tagids);
 }
