@@ -7,6 +7,7 @@ import javax.xml.namespace.QName;
 import javax.xml.ws.Service;
 
 import com.courtalon.myFirstService.ws.SimpleService;
+import com.courtalon.myFirstService.ws.Tache;
 
 public class ServiceConsumer {
 
@@ -32,6 +33,10 @@ public class ServiceConsumer {
 		
 		System.out.println(tachesService.getSalutation("vincent"));
 		
+		Tache[] taches = tachesService.getTaches();
+		for (Tache t: taches) {
+			System.out.println(t.getId() + " - " + t.getPriorite() + " - " + t.getTitre());
+		}
 		
 	}
 
