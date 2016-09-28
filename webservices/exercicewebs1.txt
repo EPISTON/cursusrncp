@@ -1,0 +1,23 @@
+exercice WebService 1
+----------------------
+ecrire un webservice proposant ces operations:
+	1) renvoyer une liste de contacts
+	2) recuperer un contact particulier
+		- par son id
+		- par son email
+	3) modifier un contact
+	4) ajouter un contact
+	
+Contact
+-------
+id
+nom
+prenom
+email
+
+
+3 possibilités)
+	version simpliste: les contacts en memoire, sans sauvegarde
+	version intermediaire: sauvegarde des contacts dans un fichier
+	json
+	version avancée: stockage dans une base de donnée
