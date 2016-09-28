@@ -1,4 +1,6 @@
-		<dependency>
+pom.xml	
+
+	<dependency>
 			<groupId>org.apache.cxf</groupId>
 			<artifactId>cxf-rt-frontend-jaxws</artifactId>
 			<version>3.0.10</version>
@@ -8,3 +10,34 @@
 			<artifactId>cxf-rt-transports-http</artifactId>
 			<version>3.0.10</version>
 		</dependency>
+
+		
+		
+		------------------------------- web.xml
+		  <filter>
+    <filter-name>struts2</filter-name>
+    <filter-class>
+      org.apache.struts2.dispatcher.ng.filter.StrutsPrepareAndExecuteFilter
+    </filter-class>
+  </filter>
+
+ 
+  <filter-mapping>
+    <filter-name>struts2</filter-name>
+    <url-pattern>/struts2/*</url-pattern>
+  </filter-mapping>
+
+  <servlet>
+  	<description>Apache CXF Endpoint</description>
+  	<display-name>cxf</display-name>
+  	<servlet-name>cxf</servlet-name>
+  	<servlet-class>org.apache.cxf.transport.servlet.CXFServlet</servlet-class>
+  	<load-on-startup>1</load-on-startup>
+  </servlet>
+--------------------------
+dans applicationContext
+
+xmlns:cxf="http://cxf.apache.org/jaxws"
+
+http://cxf.apache.org/jaxws
+http://cxf.apache.org/schemas/jaxws.xsd
