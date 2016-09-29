@@ -29,9 +29,15 @@
 <import resource="classpath:META-INF/cxf/cxf.xml" />
 <import resource="classpath:META-INF/cxf/cxf-servlet.xml" />
 
-<cxf:endpoint id="myContactService"
+<!--  on expose un webservice que l'on fournit -->
+<cxf:endpoint id="myMessageService"
 			  implementor="com.courtalon.MyMessageApp.ws.MessageServiceImpl"
 			  address="/message" />
+			  
+<!--  je veu consommer un service fournit par quelqu'un d'autre -->
+<cxf:client id="contactService"
+			serviceClass="com.courtalon.myContactService.ws.ContactService"
+			address="http://localhost:8282/contactService" />
 
 <bean id="dataSource"
 	  class="org.springframework.jdbc.datasource.DriverManagerDataSource">
