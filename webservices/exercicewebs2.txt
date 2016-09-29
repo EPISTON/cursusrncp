@@ -1,0 +1,22 @@
+Exercice webservice2
+---------------------
+
+ecrire un webservice "bidon" de meteo
+	-> getWeatherAt("paris", "10/10/2016");
+	-> "ensoleillé, 22 °C"
+publier a la main
+
+ecrire une webApp affichant les informations d'un utilisateur(profil)
+
+Utilisateur
+-----------
+id
+nom
+email
+ville
+
+quand on affiche le profil d'un utilisateur, on affiche
+aussi la meteo des 3 prochains jours de sa ville
+
+on peu exposer le profil d'un utilisateur sous la forme d'un
+ web-service
