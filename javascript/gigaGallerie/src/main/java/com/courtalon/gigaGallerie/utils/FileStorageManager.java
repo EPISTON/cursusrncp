@@ -96,4 +96,31 @@ public class FileStorageManager {
 		
 	}
 	
+	public boolean removeFile(String entityName, int id) {
+		if (storageRoot == null
+				 || !storageRoot.exists()
+				 || !storageRoot.isDirectory()) {
+				// probleme, pas de repertoire de base correct
+				log.error("repertoire de base de stockage non disponnible");
+				return false;
+		}
+		String md5name = DigestUtils.md5Hex(entityName);
+		File entityRep = new File(storageRoot.getAbsolutePath() + File.separatorChar + md5name);
+		
+		// si le repertoire n'existe pas, pas de fichier a renvoyer
+		if (!entityRep.exists() || !entityRep.isDirectory())
+			return false;
+		
+		File f = new File(entityRep.getAbsolutePath(),
+				"file_" + DigestUtils.md5Hex(entityName + id));
+		// si le fichier existe, le renvoyer
+		if (f.exists() && f.isFile()) {
+			return f.delete();
+		}
+		else
+			return false;
+		
+		
+	}
+	
 }

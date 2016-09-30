@@ -11,6 +11,7 @@ import com.courtalon.gigaGallerie.metier.Tag;
 public interface PhotoRepositoryCustom {
 	boolean saveImageFile(int id, File f);
 	Optional<File> getImageFile(int id);
+	boolean removeImageFile(int id);
 	
 	Tag addTagToPhoto(int photoId, int tagId);
 	Tag removeTagFromPhoto(int photoId, int tagId);
