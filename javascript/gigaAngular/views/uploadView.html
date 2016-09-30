@@ -1,0 +1,22 @@
+<div class="row" ng-cloak ng-controller="uploadCtrl">
+    <div ngf-drop ngf-select ng-model="files" class="drop-box"
+        ngf-drag-over-class="'dragover''" ngf-multiple="true"
+        accept="image/*" ngf-pattern="'image/*'">
+        Drop image here
+    </div>
+    Files: 
+    <ul>
+        <li ng-repeat="f in files">{{f.name}}</li>
+    </ul>
+    <div ng-repeat="(name, progress) in fileProgressBars">
+        <uib-progressbar max="100" value="progress">
+            <span style="color:white; white-space:nonwrap;">{{name}} {{progress}}% </span>
+        </uib-progressbar>
+    </div>
+    <div>
+        <uib-alert ng-repeat="alert in uploadAlerts"
+                    type="{{alert.type}}"
+                    dismiss-on-timeout="4000"
+                    close="closeAlertUpload($index)" >{{alert.message}}</uib-alert>
+    </div>
+</div>

@@ -1,11 +1,22 @@
 package com.courtalon.gigaGallerie.repositories;
 
+import java.awt.Graphics;
+import java.awt.Graphics2D;
+import java.awt.GraphicsConfiguration;
+import java.awt.GraphicsDevice;
+import java.awt.GraphicsEnvironment;
+import java.awt.geom.AffineTransform;
+import java.awt.image.BufferedImage;
+import java.io.ByteArrayOutputStream;
 import java.io.File;
+import java.io.IOException;
 import java.util.Optional;
 
+import javax.imageio.ImageIO;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.persistence.TypedQuery;
+import javax.swing.ImageIcon;
 
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
@@ -19,7 +30,8 @@ import com.courtalon.gigaGallerie.utils.FileStorageManager;
 public class PhotoRepositoryImpl implements PhotoRepositoryCustom
 {
 	Logger log = LogManager.getLogger(PhotoRepositoryCustom.class);
-	
+	private static final int thumbwidth = 164;
+	private static final int thumbheight = 164;
 	
 	@Autowired
 	private FileStorageManager fileStorageManager;
@@ -35,18 +47,73 @@ public class PhotoRepositoryImpl implements PhotoRepositoryCustom
 	}
 
 	@Override
-	public boolean saveImageFile(int id, File f) {
-		return getFileStorageManager().saveFile("Photo", id, f);
+	public boolean saveImageFile(Photo p, File f) {
+		
+	
+		java.awt.Image imgin;
+		try
+		{
+			if (p.getContentType().equals("image/gif"))
+			{
+				imgin = ImageIO.read(f);
+			}
+			else
+			{
+				ImageIcon img = new ImageIcon(f.getAbsolutePath());
+				imgin = img.getImage();
+			}
+			
+			int width = imgin.getWidth(null);
+			int height = imgin.getHeight(null);
+			GraphicsEnvironment ge = GraphicsEnvironment.getLocalGraphicsEnvironment();
+			GraphicsDevice gs = ge.getDefaultScreenDevice();  
+			GraphicsConfiguration gc = gs.getDefaultConfiguration();
+			
+			BufferedImage bin = gc.createCompatibleImage(width, height);
+			Graphics g = bin.createGraphics();
+			g.drawImage(imgin, 0, 0, null);
+			g.dispose();
+			double scale;
+			if (height <= thumbheight && width <= thumbwidth)
+				scale = 1;
+			else
+				scale = Math.min((double)thumbwidth / width, (double)thumbheight / height);
+			double x = (thumbwidth - width * scale) / 2;  
+			double y = (thumbheight - height * scale) / 2;
+			AffineTransform at = AffineTransform.getTranslateInstance(x, y);
+			at.scale(scale, scale);
+			BufferedImage imgout = new BufferedImage(thumbwidth, thumbheight, BufferedImage.TYPE_INT_RGB);
+			Graphics2D g2 = imgout.createGraphics();
+			g2.fillRect(0, 0, thumbwidth, thumbheight);
+			g2.drawRenderedImage(bin, at);
+			ByteArrayOutputStream bos = new ByteArrayOutputStream();
+	
+			File thumb = File.createTempFile("thumb", "img");
+			ImageIO.write(imgout, "jpeg", thumb);
+			g2.dispose();
+			fileStorageManager.saveFile("PhotoThumb", p.getId(), thumb);
+			return getFileStorageManager().saveFile("Photo", p.getId(), f);
+		}
+		catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return false;
 	}
 
 	@Override
-	public Optional<File> getImageFile(int id) {
-		return getFileStorageManager().getFile("Photo", id);
+	public Optional<File> getImageFile(Photo p) {
+		return getFileStorageManager().getFile("Photo", p.getId());
+	}
+	@Override
+	public Optional<File> getImageThumbFile(Photo p) {
+		return getFileStorageManager().getFile("PhotoThumb", p.getId());
 	}
 
 	@Override
 	public boolean removeImageFile(int id) {
-		return getFileStorageManager().removeFile("Photo", id);
+		boolean returnvalue = getFileStorageManager().removeFile("photoThumb", id);
+		return returnvalue && getFileStorageManager().removeFile("Photo", id);
 	}
 
 	@Transactional

@@ -9,8 +9,9 @@ import com.courtalon.gigaGallerie.metier.Tag;
 // cette interface contiendra des methodes de mon repository
 // non généré par Spring data
 public interface PhotoRepositoryCustom {
-	boolean saveImageFile(int id, File f);
-	Optional<File> getImageFile(int id);
+	boolean saveImageFile(Photo p, File f);
+	Optional<File> getImageFile(Photo p);
+	Optional<File> getImageThumbFile(Photo p);
 	boolean removeImageFile(int id);
 	
 	Tag addTagToPhoto(int photoId, int tagId);

@@ -1,0 +1,46 @@
+<html ng-app="gigaApp">
+    <head>
+        <title>boutique bio jquery</title>
+        <link rel="stylesheet" type="text/css" href="style/bootstrap.css" />
+        <link rel="stylesheet" type="text/css" href="style/gigaApp.css" />
+        <script type="text/javascript" src="js/jquery-3.1.0.js" ></script>
+        <script type="text/javascript" src="js/angular.js" ></script>
+        <script type="text/javascript" src="js/angular-route.js" ></script>
+        <script type="text/javascript" src="js/bootstrap.js" ></script>
+        <script type="text/javascript" src="js/ng-file-upload.js" ></script>
+        <script type="text/javascript" src="js/ui-bootstrap-tpls-0.14.3.js" ></script>
+        <script type="text/javascript" src="js/gigaApp.js" ></script>
+        <script type="text/javascript" src="js/services/tagService.js" ></script>
+        <script type="text/javascript" src="js/controllers/imageCtrl.js" ></script>
+        <script type="text/javascript" src="js/controllers/uploadCtrl.js" ></script>
+        <script type="text/javascript" src="js/controllers/tagCtrl.js" ></script>
+        <script type="text/javascript" src="js/customfilters.js" ></script>
+        
+    </head>
+    <body>
+         <nav class="navbar navbar-inverse navbar-fixed-top">
+      <div class="container">
+        <div class="navbar-header">
+          <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+            <span class="sr-only">Toggle navigation</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+          <a class="navbar-brand" href="#">GigaGalerie</a>
+        </div>
+        <div id="navbar" class="collapse navbar-collapse">
+          <ul class="nav navbar-nav">
+            <li class="active"><a  href="#/images">Images</a></li>
+            <li><a  href="#/tags">Tags</a></li>
+            <li><a  href="#/galerie">Galerie</a></li>
+            <li><a href="#/upload">Upload</a></li>
+          </ul>
+        </div><!--/.nav-collapse -->
+      </div>
+    </nav>
+    <div class="container">
+        <ng-view />
+    </div>
+    </body>
+</html>

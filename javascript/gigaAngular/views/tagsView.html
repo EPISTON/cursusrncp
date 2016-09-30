@@ -1,0 +1,13 @@
+    <div class="row" ng-cloak ng-controller="tagCtrl">
+        <div class="col-md-6">
+            <span ng-repeat="tag in data.tags">
+                {{tag.libelle}} , 
+            </span>
+        </div>
+        <div class="col-md-6">
+            <div class="form-control">
+                <input type="text" name="libelle" id="libelle" ng-model="data.libelle" />
+                <button class="btn btn-primary" ng-click="saveTag()">create tag</button> 
+            </div>
+        </div>
+    </div>

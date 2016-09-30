@@ -143,7 +143,7 @@ public class PhotoAction extends ActionSupport {
 				new Date(),
 				getFileFileName(),
 				getFileContentType()));
-		photoRepository.saveImageFile(photo.getId(), file);
+		photoRepository.saveImageFile(photo, file);
 		return SUCCESS;
 	}
 	
@@ -155,14 +155,13 @@ public class PhotoAction extends ActionSupport {
 						new Date(),
 						getFileFileName(),
 						getFileContentType()));
-		photoRepository.saveImageFile(photo.getId(), file);
+		photoRepository.saveImageFile(photo, file);
 		return SUCCESS;
 	}
 	
 	public String delete() {
 		photoRepository.delete(getPhotoID());
-		// TODO removing file
-		//photoRepository.saveImageFile(photo.getId(), file);
+		photoRepository.removeImageFile(getPhotoID());
 		return SUCCESS;
 	}
 	
@@ -182,7 +181,7 @@ public class PhotoAction extends ActionSupport {
 			try {
 				setPhotoContentType(p.getContentType());
 				setPhotoFileName(p.getFileName());
-				photoStream = new FileInputStream(photoRepository.getImageFile(p.getId()).get());
+				photoStream = new FileInputStream(photoRepository.getImageFile(p).get());
 				return SUCCESS;
 			} catch (FileNotFoundException e) {
 				e.printStackTrace();
