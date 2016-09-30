@@ -44,6 +44,11 @@ public class PhotoRepositoryImpl implements PhotoRepositoryCustom
 		return getFileStorageManager().getFile("Photo", id);
 	}
 
+	@Override
+	public boolean removeImageFile(int id) {
+		return getFileStorageManager().removeFile("Photo", id);
+	}
+
 	@Transactional
 	@Override
 	public Tag addTagToPhoto(int photoId, int tagId) {
