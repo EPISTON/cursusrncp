@@ -6,6 +6,7 @@
        xmlns:context="http://www.springframework.org/schema/context"
        xmlns:tx="http://www.springframework.org/schema/tx"
        xmlns:mvc="http://www.springframework.org/schema/mvc"
+       xmlns:jpa="http://www.springframework.org/schema/data/jpa"
        xmlns:cxf="http://cxf.apache.org/jaxws"
        xsi:schemaLocation="http://www.springframework.org/schema/beans 
             http://www.springframework.org/schema/beans/spring-beans-4.0.xsd
@@ -19,30 +20,38 @@
            http://www.springframework.org/schema/tx/spring-tx-4.0.xsd
            http://www.springframework.org/schema/mvc
 			http://www.springframework.org/schema/mvc/spring-mvc-4.0.xsd
+			http://www.springframework.org/schema/data/jpa
+			http://www.springframework.org/schema/data/jpa/spring-jpa.xsd
 			http://cxf.apache.org/jaxws
 			http://cxf.apache.org/schemas/jaxws.xsd"
 			default-autowire="byName">
+<!--  ne pas oublier de rajouter  xmlns:cxf="http://cxf.apache.org/jaxws"
+	et http://cxf.apache.org/jaxws
+	   http://cxf.apache.org/schemas/jaxws.xsd
+	-->
+
+<jpa:repositories base-package="com.courtalon.ProfileWebAppForm.repositories" />
+<!--  demande a spring d'inspecter les classes dans ces package
+ au cas ou il trouverait des annotation spring comme AutoWired par exemple -->
+<context:component-scan base-package="com.courtalon.ProfileWebAppForm.services" />
+	
+<import resource="classpath:META-INF/cxf/cxf.xml" />
+<import resource="classpath:META-INF/cxf/cxf-servlet.xml" />	
+<cxf:endpoint implementor="com.courtalon.ProfileWebAppForm.services.ProfileServiceImpl"
+			  address="/userProfile" />
+<cxf:client
+	id="weatherService" 
+	address="http://localhost:8383/weather"
+	serviceClass="com.courtalon.weather.ws.WeatherService" />
+
 
 
 <bean class="org.springframework.orm.jpa.support.PersistenceAnnotationBeanPostProcessor"/>
 
-<import resource="classpath:META-INF/cxf/cxf.xml" />
-<import resource="classpath:META-INF/cxf/cxf-servlet.xml" />
-
-<!--  on expose un webservice que l'on fournit -->
-<cxf:endpoint id="myMessageService"
-			  implementor="com.courtalon.MyMessageApp.ws.MessageServiceImpl"
-			  address="/message" />
-			  
-<!--  je veux consommer un service fournit par quelqu'un d'autre -->
-<cxf:client id="contactService"
-			serviceClass="com.courtalon.myContactService.ws.ContactService"
-			address="http://localhost:8282/contactService" />
-
 <bean id="dataSource"
 	  class="org.springframework.jdbc.datasource.DriverManagerDataSource">
 	<property name="driverClassName" value="com.mysql.jdbc.Driver"/>
-	<property name="url" value="jdbc:mysql://localhost:3306/base_MyMessageApp"/>
+	<property name="url" value="jdbc:mysql://localhost:3306/base_ProfileWebAppForm"/>
 	<property name="username" value="root"/>
 	<property name="password" value=""/>		  
 </bean>
