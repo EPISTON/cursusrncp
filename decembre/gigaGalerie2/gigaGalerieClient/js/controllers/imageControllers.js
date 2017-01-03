@@ -82,7 +82,9 @@ angular.module("galerieApp")
 
             var panelNumber = $scope.currentMainPanelIndex;
             $scope.galleryPanelState = $scope.getPanelState(panelNumber,
-                { "currentPage": 1, "totalItems": 0, "pageSize": 12, "maxPaginationSize": 10, "selectedTags": [], "selectedImages": [], "navState": null });
+                { "currentPage": 1, "totalItems": 0, "pageSize": 12,
+                 "maxPaginationSize": 10, "selectedTags": [], "selectedImages": [],
+                  "navState": null });
 
 
             $scope.images = [];
@@ -118,12 +120,17 @@ angular.module("galerieApp")
                 }
                 return false;
             };
+
+            // rafraichit le contenu de la liste des images a afficher
             $scope.refreshList = function () {
                 var ids = [];
+                // recuperation des tag pour filtrer
                 for (var i = 0; i < $scope.galleryPanelState.selectedTags.length; i++) {
                     ids.push($scope.galleryPanelState.selectedTags[i].id);
                 }
-                listServiceFct.call(imageService, ids, $scope.galleryPanelState.currentPage - 1, $scope.galleryPanelState.pageSize).then(function (response) {
+                // j'appele le service imageService pour recupere le liste des images
+                listServiceFct.call(imageService, ids, $scope.galleryPanelState.currentPage - 1, $scope.galleryPanelState.pageSize)
+                              .then(function (response) {
                     $scope.images = response.data.content;
                     $scope.galleryPanelState.totalItems = response.data.totalElements;
                     $scope.gallerieUrls = [];

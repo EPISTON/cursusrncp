@@ -11,7 +11,8 @@ angular.module("galerieApp")
             AssetSourceServiceUrl = url;
         };
 
-
+        // cette fonction doit renvoyer le service
+        // correctment configuré
         this.$get = function ($rootScope, $http, $cookies) {
             return {
 

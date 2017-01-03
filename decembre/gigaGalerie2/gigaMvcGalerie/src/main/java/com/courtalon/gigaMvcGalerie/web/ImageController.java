@@ -42,6 +42,52 @@ import com.courtalon.gigaMvcGalerie.repositories.TagRepository;
 import com.courtalon.gigaMvcGalerie.utils.JsonPageable;
 import com.fasterxml.jackson.annotation.JsonView;
 
+/*
+ * /rest/images  -> liste des images (avec pagination)
+ * /rest/images/full -> idem, mais avec les tags associé
+ * 
+ * idem pour image etiqueté avec "system_uploaded"
+ * /rest/images/staged
+ * /rest/images/stagedFull
+ * 
+ * /rest/images/{id:[0-9]+} -> information d'une image
+ * 
+ * /rest/images/tagSearch/{ids:[0-9,]+} -> chercher les images en fonction d'une liste de tag
+ * 			/rest/images/tagSearch/2,5,7 -> etiqueté par tag 5 et 7 et 2
+ * 
+ * /rest/images/tagSearchFull/{ids:[0-9,]+} -> en incluant les etiquetes
+ * 
+ * idem pour staged
+ * rest/images/staged/tagSearchFull/{ids:[0-9,]+}
+ * 
+ *	// recupération des images binaires (fichier)
+ * 
+ * /rest/images/data/{id:[0-9]+} -> fichier image de l'image no ID
+ * /rest/images/thumbdata/{id:[0-9]+} -> fichier miniature image de l'image no ID
+ * 
+ * 
+ * /images/data (POST) -> upload nouvelle image
+ * 
+ * sauvegarde une image editée
+ * /images/save/{licenseId:[0-9]+}/{sourceId:[0-9]+} (POST)
+ * on modifie les informations d'une image, mais on ne change pas le fichier
+ * 
+ * /images/saveunstage/{licenseId:[0-9]+}/{sourceId:[0-9]+} (POST)
+ * idem, mais en même temps, retire l'etiquette system_uploaded
+ * 
+ * l'etiquetage des images n'est pas de la responsailité de ce controleur
+ * 
+ * //
+ * /rest/images/delete/{ids:[0-9,]+} (DELETE) -> suppression d'images
+ */
+
+/*
+ * @controller -> declaration d'un controller spring mvc
+ * l'equivalent d'une action struts2
+ * 
+ * @RequestMapping permet d'indiquer le dispatch d'une requette HTTP
+ * ici, toutes les methodes de notre controller répondes a des urls commencant par "/rest"
+ */
 
 @Controller
 @RequestMapping("/rest")
@@ -49,6 +95,9 @@ public class ImageController {
 	private static Logger log = LogManager.getLogger(ImageController.class);
 
 
+	// @Autowired permet de demander a spring d'injecter uen dépendance
+	// ici, un DAO/repository pour les images
+	// attention, @autowired passe par l'attribut
 	@Autowired
 	private ImageRepository imageRepository;
 	public ImageRepository getImageRepository() {return imageRepository;}
@@ -70,7 +119,27 @@ public class ImageController {
 	public AssetSourceRepository getAssetSourceRepository() {return assetSourceRepository;}
 	public void setAssetSourceRepository(AssetSourceRepository assetSourceRepository) {this.assetSourceRepository = assetSourceRepository;}
 
-	
+	/*
+	 * comme j'ai rajouté un @RequestMapping devant la méthode
+	 * il concatene l'url fournie, et vérifie si d'autre contrainte sont spécifié
+	 *  "/images" -> "/rest/images"
+	 *  method= "RequestMethod.GET" -> ne répond qu'au requette GET
+	 *  produces -> quel est le type de donnée retourné
+	 *  
+	 *  cette fonction renvoie la liste des images en base de donnée
+	 *  attention, on parle des meta-informations, pas des fichiers images eux-meme
+	 *  
+	 *  la combinaison de @RespondeBody et "produces "application/json" indique
+	 *  a spring que nous devons convertire la valeur renvoyée en json
+	 *  
+	 *  @JsonView permet ici d'indiquer a JackSon
+	 *  que l'on ne veut que les informations de l'image en json, et pas les tags associés
+	 *  
+	 *  spring est capable de récupérer les informations de pagination
+	 *  depuis la requette http, avec 2 arguments, la taille de la page, et son numéro
+	 *  ils nous les injectera dans une PageRequest
+	 *  c'est indiqué a spring via @PageableDefault
+	 */
 	@RequestMapping(value="/images", method=RequestMethod.GET, produces="application/json")
 	@ResponseBody
 	@JsonView(AssetOnly.class)
@@ -177,7 +246,9 @@ public class ImageController {
 	@RequestMapping(value="/images/save/{licenseId:[0-9]+}/{sourceId:[0-9]+}", method=RequestMethod.POST, produces="application/json")
 	@ResponseBody
 	@JsonView(AssetOnly.class)
-	public Image save(@RequestBody Image image, @PathVariable("licenseId") int licenseId, @PathVariable("sourceId") int sourceId) {
+	public Image save(@RequestBody Image image,
+						@PathVariable("licenseId") int licenseId,
+						@PathVariable("sourceId") int sourceId) {
 		Image oldImage = getImageRepository().findOne(image.getId());
 		if (oldImage == null) {
 			throw new HttpClientErrorException(HttpStatus.NOT_FOUND, "pas d'image existante correspondant a l'edition");
@@ -216,11 +287,20 @@ public class ImageController {
 	}
 	
 	
-	
+	/*
+	 *  fonction d'upload d'une nouvelle image
+	 * 	file -> fichier image
+	 *  licenseId -> license a associer
+	 *  sourceId -> source a associer
+	 *  tagsId -> etiquettes a associer
+	 */
 	@RequestMapping(value="/images/data", method=RequestMethod.POST, produces="application/json")
 	@ResponseBody
 	@JsonView(AssetOnly.class)
-	public Image upload(@RequestParam("file") MultipartFile file, @RequestParam("licenseId") Optional<Integer> licenseId, @RequestParam("sourceId") Optional<Integer> sourceId, @RequestParam("tagsId") Optional<List<Integer>> tagsId) {
+	public Image upload(@RequestParam("file") MultipartFile file,
+			@RequestParam("licenseId") Optional<Integer> licenseId,
+			@RequestParam("sourceId") Optional<Integer> sourceId,
+			@RequestParam("tagsId") Optional<List<Integer>> tagsId) {
 		Image img = null;
 		try {
 			img = getImageRepository().save(new Image(0,

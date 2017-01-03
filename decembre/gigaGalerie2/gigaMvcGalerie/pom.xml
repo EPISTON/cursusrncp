@@ -187,11 +187,11 @@
       				<container>
 	        			<containerId>tomcat8x</containerId>
 	        			<type>installed</type>
-	    				<home>/home/vincent/programmation/apache-tomcat-8.0.30</home>
+	    				<home>C:\apache-tomcat-8.0.39</home>
     				</container>
     				<configuration>
     					<type>existing</type>
-                    	<home>/home/vincent/programmation/apache-tomcat-8.0.30</home>
+                    	<home>C:\apache-tomcat-8.0.39</home>
     				</configuration>
                     <deployables>
                         <deployable>

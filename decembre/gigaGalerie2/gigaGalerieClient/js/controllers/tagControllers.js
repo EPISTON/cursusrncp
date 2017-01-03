@@ -1,3 +1,4 @@
+//$uibmodal permet de generer des dialog bootstrap
 angular.module("galerieApp")
     .controller("tagNavController", ['$rootScope', '$scope', 'tagService', '$uibModal', '$q', function ($rootScope, $scope, tagService, $uibModal, $q) {
         $scope.selectedTags = [];

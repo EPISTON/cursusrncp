@@ -40,10 +40,12 @@ public class FileStorageManager {
 		if (storageRoot == null 
 			|| !storageRoot.exists()
 			|| !storageRoot.isDirectory()) {
-			log.error("root directory for file storage unavalaible");
+			log.error("root directory for file storage unavalaible: " + storageRoot.getAbsolutePath());
 			return false;
 		}
+		// je génére le hash du depot
 		String md5name = DigestUtils.md5Hex(entityName);
+		// si le rep n'existe pas, je le creer
 		File entityRep = new File(storageRoot.getAbsolutePath() + File.separatorChar + md5name); 
 		if (!entityRep.exists()){
 			entityRep.mkdirs();
@@ -52,6 +54,7 @@ public class FileStorageManager {
 			log.error("could not create or access directory" + md5name +" for entity " + entityName + "for file storage");
 			return false;
 		}
+		// je le génére le hash spécifique pour notre image (a partir de son id)
 		String hashedFileName = DigestUtils.md5Hex(entityName + "_" + id);
 		// on sous-decoupe en 256 sous-rep potentiels pour eviter un répertoire avec une enorme liste de fichier dedans
 		File entitySubDir = new File(entityRep, hashedFileName.substring(0, 2));

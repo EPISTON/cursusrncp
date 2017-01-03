@@ -60,6 +60,7 @@ public class ImageRepositoryImpl implements ImageRepositoryCustom
 
 	@Override
 	public boolean saveImageFile(int id, File f) {
+		// "Image" -> nom du depot, "id" -> id image, "f" -> fichier de l'image 
 		if (getFileStorageManager().saveFile("Image", id, f)) {
 			try {
 				ByteArrayOutputStream bos = new ByteArrayOutputStream();
@@ -146,8 +147,11 @@ public class ImageRepositoryImpl implements ImageRepositoryCustom
 		pageRequest += ejbstring.toString();
 		log.info(countRequest);
 		log.info(pageRequest);
+		// creation des requettes de comptage et de donnée
 		TypedQuery<Long> qCount = em.createQuery(countRequest, Long.class);
 		TypedQuery<Image> qData = em.createQuery(pageRequest, Image.class);
+		
+		// binding des parametres
 		int index_param = 1;
 		for (int tid : tagids)
 		{
@@ -155,9 +159,11 @@ public class ImageRepositoryImpl implements ImageRepositoryCustom
 			qData.setParameter("tp" + index_param, tid);
 			index_param++;
 		}
+		// sur la requette donnée, je fait la pagination
 		qData.setFirstResult(page.getOffset());
 		qData.setMaxResults(page.getPageSize());
 		
+		// je rerourne un objet Page contenant mes données, et le nombre total d'élément
 		PageImpl<Image> pResult = new PageImpl<>(qData.getResultList(), page, qCount.getSingleResult());
 		return pResult;
 	}

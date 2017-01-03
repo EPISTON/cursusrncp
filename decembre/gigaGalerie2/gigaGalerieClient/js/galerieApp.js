@@ -10,6 +10,8 @@ app.constant("serverUrl", "http://localhost:8080/gigaMvcGalerie")
     .constant("assetSourceUrl", "/rest/assetsources")
     .constant("tagUrl", "/rest/tags");
 
+// cette fonction est appelée au démarrage de l'app angular
+// pour configurer les services utilisés
 app.config(function (imageServiceProvider,
     tagServiceProvider,
     licenseAndSourceServiceProvider,

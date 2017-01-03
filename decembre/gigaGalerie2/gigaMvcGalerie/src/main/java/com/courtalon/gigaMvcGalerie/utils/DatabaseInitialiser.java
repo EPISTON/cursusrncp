@@ -22,7 +22,8 @@ import com.courtalon.gigaMvcGalerie.repositories.ImageRepository;
 import com.courtalon.gigaMvcGalerie.repositories.LicenseTypeRepository;
 import com.courtalon.gigaMvcGalerie.repositories.TagRepository;
 
-
+// cette classe sera appelée au démarrage du contexte spring
+// doit etre soit annoté, soit déclarée dans le fichier de configuration de spring
 public class DatabaseInitialiser implements ApplicationListener<ContextRefreshedEvent>
 {
 

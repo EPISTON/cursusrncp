@@ -51,7 +51,7 @@ public class TagController {
 		return JsonPageable.fromPage(getTagRepository().findBySystemTag(false, pageRequest));
 	}
 
-	
+	// recuperer le tag d'identifiant id
 	@RequestMapping(value="/tags/{id:[0-9]+}", method=RequestMethod.GET, produces="application/json")
 	@ResponseBody
 	@JsonView(TagOnly.class)
@@ -59,6 +59,7 @@ public class TagController {
 		return getTagRepository().findByIdAndSystemTag(id, false);
 	}
 	
+	// savoir si un tag est disponnible (n'existe pas ?) ou editable (si non systeme)
 	@RequestMapping(value="/tags/available/{libelle}", method=RequestMethod.GET, produces="application/json")
 	@ResponseBody
 	public Map<String, Object> tagLibelleAvailable(@PathVariable("libelle") String libelle) {
@@ -69,7 +70,7 @@ public class TagController {
 		result.put("id", (t == null)? 0 : t.getId()); 
 		return result;
 	}
-	
+	// recherche de tag
 	@RequestMapping(value="/tags/search/{libelle}", method=RequestMethod.GET, produces="application/json")
 	@ResponseBody
 	@JsonView(TagOnly.class)
@@ -84,6 +85,7 @@ public class TagController {
 		return JsonPageable.fromPage(getTagRepository().searchNotRelatedToAsset(libelle, assetId, pageRequest));
 	}
 
+	// trouver tag lié a une asset particuliere
 	@RequestMapping(value="/tags/findRelated/{assetId:[0-9]+}", method=RequestMethod.GET, produces="application/json")
 	@ResponseBody
 	@JsonView(TagOnly.class)
