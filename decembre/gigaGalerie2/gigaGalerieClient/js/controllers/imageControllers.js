@@ -84,6 +84,7 @@ angular.module("galerieApp")
             $scope.galleryPanelState = $scope.getPanelState(panelNumber,
                 { "currentPage": 1, "totalItems": 0, "pageSize": 12,
                  "maxPaginationSize": 10, "selectedTags": [], "selectedImages": [],
+                 "currentSortProperty" : "name", currentSortDirection : "asc",
                   "navState": null });
 
 
@@ -121,6 +122,21 @@ angular.module("galerieApp")
                 return false;
             };
 
+            $scope.changeSort = function(propertyName) {
+                if (propertyName === $scope.galleryPanelState.currentSortProperty) {
+                    if ($scope.galleryPanelState.currentSortDirection == "asc" ) {
+                        $scope.galleryPanelState.currentSortDirection = "desc";
+                    }
+                    else {
+                        $scope.galleryPanelState.currentSortDirection = "asc";
+                    }
+                }
+                else {
+                    $scope.galleryPanelState.currentSortProperty = propertyName;
+                    $scope.galleryPanelState.currentSortDirection = "asc";
+                }
+                $scope.refreshList();
+            }
             // rafraichit le contenu de la liste des images a afficher
             $scope.refreshList = function () {
                 var ids = [];
@@ -129,7 +145,11 @@ angular.module("galerieApp")
                     ids.push($scope.galleryPanelState.selectedTags[i].id);
                 }
                 // j'appele le service imageService pour recupere le liste des images
-                listServiceFct.call(imageService, ids, $scope.galleryPanelState.currentPage - 1, $scope.galleryPanelState.pageSize)
+                listServiceFct.call(imageService, ids,
+                                     $scope.galleryPanelState.currentPage - 1,
+                                      $scope.galleryPanelState.pageSize,
+                                      $scope.galleryPanelState.currentSortProperty,
+                                      $scope.galleryPanelState.currentSortDirection)
                               .then(function (response) {
                     $scope.images = response.data.content;
                     $scope.galleryPanelState.totalItems = response.data.totalElements;

@@ -15,6 +15,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.io.FileSystemResource;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Sort.Direction;
 import org.springframework.data.web.PageableDefault;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
@@ -143,14 +144,14 @@ public class ImageController {
 	@RequestMapping(value="/images", method=RequestMethod.GET, produces="application/json")
 	@ResponseBody
 	@JsonView(AssetOnly.class)
-	public Page<Image> liste(@PageableDefault(page=0, size=10) Pageable pageRequest) {
+	public Page<Image> liste(@PageableDefault(page=0, size=10, sort="name", direction=Direction.ASC) Pageable pageRequest) {
 		return JsonPageable.fromPage(getImageRepository().findAll(pageRequest));
 	}
 	
 	@RequestMapping(value="/images/full", method=RequestMethod.GET, produces="application/json")
 	@ResponseBody
 	@JsonView(AssetAndTags.class)
-	public Page<Image> listeFull(@PageableDefault(page=0, size=10) Pageable pageRequest) {
+	public Page<Image> listeFull(@PageableDefault(page=0, size=10, sort="name", direction=Direction.ASC) Pageable pageRequest) {
 		return JsonPageable.fromPage(getImageRepository().findByTagList(new ArrayList<>(), pageRequest, true));
 	}
 	
@@ -158,7 +159,7 @@ public class ImageController {
 	@RequestMapping(value="/images/staged", method=RequestMethod.GET, produces="application/json")
 	@ResponseBody
 	@JsonView(AssetOnly.class)
-	public Page<Image> listeStaged(@PageableDefault(page=0, size=10) Pageable pageRequest) {
+	public Page<Image> listeStaged(@PageableDefault(page=0, size=10, sort="name", direction=Direction.ASC) Pageable pageRequest) {
 		List<Integer> ids = new ArrayList<Integer>();
 		ids.add(tagRepository.findByLibelle(TagRepository.UPLOADED).getId());
 		return JsonPageable.fromPage(getImageRepository().findByTagList(ids, pageRequest, false));
@@ -167,7 +168,7 @@ public class ImageController {
 	@RequestMapping(value="/images/stagedfull", method=RequestMethod.GET, produces="application/json")
 	@ResponseBody
 	@JsonView(AssetAndTags.class)
-	public Page<Image> listeStagedIncludingTags(@PageableDefault(page=0, size=10) Pageable pageRequest) {
+	public Page<Image> listeStagedIncludingTags(@PageableDefault(page=0, size=10, sort="name", direction=Direction.ASC) Pageable pageRequest) {
 		List<Integer> ids = new ArrayList<Integer>();
 		ids.add(tagRepository.findByLibelle(TagRepository.UPLOADED).getId());
 		return JsonPageable.fromPage(getImageRepository().findByTagList(ids, pageRequest, true));
@@ -177,7 +178,7 @@ public class ImageController {
 	@RequestMapping(value="/images/staged/tagSearchFull/{ids:[0-9,]+}", method=RequestMethod.GET, produces="application/json")
 	@ResponseBody
 	@JsonView(AssetAndTags.class)
-	public Page<Image> findStagedByTagSearchFull(@PageableDefault(page=0, size=10) Pageable pageRequest,
+	public Page<Image> findStagedByTagSearchFull(@PageableDefault(page=0, size=10, sort="name", direction=Direction.ASC) Pageable pageRequest,
 									 @PathVariable("ids") List<Integer> ids) {
 		log.info("recherche par tags " + ids + " demandée");
 		ids.add(tagRepository.findByLibelle(TagRepository.UPLOADED).getId());
@@ -226,7 +227,7 @@ public class ImageController {
 	@RequestMapping(value="/images/tagSearch/{ids:[0-9,]+}", method=RequestMethod.GET, produces="application/json")
 	@ResponseBody
 	@JsonView(AssetOnly.class)
-	public Page<Image> findByTagSearch(@PageableDefault(page=0, size=10) Pageable pageRequest,
+	public Page<Image> findByTagSearch(@PageableDefault(page=0, size=10, sort="name", direction=Direction.ASC) Pageable pageRequest,
 									 @PathVariable("ids") List<Integer> ids) {
 		log.info("recherche par tags " + ids + " demandée");
 		return JsonPageable.fromPage(getImageRepository().findByTagList(ids, pageRequest, false));
@@ -235,7 +236,7 @@ public class ImageController {
 	@RequestMapping(value="/images/tagSearchFull/{ids:[0-9,]+}", method=RequestMethod.GET, produces="application/json")
 	@ResponseBody
 	@JsonView(AssetAndTags.class)
-	public Page<Image> findByTagSearchFull(@PageableDefault(page=0, size=10) Pageable pageRequest,
+	public Page<Image> findByTagSearchFull(@PageableDefault(page=0, size=10, sort="name", direction=Direction.ASC) Pageable pageRequest,
 									 @PathVariable("ids") List<Integer> ids) {
 		log.info("recherche par tags " + ids + " demandée");
 		return JsonPageable.fromPage(getImageRepository().findByTagList(ids, pageRequest, true));

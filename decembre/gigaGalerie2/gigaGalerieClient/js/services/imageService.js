@@ -7,45 +7,47 @@ angular.module("galerieApp")
             serviceUrl = url;
         };
 
-
+ 
         this.$get = function ($rootScope, $http, $timeout, $cookies, Upload) {
+        // fonction privé
+            var generateIdsList = function(tagids) {
+                    var ids = "";
+                    for (var i = 0; i < tagids.length; i++) {
+                        if (i > 0) { ids += ","; }
+                        ids += tagids[i];
+                    }
+                    return ids;
+                };
             return {
-
-                "liste": function (pageNo, pageSize) {
-                    pageNo = pageNo || 0;
-                    pageSize = pageSize || 12;
-                    return $http.get(serviceUrl + "/full?pageNo=" + pageNo + "&pageSize=" + pageSize);
-                },
-                "filteredList": function (tagids, pageNo, pageSize) {
+                "filteredList": function (tagids, pageNo, pageSize, sortProperty, sortDirection) {
+                    var url = serviceUrl;
                     if (!angular.isArray(tagids) || tagids.length == 0) {
-                        return this.liste(pageNo, pageSize);
-                    }
+                        url += "/full";
+                    }                  
+                    else {
+                        url += "/tagSearchFull/" + generateIdsList(tagids);
+                    }  
                     pageNo = pageNo || 0;
                     pageSize = pageSize || 12;
-                    var ids = "";
-                    for (var i = 0; i < tagids.length; i++) {
-                        if (i > 0) { ids += ","; }
-                        ids += tagids[i];
-                    }
-                    return $http.get(serviceUrl + "/tagSearchFull/" + ids + "?pageNo=" + pageNo + "&pageSize=" + pageSize);
+                    sortProperty = sortProperty || "name";
+                    sortDirection = sortDirection || "asc";
+                    return $http.get(url + "?pageNo=" + pageNo + "&pageSize=" + pageSize
+                                    + "&sort=" + sortProperty + "," + sortDirection);
                 },
-                "stagedListe": function (pageNo, pageSize) {
-                    pageNo = pageNo || 0;
-                    pageSize = pageSize || 12;
-                    return $http.get(serviceUrl + "/stagedfull?pageNo=" + pageNo + "&pageSize=" + pageSize);
-                },
-                "filteredStagedList": function (tagids, pageNo, pageSize) {
+                "filteredStagedList": function (tagids, pageNo, pageSize, sortProperty, sortDirection) {
+                    var url = serviceUrl;
                     if (!angular.isArray(tagids) || tagids.length == 0) {
-                        return this.stagedListe(pageNo, pageSize);
-                    }
+                        url += "/stagedfull";
+                    }                  
+                    else {
+                        url += "/staged/tagSearchFull/" + generateIdsList(tagids);
+                    }  
                     pageNo = pageNo || 0;
                     pageSize = pageSize || 12;
-                    var ids = "";
-                    for (var i = 0; i < tagids.length; i++) {
-                        if (i > 0) { ids += ","; }
-                        ids += tagids[i];
-                    }
-                    return $http.get(serviceUrl + "/staged/tagSearchFull/" + ids + "?pageNo=" + pageNo + "&pageSize=" + pageSize);
+                    sortProperty = sortProperty || "name";
+                    sortDirection = sortDirection || "asc";
+                    return $http.get(url + "?pageNo=" + pageNo + "&pageSize=" + pageSize
+                                    + "&sort=" + sortProperty + "," + sortDirection);
                 },
                 "findOne": function (id) {
                     return $http.get(serviceUrl + "/" + id);

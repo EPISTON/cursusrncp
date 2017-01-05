@@ -27,6 +27,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageImpl;
 import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Sort.Direction;
+import org.springframework.data.domain.Sort.Order;
 import org.springframework.data.querydsl.QPageRequest;
 import org.springframework.data.querydsl.QueryDslUtils;
 import org.springframework.transaction.annotation.Transactional;
@@ -145,6 +147,15 @@ public class ImageRepositoryImpl implements ImageRepositoryCustom
 		}
 		countRequest += ejbstring.toString();
 		pageRequest += ejbstring.toString();
+		
+		// ajout du tri si nécéssaire
+		if (page.getSort() != null && page.getSort().iterator().hasNext()) {
+			Order o = page.getSort().iterator().next();
+			String propName = o.getProperty();
+			String direction = o.getDirection().toString();
+			pageRequest += " ORDER BY i." + propName + " " + direction;
+		}
+		
 		log.info(countRequest);
 		log.info(pageRequest);
 		// creation des requettes de comptage et de donnée

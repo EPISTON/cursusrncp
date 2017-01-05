@@ -13,7 +13,7 @@ angular.module("galerieApp")
         this.$get = function ($rootScope, $http, $cookies, $q) {
             var tagMode = "filter"; // "filter" or "edit"
             var currentPageNo = 1;
-            var currentPageSize = 25;
+            var currentPageSize = 15;
             var currentTotalItems = 0;
             var currentAssetId = 0; // for Asset edit mode
             var currentSelectedTags = [];
@@ -38,7 +38,7 @@ angular.module("galerieApp")
                         "currentPageSize": currentPageSize,
                         "currentTotalItems": currentTotalItems,
                         "currentSearch": currentSearch,
-                        "currentSelectedTags": currentSelectedTags
+                        "currentSelectedTags": currentSelectedTags,
                     };
                 },
                 "setTagMode": function (newTagMode) {
@@ -155,6 +155,7 @@ angular.module("galerieApp")
                             currentPageNo = response.data.number + 1;
                             currentPageSize = response.data.size;
                             currentTagPage = response.data.content;
+                            // on prévient qu'il faut rafraichir la page
                             $rootScope.$broadcast("tagService:tagChoiceRefreshed", {
                                 'tags': currentTagPage,
                                 'totalItems': currentTotalItems,

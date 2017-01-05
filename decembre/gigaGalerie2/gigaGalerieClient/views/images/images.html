@@ -29,6 +29,34 @@
         </h3>
     </div>
     <div class="text-center col-xs-12 col-sm-12 col-md-12 col-lg-12 col-xl-12">
+         <div class="btn-group">
+                    <a type="button" class="btn btn-success"
+                       aria-label="Left Align" ng-click="changeSort('name')">
+                        name <span class="glyphicon"
+                                   ng-class="(galleryPanelState.currentSortDirection == 'asc') ? 'glyphicon-sort-by-attributes' :'glyphicon-sort-by-attributes-alt'"
+                                  aria-hidden="true"></span>
+                    </a>
+                    <a type="button" class="btn btn-success"
+                       aria-label="Left Align" ng-click="changeSort('dateAdded')">
+                        date <span class="glyphicon"
+                                   ng-class="(galleryPanelState.currentSortDirection == 'asc') ? 'glyphicon-sort-by-attributes' :'glyphicon-sort-by-attributes-alt'"
+                                  aria-hidden="true"></span>
+                    </a>
+                    <a type="button" class="btn btn-success"
+                       aria-label="Left Align" ng-click="changeSort('fileSize')">
+                        filesize <span class="glyphicon"
+                                   ng-class="(galleryPanelState.currentSortDirection == 'asc') ? 'glyphicon-sort-by-attributes' :'glyphicon-sort-by-attributes-alt'"
+                                  aria-hidden="true"></span>
+                    </a>
+                    <a type="button" class="btn btn-success"
+                       aria-label="Left Align" ng-click="changeSort('fileName')">
+                        filename <span class="glyphicon"
+                                   ng-class="(galleryPanelState.currentSortDirection == 'asc') ? 'glyphicon-sort-by-attributes' :'glyphicon-sort-by-attributes-alt'"
+                                  aria-hidden="true"></span>
+                    </a>
+                </div>
+    </div >
+    <div class="text-center col-xs-12 col-sm-12 col-md-12 col-lg-12 col-xl-12">
         <ul uib-pagination total-items="galleryPanelState.totalItems" ng-model="galleryPanelState.currentPage" max-size="galleryPanelState.maxPaginationSize"
             class="pagination-sm" items-per-page="galleryPanelState.pageSize" boundary-link-numbers="true" ng-change="refreshList()"></ul>
     </div>

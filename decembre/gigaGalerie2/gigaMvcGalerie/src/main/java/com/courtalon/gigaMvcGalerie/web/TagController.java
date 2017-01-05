@@ -9,6 +9,7 @@ import org.apache.logging.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Sort.Direction;
 import org.springframework.data.web.PageableDefault;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Controller;
@@ -47,7 +48,7 @@ public class TagController {
 	@RequestMapping(value="/tags", method=RequestMethod.GET, produces="application/json")
 	@ResponseBody
 	@JsonView(TagOnly.class)
-	public Page<Tag> liste(@PageableDefault(page=0, size=10) Pageable pageRequest) {
+	public Page<Tag> liste(@PageableDefault(page=0, size=10, sort="libelle", direction=Direction.ASC) Pageable pageRequest) {
 		return JsonPageable.fromPage(getTagRepository().findBySystemTag(false, pageRequest));
 	}
 
@@ -74,7 +75,7 @@ public class TagController {
 	@RequestMapping(value="/tags/search/{libelle}", method=RequestMethod.GET, produces="application/json")
 	@ResponseBody
 	@JsonView(TagOnly.class)
-	public Page<Tag> findByLibelle(@PathVariable("libelle") String libelle, @PageableDefault(page=0, size=10) Pageable pageRequest) {
+	public Page<Tag> findByLibelle(@PathVariable("libelle") String libelle, @PageableDefault(page=0, size=10, sort="libelle", direction=Direction.ASC) Pageable pageRequest) {
 		return JsonPageable.fromPage(getTagRepository().findByLibelleContainingAndSystemTag(libelle, false, pageRequest));
 	}
 
